@@ -25,7 +25,10 @@ public class EditareDataModel extends DefaultTableModel{
     public int getRowCount() {
         if(studenti == null && materii == null)
             return 0;
-        return  isStudent? studenti.size(): materii.size();
+        if (isStudent) {
+            return studenti.size();
+        }
+        return materii.size();
     }
 
     @Override

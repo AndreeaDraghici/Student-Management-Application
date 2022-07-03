@@ -40,7 +40,7 @@ public class MainForm extends JFrame {
                 if (i == JFileChooser.APPROVE_OPTION) {
                     File f = fc.getSelectedFile();
                     String filepath = f.getPath();
-                    if (!filepath.endsWith("D:\\Data\\Facultate\\StudentManagementProject\\src\\view\\Student.xml")) {
+                    if (!filepath.endsWith("D:\\Data\\StudentManagement\\src\\view\\Student.xml")) {
                         JOptionPane.showMessageDialog(MainForm.this, "Nu s-a ales fisierul studentilor");
                     } else {
                         studenti = (List<Student>) MainForm.this.parseXML(0, filepath);
@@ -67,7 +67,7 @@ public class MainForm extends JFrame {
                 if (i == JFileChooser.APPROVE_OPTION) {
                     File f = fc.getSelectedFile();
                     String filepath = f.getPath();
-                    if (!filepath.endsWith("D:\\Data\\Facultate\\StudentManagementProject\\src\\view\\Materie.xml")) {
+                    if (!filepath.endsWith("D:\\Data\\StudentManagement\\src\\view\\Materie.xml")) {
                         JOptionPane.showMessageDialog(MainForm.this, "Nu s-a ales fisierul materiilor");
                     } else {
                         materii = (List<Materie>) MainForm.this.parseXML(1, filepath);
@@ -93,7 +93,7 @@ public class MainForm extends JFrame {
                 if (i == JFileChooser.APPROVE_OPTION) {
                     File f = fc.getSelectedFile();
                     String filepath = f.getPath();
-                    if (!filepath.endsWith("D:\\Data\\Facultate\\StudentManagementProject\\src\\view\\Nota.xml")) {
+                    if (!filepath.endsWith("D:\\Data\\StudentManagement\\src\\view\\Nota.xml")) {
                         JOptionPane.showMessageDialog(MainForm.this, "Nu s-a ales fisierul notelor");
                     } else {
                         note = (List<Nota>) MainForm.this.parseXML(2, filepath);
@@ -130,25 +130,7 @@ public class MainForm extends JFrame {
         sp.setBounds(200, 10, 400, 170);
         panel.add(sp);
 
-        // AngajatCellRender render = new AngajatCellRender();
-        // jt.setDefaultRenderer(String.class, render);
-        // jt.setDefaultRenderer(Integer.class, render);
-        //
-        // editCell = new EditCellRender();
-        // jt.setDefaultRenderer(JButton.class, editCell);
-        // jt.setDefaultEditor(JButton.class, editCell);
-        // editCell.addActionListener(new ActionListener() {
-
-        // @Override
-        // public void actionPerformed(ActionEvent e) {
-        // Main.this.editRow(jt.getEditingRow());
-        // }
-        // });
-
-        // jt.setCellSelectionEnabled(true);
-
         tabelMaterii = new JTable();
-        // tabel.setEditingColumn(5);
 
         sp = new JScrollPane(tabelMaterii);
         sp.setBounds(200, 200, 400, 170);
@@ -167,7 +149,7 @@ public class MainForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 WriteXMLFile domWriter = new WriteXMLFile();
                 try {
-                    domWriter.createXMLFrom(catalog, "src/view/oCatalog.xml");
+                    domWriter.createXMLFrom(catalog, "D:\\Data\\StudentManagement\\src\\view\\oCatalog.xml");
                 } catch (Exception e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();

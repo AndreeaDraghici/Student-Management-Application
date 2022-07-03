@@ -12,7 +12,7 @@
         <Materie an="II" denumire="Matematica" id="3" profesor="Profesor3" sem="1">10.0</Materie>
         <Materie an="I" denumire="Engleza" id="2" profesor="Profesor2" sem="2">10.0</Materie>
     </Student>
-    <Student id="4" nume="Crusoveanu" prenume="Bogdan" sex="Male">
+    <Student id="4" nume="Draghici" prenume="Andreea" sex="Male">
         <Materie an="I" denumire="Romana" id="1" profesor="Profesor1" sem="1">10.0</Materie>
     </Student>
     <Student id="5" nume="Paleta" prenume="Petrom" sex="Female">

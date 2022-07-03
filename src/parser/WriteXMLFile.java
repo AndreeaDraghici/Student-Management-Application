@@ -35,8 +35,7 @@ public class WriteXMLFile {
             elem.setAttribute("nume", situatie.getStudent().getNume());
             elem.setAttribute("prenume", situatie.getStudent().getPrenume());
             elem.setAttribute("sex", situatie.getStudent().getSex());
-            // float medie = situatie.getMedie();
-            // elem.setAttribute("medie", medie ==0? "absent": Float.toString(medie));
+
             for (Nota nota : situatie.getNote()) {
                 Materie materie = this.getMaterieFrom(catalog.getMaterii(), nota.getIdMaterie());
                 if (materie != null) {

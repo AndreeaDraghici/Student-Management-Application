@@ -1,31 +1,11 @@
 
 F
-src/model/Catalog.java,b\3\b3b07c4605656c47e599a121f367e8373ba46606
-F
 src/model/Materie.java,f\0\f0b3532e6607a302d9f4c6f3a0391305bf58c89a
-F
-src/model/Student.java,6\e\6ea887f4454a88870d0d370a7c2b4ccff5e6dc18
 G
 src/model/Situatie.java,9\4\9464429f91a6ba0f86b608a58fc797fcaabb5dfa
 C
 src/model/Nota.java,0\7\07ace63a424fde08529cb13898b115a23503b6ee
-J
-src/data/CatalogModel.java,0\1\0158792786919a5cdf20541259d16f490a31fe83
-J
-src/data/EditareModel.java,d\1\d19aefeaa40cd7d8373f9479bfac816470d038fd
-S
-#src/frame/EditareStudentiFrame.java,6\0\606cd8aebb5073fb0bb0f172467c9a2d99823337
-O
-src/frame/EditareDataModel.java,2\6\26ac1cddcd2e6d06024a42d64316fe4abf0fd4d5
-D
-src/view/Materie.xml,f\7\f793610a67d6cef98fb4f0d9f3bb4a07f0a0ced7
-A
-src/view/Nota.xml,f\a\fa7603b9b0e8782d7223270bce554d7d760bc04e
-D
-src/view/Student.xml,7\0\709bbe3e78fe3e579a7500420d23461cb109d162
-O
-src/parser/ReadNotaXMLFile.java,b\f\bf9e0f374a347a7c179cb8b4c4b739551fdb0696
-R
-"src/parser/ReadStudentXMLFile.java,c\7\c712153adb9f76b7852fe9bad1855bee2ccb95fd
-L
-src/parser/WriteXMLFile.java,e\b\eb948905306bbe17421dd298e5f7dec33a893f22
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+=
+src/Main.java,9\2\924f089edb4af5ee45c8a9d1129cd28e2b368138

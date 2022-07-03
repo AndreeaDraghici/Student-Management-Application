@@ -21,8 +21,8 @@
         <Sex>Male</Sex>
     </student>
     <student Id = "4">
-        <Nume>Crusoveanu</Nume>
-        <Prenume>Bogdan</Prenume>
+        <Nume>Draghici</Nume>
+        <Prenume>Andreea</Prenume>
         <Telefon>07355555551</Telefon>
         <Sex>Male</Sex>
     </student>
