@@ -11,6 +11,7 @@ import parser.WriteXMLFile;
 import javax.swing.*;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -30,60 +31,56 @@ public class MainForm extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
+        panel.setBackground(Color.red);
 
-        JButton button = new JButton();
-        button.addActionListener(new ActionListener() {
+        populateTableStudenti(panel);
+        populateTableMaterie(panel);
+        populateTableNote(panel);
+
+        tabelStudenti = new JTable();
+
+        JScrollPane sp = new JScrollPane(tabelStudenti);
+        sp.setBounds(200, 10, 350, 170);
+        panel.add(sp);
+
+        tabelMaterii = new JTable();
+
+        sp = new JScrollPane(tabelMaterii);
+        sp.setBounds(200, 200, 350, 170);
+        panel.add(sp);
+
+        tabelCatalog = new JTable();
+        tabelCatalog.setAutoCreateRowSorter(true);
+
+        sp = new JScrollPane(tabelCatalog);
+        sp.setBounds(200, 400, 350, 250);
+        panel.add(sp);
+
+        JButton btnSave = new JButton();
+        btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFileChooser fc = new JFileChooser();
-                int i = fc.showOpenDialog(MainForm.this);
-                if (i == JFileChooser.APPROVE_OPTION) {
-                    File f = fc.getSelectedFile();
-                    String filepath = f.getPath();
-                    if (!filepath.endsWith("D:\\Data\\StudentManagement\\src\\view\\Student.xml")) {
-                        JOptionPane.showMessageDialog(MainForm.this, "Nu s-a ales fisierul studentilor");
-                    } else {
-                        studenti = (List<Student>) MainForm.this.parseXML(0, filepath);
-                        JOptionPane.showMessageDialog(MainForm.this,"nr studenti: " + studenti.size());
-                        EditareDataModel model = new EditareDataModel();
-                        model.setStudenti(studenti);
-                        tabelStudenti.setModel(model);
-                    }
+                WriteXMLFile domWriter = new WriteXMLFile();
+                try {
+                    domWriter.createXMLFrom(catalog, "D:\\Data\\StudentManagement\\src\\view\\Catalog.xml");
+                } catch (Exception e1) {
+                    e1.printStackTrace();
                 }
-
             }
         });
-        button.setText("Student.xml");
-        button.setBounds(10, 10, 150, 20);
-        panel.add(button);
-        add(panel);
+        btnSave.setText("Generate to XML");
+        btnSave.setBounds(270, 700, 150, 20);
+        btnSave.setBackground(Color.white);
+        panel.add(btnSave);
 
-        button = new JButton();
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser fc = new JFileChooser();
-                int i = fc.showOpenDialog(MainForm.this);
-                if (i == JFileChooser.APPROVE_OPTION) {
-                    File f = fc.getSelectedFile();
-                    String filepath = f.getPath();
-                    if (!filepath.endsWith("D:\\Data\\StudentManagement\\src\\view\\Materie.xml")) {
-                        JOptionPane.showMessageDialog(MainForm.this, "Nu s-a ales fisierul materiilor");
-                    } else {
-                        materii = (List<Materie>) MainForm.this.parseXML(1, filepath);
-                        EditareDataModel model = new EditareDataModel();
-                        model.setMaterii(materii);
-                        tabelMaterii.setModel(model);
-                    }
-                }
+        setSize(600, 790);
+        setLocationRelativeTo(null);
 
-            }
-        });
-        button.setText("Materie.xml");
-        button.setBounds(10, 200, 150, 20);
-        panel.add(button);
-        add(panel);
+        setVisible(true);
+    }
 
+    private void populateTableNote(JPanel panel) {
+        JButton button;
         button = new JButton();
         button.addActionListener(new ActionListener() {
             @Override
@@ -111,6 +108,7 @@ public class MainForm extends JFrame {
                                 catalog.addSituatie(situatie);
                                 CatalogModel model = new CatalogModel(catalog);
                                 tabelCatalog.setModel(model);
+                                tabelCatalog.setBackground(Color.yellow);
                             }
                         }
                     }
@@ -119,50 +117,72 @@ public class MainForm extends JFrame {
             }
         });
         button.setText("Nota.xml");
-        button.setBounds(10, 400, 150, 20);
+        button.setBounds(20, 450, 120, 20);
+        button.setBackground(Color.white);
         panel.add(button);
         add(panel);
+    }
 
-        tabelStudenti = new JTable();
-
-        JScrollPane sp = new JScrollPane(tabelStudenti);
-        sp.setBounds(200, 10, 400, 170);
-        panel.add(sp);
-
-        tabelMaterii = new JTable();
-
-        sp = new JScrollPane(tabelMaterii);
-        sp.setBounds(200, 200, 400, 170);
-        panel.add(sp);
-
-        tabelCatalog = new JTable();
-        tabelCatalog.setAutoCreateRowSorter(true);
-
-        sp = new JScrollPane(tabelCatalog);
-        sp.setBounds(200, 400, 400, 300);
-        panel.add(sp);
-
-        JButton btnSave = new JButton();
-        btnSave.addActionListener(new ActionListener() {
+    private void populateTableMaterie(JPanel panel) {
+        JButton button;
+        button = new JButton();
+        button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                WriteXMLFile domWriter = new WriteXMLFile();
-                try {
-                    domWriter.createXMLFrom(catalog, "D:\\Data\\StudentManagement\\src\\view\\Catalog.xml");
-                } catch (Exception e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
+                JFileChooser fc = new JFileChooser();
+                int i = fc.showOpenDialog(MainForm.this);
+                if (i == JFileChooser.APPROVE_OPTION) {
+                    File f = fc.getSelectedFile();
+                    String filepath = f.getPath();
+                    if (!filepath.endsWith("D:\\Data\\StudentManagement\\src\\view\\Materie.xml")) {
+                        JOptionPane.showMessageDialog(MainForm.this, "Nu s-a ales fisierul materiilor");
+                    } else {
+                        materii = (List<Materie>) MainForm.this.parseXML(1, filepath);
+                        EditareDataModel model = new EditareDataModel();
+                        model.setMaterii(materii);
+                        tabelMaterii.setModel(model);
+                        tabelMaterii.setBackground(Color.yellow);
+                    }
                 }
+
             }
         });
-        btnSave.setText("Generate to XML");
-        btnSave.setBounds(200, 720, 150, 20);
-        panel.add(btnSave);
+        button.setText("Materie.xml");
+        button.setBounds(20, 250, 120, 20);
+        button.setBackground(Color.white);
+        panel.add(button);
+        add(panel);
+    }
 
-        setSize(650, 800);
-        setLocationRelativeTo(null);
+    private void populateTableStudenti(JPanel panel) {
+        JButton button = new JButton();
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fc = new JFileChooser();
+                int i = fc.showOpenDialog(MainForm.this);
+                if (i == JFileChooser.APPROVE_OPTION) {
+                    File f = fc.getSelectedFile();
+                    String filepath = f.getPath();
+                    if (!filepath.endsWith("D:\\Data\\StudentManagement\\src\\view\\Student.xml")) {
+                        JOptionPane.showMessageDialog(MainForm.this, "Nu s-a ales fisierul studentilor");
+                    } else {
+                        studenti = (List<Student>) MainForm.this.parseXML(0, filepath);
+                        JOptionPane.showMessageDialog(MainForm.this, "nr studenti: " + studenti.size());
+                        EditareDataModel model = new EditareDataModel();
+                        model.setStudenti(studenti);
+                        tabelStudenti.setModel(model);
+                        tabelStudenti.setBackground(Color.yellow);
+                    }
+                }
 
-        setVisible(true);
+            }
+        });
+        button.setText("Student.xml");
+        button.setBounds(20, 35, 120, 20);
+        button.setBackground(Color.white);
+        panel.add(button);
+        add(panel);
     }
 
     public Object parseXML(int tip, String file) {
@@ -185,7 +205,6 @@ public class MainForm extends JFrame {
             }
             return null;
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return null;
         }
