@@ -1,12 +1,12 @@
-package data;
-
+package model.frame;
 import model.Materie;
 import model.Student;
 
-import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
-public class EditareModel extends DefaultTableModel {
+import javax.swing.table.DefaultTableModel;
+public class EditareDataModel extends DefaultTableModel{
+
     private List<Student> studenti = null;
     private List<Materie> materii = null;
     private boolean isStudent = false;
@@ -25,7 +25,10 @@ public class EditareModel extends DefaultTableModel {
     public int getRowCount() {
         if(studenti == null && materii == null)
             return 0;
-        return  isStudent? studenti.size(): materii.size();
+        if (isStudent) {
+            return studenti.size();
+        }
+        return materii.size();
     }
 
     @Override
@@ -133,5 +136,4 @@ public class EditareModel extends DefaultTableModel {
         }
         return null;
     }
-
 }

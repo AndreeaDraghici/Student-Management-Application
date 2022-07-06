@@ -1,7 +1,7 @@
 package controller;
 
-import data.CatalogModel;
-import frame.EditareDataModel;
+import model.data.CatalogModel;
+import model.frame.EditareDataModel;
 import model.*;
 import parser.ReadMaterieXMLFile;
 import parser.ReadNotaXMLFile;
