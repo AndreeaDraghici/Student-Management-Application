@@ -20,4 +20,10 @@
         <an>II</an>
         <semestru>1</semestru>
     </materia>
+    <materia id = "4">
+        <denumire>Informatica</denumire>
+        <profesor>Profesor4</profesor>
+        <an>IV</an>
+        <semestru>2</semestru>
+    </materia>
 </materii>

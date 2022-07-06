@@ -44,7 +44,7 @@ public class MainForm extends JFrame {
                         JOptionPane.showMessageDialog(MainForm.this, "Nu s-a ales fisierul studentilor");
                     } else {
                         studenti = (List<Student>) MainForm.this.parseXML(0, filepath);
-                        System.out.println("nr studenti: " + studenti.size());
+                        JOptionPane.showMessageDialog(MainForm.this,"nr studenti: " + studenti.size());
                         EditareDataModel model = new EditareDataModel();
                         model.setStudenti(studenti);
                         tabelStudenti.setModel(model);
@@ -53,7 +53,7 @@ public class MainForm extends JFrame {
 
             }
         });
-        button.setText("Alege Student.xml");
+        button.setText("Student.xml");
         button.setBounds(10, 10, 150, 20);
         panel.add(button);
         add(panel);
@@ -79,7 +79,7 @@ public class MainForm extends JFrame {
 
             }
         });
-        button.setText("Alege Materie.xml");
+        button.setText("Materie.xml");
         button.setBounds(10, 200, 150, 20);
         panel.add(button);
         add(panel);
@@ -118,13 +118,12 @@ public class MainForm extends JFrame {
 
             }
         });
-        button.setText("Alege Nota.xml");
+        button.setText("Nota.xml");
         button.setBounds(10, 400, 150, 20);
         panel.add(button);
         add(panel);
 
         tabelStudenti = new JTable();
-        // tabel.setEditingColumn(5);
 
         JScrollPane sp = new JScrollPane(tabelStudenti);
         sp.setBounds(200, 10, 400, 170);
@@ -149,14 +148,14 @@ public class MainForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 WriteXMLFile domWriter = new WriteXMLFile();
                 try {
-                    domWriter.createXMLFrom(catalog, "D:\\Data\\StudentManagement\\src\\view\\oCatalog.xml");
+                    domWriter.createXMLFrom(catalog, "D:\\Data\\StudentManagement\\src\\view\\Catalog.xml");
                 } catch (Exception e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
             }
         });
-        btnSave.setText("Save to XML");
+        btnSave.setText("Generate to XML");
         btnSave.setBounds(200, 720, 150, 20);
         panel.add(btnSave);
 

@@ -67,10 +67,7 @@ public class EditareStudentiFrame extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                //EditareAngajatForm.this.setVisible(false);
-                //parent.reloadTable();
-                //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
                 EditareStudentiFrame.this.setVisible(false);
             }
         });
@@ -82,11 +79,7 @@ public class EditareStudentiFrame extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                //EditareAngajatForm.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                //parent.getModel().setValueAt(txtName.getText(), 0, 0);
-                //parent.getModel().addTableModelListener();
-                //parent.reloadTable();
+
                 EditareStudentiFrame.this.setVisible(false);
             }
         });
