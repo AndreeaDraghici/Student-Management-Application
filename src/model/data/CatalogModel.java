@@ -1,4 +1,4 @@
-package data;
+package model.data;
 
 import model.Catalog;
 import model.Materie;
