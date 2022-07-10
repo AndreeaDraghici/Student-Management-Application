@@ -1,10 +1,6 @@
 
 O
 src/parser/ReadNotaXMLFile.java,b\f\bf9e0f374a347a7c179cb8b4c4b739551fdb0696
-R
-"src/parser/ReadStudentXMLFile.java,c\7\c712153adb9f76b7852fe9bad1855bee2ccb95fd
-R
-"src/parser/ReadMaterieXMLFile.java,0\0\009f07b26bee6e15519be8edb884b2ac121dc68f
 D
 src/view/Materie.xml,f\7\f793610a67d6cef98fb4f0d9f3bb4a07f0a0ced7
 A
@@ -34,3 +30,7 @@ P
  src/model/data/EditareModel.java,8\5\8567e80c8b00c9b99e9a6ce0f40e5aa8a7df44cb
 Y
 )src/model/frame/EditareStudentiFrame.java,e\b\eba80491634b234cb6b426498d696ec759809055
+D
+src/view/Catalog.xml,c\2\c2b8b1bd75c59798e073f6dc59a8339c17ece5e1
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
