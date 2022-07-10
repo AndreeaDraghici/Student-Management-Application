@@ -30,7 +30,9 @@ P
  src/model/data/EditareModel.java,8\5\8567e80c8b00c9b99e9a6ce0f40e5aa8a7df44cb
 Y
 )src/model/frame/EditareStudentiFrame.java,e\b\eba80491634b234cb6b426498d696ec759809055
-D
-src/view/Catalog.xml,c\2\c2b8b1bd75c59798e073f6dc59a8339c17ece5e1
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+R
+"src/parser/ReadMaterieXMLFile.java,0\0\009f07b26bee6e15519be8edb884b2ac121dc68f
+R
+"src/parser/ReadStudentXMLFile.java,c\7\c712153adb9f76b7852fe9bad1855bee2ccb95fd
