@@ -1,6 +1,6 @@
-package org.example.model.data;
-import org.example.model.Materie;
-import org.example.model.Student;
+package com.ace.ucv.model.data;
+import com.ace.ucv.model.Materie;
+import com.ace.ucv.model.Student;
 
 import java.util.List;
 

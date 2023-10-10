@@ -1,8 +1,8 @@
-package org.example.parser;
+package com.ace.ucv.parser;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.example.model.Nota;
+import com.ace.ucv.model.Nota;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;

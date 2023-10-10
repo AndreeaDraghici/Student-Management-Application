@@ -1,7 +1,7 @@
-package org.example.model.data;
+package com.ace.ucv.model.data;
 
-import org.example.model.Materie;
-import org.example.model.Student;
+import com.ace.ucv.model.Materie;
+import com.ace.ucv.model.Student;
 
 import javax.swing.table.DefaultTableModel;
 import java.util.List;

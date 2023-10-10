@@ -1,6 +1,6 @@
-package org.example.model.frame;
+package com.ace.ucv.model.frame;
 
-import org.example.model.Materie;
+import com.ace.ucv.model.Materie;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

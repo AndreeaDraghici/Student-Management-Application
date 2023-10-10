@@ -1,4 +1,4 @@
-package org.example.model;
+package com.ace.ucv.model;
 
 public class Nota {
 

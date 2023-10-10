@@ -1,4 +1,4 @@
-package org.example.parser;
+package com.ace.ucv.parser;
 import java.io.File;
 import java.util.List;
 
@@ -13,10 +13,10 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.example.model.Catalog;
-import org.example.model.Materie;
-import org.example.model.Nota;
-import org.example.model.Situatie;
+import com.ace.ucv.model.Catalog;
+import com.ace.ucv.model.Materie;
+import com.ace.ucv.model.Nota;
+import com.ace.ucv.model.Situatie;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 

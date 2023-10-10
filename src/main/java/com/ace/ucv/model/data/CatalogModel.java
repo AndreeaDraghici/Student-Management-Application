@@ -1,9 +1,9 @@
-package org.example.model.data;
+package com.ace.ucv.model.data;
 
-import org.example.model.Catalog;
-import org.example.model.Materie;
-import org.example.model.Nota;
-import org.example.model.Situatie;
+import com.ace.ucv.model.Catalog;
+import com.ace.ucv.model.Materie;
+import com.ace.ucv.model.Nota;
+import com.ace.ucv.model.Situatie;
 
 import javax.swing.table.DefaultTableModel;
 

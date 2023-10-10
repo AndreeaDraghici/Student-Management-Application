@@ -1,12 +1,13 @@
-package org.example.controller;
+package com.ace.ucv.controller;
 
+import com.ace.ucv.model.*;
+import com.ace.ucv.model.data.EditareDataModel;
+import com.ace.ucv.parser.ReadStudentXMLFile;
+import com.ace.ucv.parser.WriteXMLFile;
 import org.example.model.*;
-import org.example.model.data.CatalogModel;
-import org.example.model.data.EditareDataModel;
-import org.example.parser.ReadMaterieXMLFile;
-import org.example.parser.ReadNotaXMLFile;
-import org.example.parser.ReadStudentXMLFile;
-import org.example.parser.WriteXMLFile;
+import com.ace.ucv.model.data.CatalogModel;
+import com.ace.ucv.parser.ReadMaterieXMLFile;
+import com.ace.ucv.parser.ReadNotaXMLFile;
 
 import javax.swing.*;
 import javax.xml.parsers.SAXParser;
