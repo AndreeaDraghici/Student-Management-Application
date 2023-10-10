@@ -4,7 +4,6 @@ import com.ace.ucv.model.*;
 import com.ace.ucv.model.data.EditareDataModel;
 import com.ace.ucv.parser.ReadStudentXMLFile;
 import com.ace.ucv.parser.WriteXMLFile;
-import org.example.model.*;
 import com.ace.ucv.model.data.CatalogModel;
 import com.ace.ucv.parser.ReadMaterieXMLFile;
 import com.ace.ucv.parser.ReadNotaXMLFile;
