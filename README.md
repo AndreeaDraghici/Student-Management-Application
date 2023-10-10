@@ -18,7 +18,7 @@
 
 #### 1. After application started , user should be able to import three xml files where the content of that files will be displayed into a table view into GUI.
 
-![img.png](src/resources/img.png)
+![img.png](src/main/resources/img.png)
 
 
 #### 2. After the 3 files have been imported into the GUI, the user can see their content, based on this information, the user can generate a report for specified discipline when the students are alphabetically sorted. 

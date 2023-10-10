@@ -1,12 +1,12 @@
-package controller;
+package org.example.controller;
 
-import model.data.CatalogModel;
-import model.frame.EditareDataModel;
-import model.*;
-import parser.ReadMaterieXMLFile;
-import parser.ReadNotaXMLFile;
-import parser.ReadStudentXMLFile;
-import parser.WriteXMLFile;
+import org.example.model.*;
+import org.example.model.data.CatalogModel;
+import org.example.model.data.EditareDataModel;
+import org.example.parser.ReadMaterieXMLFile;
+import org.example.parser.ReadNotaXMLFile;
+import org.example.parser.ReadStudentXMLFile;
+import org.example.parser.WriteXMLFile;
 
 import javax.swing.*;
 import javax.xml.parsers.SAXParser;

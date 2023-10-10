@@ -1,6 +1,6 @@
-package parser;
+package org.example.parser;
 
-import model.Student;
+import org.example.model.Student;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;

@@ -1,6 +1,6 @@
-package model.frame;
+package org.example.model.frame;
 
-import model.Student;
+import org.example.model.Student;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -1,8 +1,8 @@
-package parser;
+package org.example.parser;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Materie;
+import org.example.model.Materie;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;

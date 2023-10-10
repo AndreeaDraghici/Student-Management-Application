@@ -1,9 +1,9 @@
-package model.data;
+package org.example.model.data;
 
-import model.Catalog;
-import model.Materie;
-import model.Nota;
-import model.Situatie;
+import org.example.model.Catalog;
+import org.example.model.Materie;
+import org.example.model.Nota;
+import org.example.model.Situatie;
 
 import javax.swing.table.DefaultTableModel;
 

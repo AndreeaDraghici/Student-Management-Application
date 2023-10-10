@@ -1,38 +1,30 @@
 
-O
-src/parser/ReadNotaXMLFile.java,b\f\bf9e0f374a347a7c179cb8b4c4b739551fdb0696
-D
-src/view/Materie.xml,f\7\f793610a67d6cef98fb4f0d9f3bb4a07f0a0ced7
-A
-src/view/Nota.xml,f\a\fa7603b9b0e8782d7223270bce554d7d760bc04e
-G
-src/model/Situatie.java,9\4\9464429f91a6ba0f86b608a58fc797fcaabb5dfa
-F
-src/model/Student.java,6\e\6ea887f4454a88870d0d370a7c2b4ccff5e6dc18
-C
-src/model/Nota.java,0\7\07ace63a424fde08529cb13898b115a23503b6ee
-F
-src/model/Catalog.java,b\3\b3b07c4605656c47e599a121f367e8373ba46606
-F
-src/model/Materie.java,f\0\f0b3532e6607a302d9f4c6f3a0391305bf58c89a
-D
-src/view/Student.xml,7\0\709bbe3e78fe3e579a7500420d23461cb109d162
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-P
- src/model/data/CatalogModel.java,4\5\454f8c710832abafd31f2bf4cbe1f2f59f5176da
-U
-%src/model/frame/EditareDataModel.java,b\d\bdaa39ba100e42f0f0a3af22c15287ddbcfab688
-X
-(src/model/frame/EditareMaterieFrame.java,f\9\f9bd9fc478d1e79ca8497003fdbec05a2f1cd46a
-P
- src/model/data/EditareModel.java,8\5\8567e80c8b00c9b99e9a6ce0f40e5aa8a7df44cb
-Y
-)src/model/frame/EditareStudentiFrame.java,e\b\eba80491634b234cb6b426498d696ec759809055
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-R
-"src/parser/ReadMaterieXMLFile.java,0\0\009f07b26bee6e15519be8edb884b2ac121dc68f
-R
-"src/parser/ReadStudentXMLFile.java,c\7\c712153adb9f76b7852fe9bad1855bee2ccb95fd
+7
+gradlew,5\b\5bbfa66edb4db3c7c33c5181f43510990d3307f9
+;
+gradlew.bat,2\a\2a45a911a8f1836b0b6c5b758962572012d8f8c3
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+h
+8src/main/java/org/example/parser/ReadMaterieXMLFile.java,6\f\6fb598728dbeee44274c7dfdbb1fa58a5ceeb1a2
+e
+5src/main/java/org/example/parser/ReadNotaXMLFile.java,f\c\fc00ec2abe452c57a6c7e9d1f255be17f01d684b
+h
+8src/main/java/org/example/parser/ReadStudentXMLFile.java,1\a\1aaef5b2855d1973cb80c948cdf1c7ff31c99c01
+b
+2src/main/java/org/example/parser/WriteXMLFile.java,c\3\c37267fc4d6441c38a35f94a2794b80a165b2717
+S
+#src/main/java/org/example/Main.java,0\b\0ba1b9c7a4878802f938e331cc2d8a042087ec6b
+\
+,src/main/java/org/example/model/Catalog.java,a\b\ab0a8f52e9ca5954477b199456d839a20ee86152
+f
+6src/main/java/org/example/model/data/CatalogModel.java,1\0\10c124dfdfc2fe2153b420dbd74f6f538163b804
+b
+2src/main/java/org/example/controller/MainForm.java,2\2\22b905b323e165d35e1676a3cbddf9efd46581dc
+?
+settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
