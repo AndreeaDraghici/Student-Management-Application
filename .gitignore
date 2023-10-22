@@ -96,3 +96,5 @@ yarn-error.log
 /.idea/
 /src/main/resources/analysis_and_metrics/presentation1/~$abilireMetrici.docx
 /src/main/resources/analysis_and_metrics/presentation1/~$tablish Metrics.docx
+/src/main/resources/analysis_and_metrics/presentation1/~$Lines of code metrics.xlsx
+/src/main/resources/analysis_and_metrics/presentation1/~$Class count metrics.xlsx
