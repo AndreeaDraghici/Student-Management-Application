@@ -1,0 +1,442 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="UTF-8"/>
+      <title>SpotBugs Report</title>
+      <style type="text/css">
+		.tablerow0 {
+			background: #EEEEEE;
+		}
+
+		.tablerow1 {
+			background: white;
+		}
+
+		.detailrow0 {
+			background: #EEEEEE;
+		}
+
+		.detailrow1 {
+			background: white;
+		}
+
+		.tableheader {
+			background: #b9b9fe;
+			font-size: larger;
+		}
+		</style>
+   </head>
+   <body>
+      <h1>SpotBugs Report</h1>
+      <p>Produced using <a href="https://spotbugs.github.io">SpotBugs</a>4.4.2.</p>
+      <p>Project: 
+			StudentManagement[StudentManagement.main]</p>
+      <h2>Metrics</h2>
+      <p>845 lines of code analyzed,
+	in 24 classes, 
+	in 6 packages.</p>
+      <table width="500" cellpadding="5" cellspacing="2">
+         <tr class="tableheader">
+            <th align="left">Metric</th>
+            <th align="right">Total</th>
+            <th align="right">Density*</th>
+         </tr>
+         <tr class="tablerow0">
+            <td>High Priority Warnings</td>
+            <td align="right"/>
+            <td align="right">NaN</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>Medium Priority Warnings</td>
+            <td align="right">19</td>
+            <td align="right">22.49</td>
+         </tr>
+         <tr class="$totalClass">
+            <td>
+               <b>Total Warnings</b>
+            </td>
+            <td align="right">
+               <b>19</b>
+            </td>
+            <td align="right">
+               <b>22.49</b>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <i>(* Defects per Thousand lines of non-commenting source statements)</i>
+      </p>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>Summary</h2>
+      <table width="500" cellpadding="5" cellspacing="2">
+         <tr class="tableheader">
+            <th align="left">Warning Type</th>
+            <th align="right">Number</th>
+         </tr>
+         <tr class="tablerow0">
+            <td>
+               <a href="#Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+            </td>
+            <td align="right">18</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>
+               <a href="#Warnings_STYLE">Dodgy code Warnings</a>
+            </td>
+            <td align="right">1</td>
+         </tr>
+         <tr class="tablerow0">
+            <td>
+               <b>Total</b>
+            </td>
+            <td align="right">
+               <b>19</b>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h1>Warnings</h1>
+      <p>Click on each warning link to see a full description of the issue, and
+	    details of how to resolve it.</p>
+      <h2>
+         <a name="Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+      </h2>
+      <table class="warningtable"
+             width="100%"
+             cellspacing="2"
+             cellpadding="5">
+         <tr class="tableheader">
+            <th align="left">Warning</th>
+            <th align="left">Priority</th>
+            <th align="left">Details</th>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.ace.ucv.model.Catalog.getMaterii() may expose internal representation by returning Catalog.materii<br/>
+                  <br/>
+                  <br/>In file Catalog.java Catalog.java,
+					
+						line 12 12<br/>In class com.ace.ucv.model.Catalog<br/>In method com.ace.ucv.model.Catalog.getMaterii()<br/>Field com.ace.ucv.model.Catalog.materii<br/>At Catalog.java:[line 12]<br/>At Catalog.java:[line 12]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.ace.ucv.model.Catalog.getSituatii() may expose internal representation by returning Catalog.situatii<br/>
+                  <br/>
+                  <br/>In file Catalog.java Catalog.java,
+					
+						line 20 20<br/>In class com.ace.ucv.model.Catalog<br/>In method com.ace.ucv.model.Catalog.getSituatii()<br/>Field com.ace.ucv.model.Catalog.situatii<br/>At Catalog.java:[line 20]<br/>At Catalog.java:[line 20]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.ace.ucv.model.Situatie.getNote() may expose internal representation by returning Situatie.note<br/>
+                  <br/>
+                  <br/>In file Situatie.java Situatie.java,
+					
+						line 19 19<br/>In class com.ace.ucv.model.Situatie<br/>In method com.ace.ucv.model.Situatie.getNote()<br/>Field com.ace.ucv.model.Situatie.note<br/>At Situatie.java:[line 19]<br/>At Situatie.java:[line 19]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.ace.ucv.model.Situatie.getStudent() may expose internal representation by returning Situatie.student<br/>
+                  <br/>
+                  <br/>In file Situatie.java Situatie.java,
+					
+						line 11 11<br/>In class com.ace.ucv.model.Situatie<br/>In method com.ace.ucv.model.Situatie.getStudent()<br/>Field com.ace.ucv.model.Situatie.student<br/>At Situatie.java:[line 11]<br/>At Situatie.java:[line 11]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.ace.ucv.model.frame.EditareMaterieFrame.getMaterie() may expose internal representation by returning EditareMaterieFrame.materie<br/>
+                  <br/>
+                  <br/>In file EditareMaterieFrame.java EditareMaterieFrame.java,
+					
+						line 91 91<br/>In class com.ace.ucv.model.frame.EditareMaterieFrame<br/>In method com.ace.ucv.model.frame.EditareMaterieFrame.getMaterie()<br/>Field com.ace.ucv.model.frame.EditareMaterieFrame.materie<br/>At EditareMaterieFrame.java:[line 91]<br/>At EditareMaterieFrame.java:[line 91]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.ace.ucv.model.frame.EditareStudentiFrame.getStudent() may expose internal representation by returning EditareStudentiFrame.student<br/>
+                  <br/>
+                  <br/>In file EditareStudentiFrame.java EditareStudentiFrame.java,
+					
+						line 91 91<br/>In class com.ace.ucv.model.frame.EditareStudentiFrame<br/>In method com.ace.ucv.model.frame.EditareStudentiFrame.getStudent()<br/>Field com.ace.ucv.model.frame.EditareStudentiFrame.student<br/>At EditareStudentiFrame.java:[line 91]<br/>At EditareStudentiFrame.java:[line 91]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.ace.ucv.parser.ReadMaterieXMLFile.getMaterii() may expose internal representation by returning ReadMaterieXMLFile.materii<br/>
+                  <br/>
+                  <br/>In file ReadMaterieXMLFile.java ReadMaterieXMLFile.java,
+					
+						line 21 21<br/>In class com.ace.ucv.parser.ReadMaterieXMLFile<br/>In method com.ace.ucv.parser.ReadMaterieXMLFile.getMaterii()<br/>Field com.ace.ucv.parser.ReadMaterieXMLFile.materii<br/>At ReadMaterieXMLFile.java:[line 21]<br/>At ReadMaterieXMLFile.java:[line 21]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.ace.ucv.parser.ReadNotaXMLFile.getNote() may expose internal representation by returning ReadNotaXMLFile.note<br/>
+                  <br/>
+                  <br/>In file ReadNotaXMLFile.java ReadNotaXMLFile.java,
+					
+						line 19 19<br/>In class com.ace.ucv.parser.ReadNotaXMLFile<br/>In method com.ace.ucv.parser.ReadNotaXMLFile.getNote()<br/>Field com.ace.ucv.parser.ReadNotaXMLFile.note<br/>At ReadNotaXMLFile.java:[line 19]<br/>At ReadNotaXMLFile.java:[line 19]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.ace.ucv.parser.ReadStudentXMLFile.getStudenti() may expose internal representation by returning ReadStudentXMLFile.studenti<br/>
+                  <br/>
+                  <br/>In file ReadStudentXMLFile.java ReadStudentXMLFile.java,
+					
+						line 21 21<br/>In class com.ace.ucv.parser.ReadStudentXMLFile<br/>In method com.ace.ucv.parser.ReadStudentXMLFile.getStudenti()<br/>Field com.ace.ucv.parser.ReadStudentXMLFile.studenti<br/>At ReadStudentXMLFile.java:[line 21]<br/>At ReadStudentXMLFile.java:[line 21]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.ace.ucv.model.Catalog.setMaterii(List) may expose internal representation by storing an externally mutable object into Catalog.materii<br/>
+                  <br/>
+                  <br/>In file Catalog.java Catalog.java,
+					
+						line 16 16<br/>In class com.ace.ucv.model.Catalog<br/>In method com.ace.ucv.model.Catalog.setMaterii(List)<br/>Field com.ace.ucv.model.Catalog.materii<br/>Local variable named materii<br/>At Catalog.java:[line 16]<br/>At Catalog.java:[line 16]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.ace.ucv.model.Catalog.setSituatii(List) may expose internal representation by storing an externally mutable object into Catalog.situatii<br/>
+                  <br/>
+                  <br/>In file Catalog.java Catalog.java,
+					
+						line 24 24<br/>In class com.ace.ucv.model.Catalog<br/>In method com.ace.ucv.model.Catalog.setSituatii(List)<br/>Field com.ace.ucv.model.Catalog.situatii<br/>Local variable named situatii<br/>At Catalog.java:[line 24]<br/>At Catalog.java:[line 24]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.ace.ucv.model.Situatie.setNote(List) may expose internal representation by storing an externally mutable object into Situatie.note<br/>
+                  <br/>
+                  <br/>In file Situatie.java Situatie.java,
+					
+						line 23 23<br/>In class com.ace.ucv.model.Situatie<br/>In method com.ace.ucv.model.Situatie.setNote(List)<br/>Field com.ace.ucv.model.Situatie.note<br/>Local variable named note<br/>At Situatie.java:[line 23]<br/>At Situatie.java:[line 23]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.ace.ucv.model.Situatie.setStudent(Student) may expose internal representation by storing an externally mutable object into Situatie.student<br/>
+                  <br/>
+                  <br/>In file Situatie.java Situatie.java,
+					
+						line 15 15<br/>In class com.ace.ucv.model.Situatie<br/>In method com.ace.ucv.model.Situatie.setStudent(Student)<br/>Field com.ace.ucv.model.Situatie.student<br/>Local variable named student<br/>At Situatie.java:[line 15]<br/>At Situatie.java:[line 15]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>new com.ace.ucv.model.data.CatalogModel(Catalog) may expose internal representation by storing an externally mutable object into CatalogModel.catalog<br/>
+                  <br/>
+                  <br/>In file CatalogModel.java CatalogModel.java,
+					
+						line 16 16<br/>In class com.ace.ucv.model.data.CatalogModel<br/>In method new com.ace.ucv.model.data.CatalogModel(Catalog)<br/>Field com.ace.ucv.model.data.CatalogModel.catalog<br/>Local variable named catalog<br/>At CatalogModel.java:[line 16]<br/>At CatalogModel.java:[line 16]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.ace.ucv.model.data.EditareDataModel.setMaterii(List) may expose internal representation by storing an externally mutable object into EditareDataModel.materii<br/>
+                  <br/>
+                  <br/>In file EditareDataModel.java EditareDataModel.java,
+					
+						line 15 15<br/>In class com.ace.ucv.model.data.EditareDataModel<br/>In method com.ace.ucv.model.data.EditareDataModel.setMaterii(List)<br/>Field com.ace.ucv.model.data.EditareDataModel.materii<br/>Local variable named materii<br/>At EditareDataModel.java:[line 15]<br/>At EditareDataModel.java:[line 15]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.ace.ucv.model.data.EditareDataModel.setStudenti(List) may expose internal representation by storing an externally mutable object into EditareDataModel.studenti<br/>
+                  <br/>
+                  <br/>In file EditareDataModel.java EditareDataModel.java,
+					
+						line 20 20<br/>In class com.ace.ucv.model.data.EditareDataModel<br/>In method com.ace.ucv.model.data.EditareDataModel.setStudenti(List)<br/>Field com.ace.ucv.model.data.EditareDataModel.studenti<br/>Local variable named studenti<br/>At EditareDataModel.java:[line 20]<br/>At EditareDataModel.java:[line 20]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.ace.ucv.model.data.EditareModel.setMaterii(List) may expose internal representation by storing an externally mutable object into EditareModel.materii<br/>
+                  <br/>
+                  <br/>In file EditareModel.java EditareModel.java,
+					
+						line 15 15<br/>In class com.ace.ucv.model.data.EditareModel<br/>In method com.ace.ucv.model.data.EditareModel.setMaterii(List)<br/>Field com.ace.ucv.model.data.EditareModel.materii<br/>Local variable named materii<br/>At EditareModel.java:[line 15]<br/>At EditareModel.java:[line 15]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.ace.ucv.model.data.EditareModel.setStudenti(List) may expose internal representation by storing an externally mutable object into EditareModel.studenti<br/>
+                  <br/>
+                  <br/>In file EditareModel.java EditareModel.java,
+					
+						line 20 20<br/>In class com.ace.ucv.model.data.EditareModel<br/>In method com.ace.ucv.model.data.EditareModel.setStudenti(List)<br/>Field com.ace.ucv.model.data.EditareModel.studenti<br/>Local variable named studenti<br/>At EditareModel.java:[line 20]<br/>At EditareModel.java:[line 20]</p>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="Warnings_STYLE">Dodgy code Warnings</a>
+      </h2>
+      <table class="warningtable"
+             width="100%"
+             cellspacing="2"
+             cellpadding="5">
+         <tr class="tableheader">
+            <th align="left">Warning</th>
+            <th align="left">Priority</th>
+            <th align="left">Details</th>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#DMI_HARDCODED_ABSOLUTE_FILENAME">Code contains a hard coded reference to an absolute pathname</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>Hard coded reference to an absolute pathname in com.ace.ucv.controller.MainForm$1.actionPerformed(ActionEvent)<br/>
+                  <br/>
+                  <br/>In file MainForm.java MainForm.java,
+					
+						line 65 65<br/>In class com.ace.ucv.controller.MainForm$1<br/>In method com.ace.ucv.controller.MainForm$1.actionPerformed(ActionEvent)<br/>File name D:\\Data\\StudentManagement\\src\\view\\Catalog.xml<br/>At MainForm.java:[line 65]<br/>At MainForm.java:[line 65]</p>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h1>
+         <a name="Details">Warning Types</a>
+      </h1>
+      <h2>
+         <a name="DMI_HARDCODED_ABSOLUTE_FILENAME">Code contains a hard coded reference to an absolute pathname</a>
+      </h2>
+
+<p>This code constructs a File object using a hard coded to an absolute pathname
+(e.g., <code>new File("/home/dannyc/workspace/j2ee/src/share/com/sun/enterprise/deployment");</code>
+</p>
+
+    <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+      </h2>
+
+  <p> Returning a reference to a mutable object value stored in one of the object's fields
+  exposes the internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Returning a new copy of the object is better approach in many situations.</p>
+
+    <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+      </h2>
+
+  <p> This code stores a reference to an externally mutable object into the
+  internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Storing a copy of the object is better approach in many situations.</p>
+
+    <p>
+         <br/>
+         <br/>
+      </p>
+   </body>
+</html>
