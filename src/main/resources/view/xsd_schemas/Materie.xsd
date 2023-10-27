@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="materii" type="materiiType"/>
+    <xs:complexType name="materiaType">
+        <xs:sequence>
+            <xs:element name="denumire">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Romana"/>
+                        <xs:enumeration value="Engleza"/>
+                        <xs:enumeration value="Matematica"/>
+                        <xs:enumeration value="Informatica"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="profesor">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Profesor1"/>
+                        <xs:enumeration value="Profesor2"/>
+                        <xs:enumeration value="Profesor3"/>
+                        <xs:enumeration value="Profesor4"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="an">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="I"/>
+                        <xs:enumeration value="II"/>
+                        <xs:enumeration value="IV"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="semestru">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="id" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="materiiType">
+        <xs:sequence>
+            <xs:element type="materiaType" name="materia" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

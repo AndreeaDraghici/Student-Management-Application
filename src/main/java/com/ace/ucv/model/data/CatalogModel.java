@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class CatalogModel extends DefaultTableModel {
 
-    private Catalog catalog = null;
+    private Catalog catalog;
 
     public CatalogModel(Catalog catalog) {
         super();
@@ -18,12 +18,7 @@ public class CatalogModel extends DefaultTableModel {
 
     @Override
     public int getRowCount() {
-        if(catalog == null) return 0;
-        int r = 0;
-        for (Situatie s : catalog.getSituatii()) {
-            r += s.getNote().size();
-        }
-        return r;
+        return catalog == null ? 0 : catalog.getSituatii().stream().mapToInt(s -> s.getNote().size()).sum();
     }
 
     @Override
@@ -38,73 +33,58 @@ public class CatalogModel extends DefaultTableModel {
                 return "Nume";
             case 1:
                 return "Prenume";
-//		case 2:
-//			return "Medie";
             case 2:
                 return "Materie";
             case 3:
                 return "Nota";
+            default:
+                return "";
         }
-
-        return "";
     }
 
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        switch (columnIndex) {
-            case 2:
-            case 3:
-//			return Float.class;
-        }
-        return String.class;
+        return (columnIndex == 2 || columnIndex == 3) ? String.class : Object.class;
     }
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        // TODO Auto-generated method stub
         return false;
     }
 
     private Materie getMaterie(int idMaterie) {
-        for (Materie m : catalog.getMaterii()) {
-            if (m.getId() == idMaterie)
-                return m;
-        }
-        return null;
+        return catalog.getMaterii().stream().filter(m -> m.getId() == idMaterie).findFirst().orElse(null);
     }
-
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         int i = 0;
         for (Situatie s : catalog.getSituatii()) {
-            int n = s.getNote().size();
-            if (i + n > rowIndex) {
-                Nota nota = s.getNote().get(rowIndex - i);
-                Materie m = getMaterie(nota.getIdMaterie());
-                if(m.getId() == 3) {
-                    switch (columnIndex) {
-                        case 0:
-                            return s.getStudent().getNume();
-                        case 1:
-                            return s.getStudent().getPrenume();
-//				case 2:
-//					return s.getMedie();
-                        case 2:
-                            return m.getDenumire();
-                        case 3:
-                            return nota.getNota();
+            for (Nota nota : s.getNote()) {
+                if (i == rowIndex) {
+                    Materie m = getMaterie(nota.getIdMaterie());
+                    if (m != null && m.getId() == 3) {
+                        return getObject(columnIndex, s, nota, m);
                     }
                 }
-                return null;
-            } else {
-                i += n;
+                i++;
             }
         }
         return null;
     }
 
-
-
-
+    private static Object getObject(int columnIndex, Situatie s, Nota nota, Materie m) {
+        switch (columnIndex) {
+            case 0:
+                return s.getStudent().getNume();
+            case 1:
+                return s.getStudent().getPrenume();
+            case 2:
+                return m.getDenumire();
+            case 3:
+                return nota.getNota();
+            default:
+                throw new IllegalStateException("Unexpected value: " + columnIndex);
+        }
+    }
 }

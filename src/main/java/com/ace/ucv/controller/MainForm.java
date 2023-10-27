@@ -1,12 +1,13 @@
+/*
 package com.ace.ucv.controller;
 
 import com.ace.ucv.model.*;
-import com.ace.ucv.model.data.EditareDataModel;
-import com.ace.ucv.parser.ReadStudentXMLFile;
-import com.ace.ucv.parser.WriteXMLFile;
 import com.ace.ucv.model.data.CatalogModel;
-import com.ace.ucv.parser.ReadMaterieXMLFile;
-import com.ace.ucv.parser.ReadNotaXMLFile;
+import com.ace.ucv.model.data.EditareDataModel;
+import com.ace.ucv.parser.DisciplineXMLParser;
+import com.ace.ucv.parser.NoteXMLParser;
+import com.ace.ucv.parser.StudentXMLParser;
+import com.ace.ucv.parser.WriteXMLFile;
 
 import javax.swing.*;
 import javax.xml.parsers.SAXParser;
@@ -90,7 +91,7 @@ public class MainForm extends JFrame {
                 if (i == JFileChooser.APPROVE_OPTION) {
                     File f = fc.getSelectedFile();
                     String filepath = f.getPath();
-                    if (!filepath.endsWith("D:\\Data\\StudentManagement\\src\\view\\Nota.xml")) {
+                    if (!filepath.endsWith("D:\\Data\\Facultate\\Master\\An 1\\SEM 1\\MSIC\\Proiect\\StudentManagement\\src\\main\\resources\\view\\Nota.xml")) {
                         JOptionPane.showMessageDialog(MainForm.this, "Nu s-a ales fisierul notelor");
                     } else {
                         note = (List<Nota>) MainForm.this.parseXML(2, filepath);
@@ -134,7 +135,7 @@ public class MainForm extends JFrame {
                 if (i == JFileChooser.APPROVE_OPTION) {
                     File f = fc.getSelectedFile();
                     String filepath = f.getPath();
-                    if (!filepath.endsWith("D:\\Data\\StudentManagement\\src\\view\\Materie.xml")) {
+                    if (!filepath.endsWith("D:\\Data\\Facultate\\Master\\An 1\\SEM 1\\MSIC\\Proiect\\StudentManagement\\src\\main\\resources\\view\\Materie.xml")) {
                         JOptionPane.showMessageDialog(MainForm.this, "Nu s-a ales fisierul materiilor");
                     } else {
                         materii = (List<Materie>) MainForm.this.parseXML(1, filepath);
@@ -164,7 +165,7 @@ public class MainForm extends JFrame {
                 if (i == JFileChooser.APPROVE_OPTION) {
                     File f = fc.getSelectedFile();
                     String filepath = f.getPath();
-                    if (!filepath.endsWith("D:\\Data\\StudentManagement\\src\\view\\Student.xml")) {
+                    if (!filepath.endsWith("D:\\Data\\Facultate\\Master\\An 1\\SEM 1\\MSIC\\Proiect\\StudentManagement\\src\\main\\resources\\view\\Student.xml")) {
                         JOptionPane.showMessageDialog(MainForm.this, "Nu s-a ales fisierul studentilor");
                     } else {
                         studenti = (List<Student>) MainForm.this.parseXML(0, filepath);
@@ -191,17 +192,17 @@ public class MainForm extends JFrame {
         try {
             parser = factory.newSAXParser();
             if (tip == 0) {
-                ReadStudentXMLFile saxReader = new ReadStudentXMLFile();
+                StudentXMLParser saxReader = new StudentXMLParser();
                 parser.parse(file, saxReader);
-                return saxReader.getStudenti();
+                return saxReader.getItems();
             } else if (tip == 1) {
-                ReadMaterieXMLFile saxReader = new ReadMaterieXMLFile();
+                DisciplineXMLParser saxReader = new DisciplineXMLParser();
                 parser.parse(file, saxReader);
-                return saxReader.getMaterii();
+                return saxReader.getItems();
             } else if (tip == 2) {
-                ReadNotaXMLFile saxReader = new ReadNotaXMLFile();
+                NoteXMLParser saxReader = new NoteXMLParser();
                 parser.parse(file, saxReader);
-                return saxReader.getNote();
+                return saxReader.getItems();
             }
             return null;
         } catch (Exception e) {
@@ -209,5 +210,5 @@ public class MainForm extends JFrame {
             return null;
         }
     }
-
 }
+*/
