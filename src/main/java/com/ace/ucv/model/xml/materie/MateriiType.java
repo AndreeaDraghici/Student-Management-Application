@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class MateriiType {
 
-    protected List<discipline.MateriaType> materia;
+    protected List<MateriaType> materia;
 
     /**
      * Gets the value of the materia property.
@@ -66,9 +66,9 @@ public class MateriiType {
      * 
      * 
      */
-    public List<discipline.MateriaType> getMateria() {
+    public List<MateriaType> getMateria() {
         if (materia == null) {
-            materia = new ArrayList<discipline.MateriaType>();
+            materia = new ArrayList<MateriaType>();
         }
         return this.materia;
     }
