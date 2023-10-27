@@ -27,7 +27,7 @@ public class StudentXMLParser {
             throw new RuntimeException(file.getPath() + " could not be found!");
         }
 
-        JAXBContext jaxbContext = JAXBContext.newInstance("model.xml.student");
+        JAXBContext jaxbContext = JAXBContext.newInstance("com.ace.ucv.model.xml.student");
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 
         return (StudentiType) JAXBIntrospector.getValue(unmarshaller.unmarshal(Files.newInputStream(file.toPath())));

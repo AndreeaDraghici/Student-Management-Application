@@ -27,7 +27,7 @@ public class NoteXMLParser{
             throw new RuntimeException(file.getPath() + " could not be found!");
         }
 
-        JAXBContext jaxbContext = JAXBContext.newInstance("model.xml.nota");
+        JAXBContext jaxbContext = JAXBContext.newInstance("com.ace.ucv.model.xml.nota");
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 
         return (NoteType) JAXBIntrospector.getValue(unmarshaller.unmarshal(Files.newInputStream(file.toPath())));
