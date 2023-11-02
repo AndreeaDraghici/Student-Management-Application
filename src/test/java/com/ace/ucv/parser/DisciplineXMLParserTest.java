@@ -35,4 +35,40 @@ class DisciplineXMLParserTest {
         }
 
     }
+
+    @Test
+    public void test_throw_exception_when_file_argument_is_null() {
+        DisciplineXMLParser xmlParser = new DisciplineXMLParser();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            xmlParser.loadConfiguration(null);
+        });
+    }
+
+    @Test
+    public void test_throw_exception_when_file_argument_does_not_exist() {
+        DisciplineXMLParser xmlParser = new DisciplineXMLParser();
+
+        assertThrows(RuntimeException.class, () -> {
+            xmlParser.loadConfiguration(new File("nonexistent.xml"));
+        });
+    }
+
+    @Test
+    public void test_single_materia_element() {
+        DisciplineXMLParser xmlParser = new DisciplineXMLParser();
+
+        try {
+            MateriiType type = xmlParser.loadConfiguration(new File("src/main/resources/view/Materie.xml"));
+            List<MateriaType> typeMateria = type.getMateria();
+
+            Assertions.assertEquals(4, typeMateria.size());
+            Assertions.assertEquals("1", typeMateria.get(0).getId());
+            Assertions.assertEquals("I", typeMateria.get(0).getAn());
+            Assertions.assertEquals("Romana", typeMateria.get(0).getDenumire());
+            Assertions.assertEquals("Profesor1", typeMateria.get(0).getProfesor());
+        } catch (Exception e) {
+            Assertions.fail(e);
+        }
+    }
 }
