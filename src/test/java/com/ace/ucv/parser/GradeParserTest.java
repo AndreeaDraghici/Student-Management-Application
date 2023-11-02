@@ -14,12 +14,14 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class GradeParserTest {
 
+    public static final String PATHNAME = "src/main/resources/view/Nota.xml";
+
     @Test
-    public void test_load_valid_xml_configuration_file() {
+    void test_load_valid_xml_configuration_file() {
         GradeParser xmlParser = new GradeParser();
 
         try {
-            NoteType type = xmlParser.loadConfiguration(new File("src/main/resources/view/Nota.xml"));
+            NoteType type = xmlParser.loadConfiguration(new File(PATHNAME));
             Assertions.assertEquals(8, type.getNotaStud().size());
         } catch (Exception e) {
             Assertions.fail(e);
@@ -27,29 +29,23 @@ class GradeParserTest {
     }
 
     @Test
-    public void test_throw_exception_if_xml_configuration_file_is_null() {
+    void test_throw_exception_if_xml_configuration_file_is_null() {
         GradeParser xmlParser = new GradeParser();
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            xmlParser.loadConfiguration(null);
-        });
+        assertThrows(IllegalArgumentException.class, () -> xmlParser.loadConfiguration(null));
     }
 
     @Test
-    public void test_throw_exception_if_xml_configuration_file_not_found() {
+    void test_throw_exception_if_xml_configuration_file_not_found() {
         GradeParser xmlParser = new GradeParser();
-
-        assertThrows(RuntimeException.class, () -> {
-            xmlParser.loadConfiguration(new File("nonexistent.xml"));
-        });
+        assertThrows(RuntimeException.class, () -> xmlParser.loadConfiguration(new File("nonexistent.xml")));
     }
 
     @Test
-    public void test_return_NoteType_with_list_of_NotaStudType_objects() {
+    void test_return_NoteType_with_list_of_NotaStudType_objects() {
         GradeParser xmlParser = new GradeParser();
 
         try {
-            NoteType type = xmlParser.loadConfiguration(new File("src/main/resources/view/Nota.xml"));
+            NoteType type = xmlParser.loadConfiguration(new File(PATHNAME));
             assertNotNull(type.getNotaStud());
             assertFalse(type.getNotaStud().isEmpty());
         } catch (Exception e) {

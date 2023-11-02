@@ -16,12 +16,14 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class StudentParserTest {
 
+    public static final String PATHNAME = "src/main/resources/view/Student.xml";
+
     @Test
     void loadConfigurationTest() {
         StudentParser xmlParser = new StudentParser();
 
         try {
-            StudentiType type = xmlParser.loadConfiguration(new File("src/main/resources/view/Student.xml"));
+            StudentiType type = xmlParser.loadConfiguration(new File(PATHNAME));
             List<StudentType> typeStudent = type.getStudent();
 
             Assertions.assertEquals(5, typeStudent.size());
@@ -36,20 +38,16 @@ class StudentParserTest {
     }
 
     @Test
-    public void test_throw_exception_when_xml_file_is_null() {
+    void test_throw_exception_when_xml_file_is_null() {
         StudentParser xmlParser = new StudentParser();
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            xmlParser.loadConfiguration(null);
-        });
+        assertThrows(IllegalArgumentException.class, () -> xmlParser.loadConfiguration(null));
     }
 
     @Test
-    public void test_throw_exception_when_xml_file_path_is_incorrect() {
+    void test_throw_exception_when_xml_file_path_is_incorrect() {
         StudentParser xmlParser = new StudentParser();
 
-        assertThrows(RuntimeException.class, () -> {
-            xmlParser.loadConfiguration(new File("invalid/path/to/file.xml"));
-        });
+        assertThrows(RuntimeException.class, () -> xmlParser.loadConfiguration(new File("invalid/path/to/file.xml")));
     }
 }

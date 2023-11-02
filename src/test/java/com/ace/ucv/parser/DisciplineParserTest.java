@@ -16,13 +16,15 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class DisciplineParserTest {
 
+    public static final String PATHNAME = "src/main/resources/view/Materie.xml";
+
     @Test
     void loadConfigurationTest() {
 
         DisciplineParser xmlParser = new DisciplineParser();
 
         try {
-            MateriiType type = xmlParser.loadConfiguration(new File("src/main/resources/view/Materie.xml"));
+            MateriiType type = xmlParser.loadConfiguration(new File(PATHNAME));
             List<MateriaType> typeMateria = type.getMateria();
 
             Assertions.assertEquals(4, typeMateria.size());
@@ -37,29 +39,25 @@ class DisciplineParserTest {
     }
 
     @Test
-    public void test_throw_exception_when_file_argument_is_null() {
+    void test_throw_exception_when_file_argument_is_null() {
         DisciplineParser xmlParser = new DisciplineParser();
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            xmlParser.loadConfiguration(null);
-        });
+        assertThrows(IllegalArgumentException.class, () -> xmlParser.loadConfiguration(null));
     }
 
     @Test
-    public void test_throw_exception_when_file_argument_does_not_exist() {
+    void test_throw_exception_when_file_argument_does_not_exist() {
         DisciplineParser xmlParser = new DisciplineParser();
 
-        assertThrows(RuntimeException.class, () -> {
-            xmlParser.loadConfiguration(new File("nonexistent.xml"));
-        });
+        assertThrows(RuntimeException.class, () -> xmlParser.loadConfiguration(new File("nonexistent.xml")));
     }
 
     @Test
-    public void test_single_materia_element() {
+    void test_single_materia_element() {
         DisciplineParser xmlParser = new DisciplineParser();
 
         try {
-            MateriiType type = xmlParser.loadConfiguration(new File("src/main/resources/view/Materie.xml"));
+            MateriiType type = xmlParser.loadConfiguration(new File(PATHNAME));
             List<MateriaType> typeMateria = type.getMateria();
 
             Assertions.assertEquals(4, typeMateria.size());
