@@ -52,10 +52,17 @@ public class Student {
         this.genre = genre;
     }
 
+    /**
+     * Validates a Romanian phone number.
+     * @param phoneNumber The phone number to validate.
+     * @return true if the phone number is valid, false otherwise.
+     */
     public boolean isValidPhoneNumber(String phoneNumber) {
-        // Add phone number validation logic here
+        // Regex pattern for Romanian phone numbers, allowing optional separators.
         String regex = "^(\\+?40|0)7[2-8]\\d{1}(?:[.-]?\\d{2}){3}$";
 
+        // Check if the phone number matches the pattern.
         return phoneNumber.matches(regex);
     }
+
 }

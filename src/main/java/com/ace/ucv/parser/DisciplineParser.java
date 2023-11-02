@@ -5,19 +5,21 @@ import javax.xml.bind.*;
 import java.io.File;
 import java.nio.file.Files;
 
-
 /**
  * Created by Andreea Draghici on 10/24/2023
  * Name of project: StudentManagement
  */
-// Parser specific to the Discipline entity
+
 public class DisciplineParser {
 
     /**
-     * deserialization from xml file into object
+     * Deserializes an XML file into a MateriiType object using JAXB.
+     *
+     * @param file The XML configuration file to be deserialized.
+     * @return The MateriiType object representing the deserialized data.
+     * @throws Exception If any exception occurs during the deserialization process.
      */
-    public MateriiType loadConfiguration(File file) throws RuntimeException, Exception {
-
+    public MateriiType loadConfiguration(File file) throws Exception {
         if (file == null) {
             throw new IllegalArgumentException("XML configuration file is null.");
         }
@@ -31,4 +33,5 @@ public class DisciplineParser {
 
         return (MateriiType) JAXBIntrospector.getValue(unmarshaller.unmarshal(Files.newInputStream(file.toPath())));
     }
+
 }

@@ -18,7 +18,7 @@ public class CatalogAdapter extends DefaultTableModel {
 
     @Override
     public int getRowCount() {
-        return catalog == null ? 0 : catalog.getSituatii().stream().mapToInt(s -> s.getNote().size()).sum();
+        return catalog == null ? 0 : catalog.getSituations().stream().mapToInt(s -> s.getNote().size()).sum();
     }
 
     @Override
@@ -53,13 +53,13 @@ public class CatalogAdapter extends DefaultTableModel {
     }
 
     private Discipline getMaterie(int idMaterie) {
-        return catalog.getMaterii().stream().filter(m -> m.getId() == idMaterie).findFirst().orElse(null);
+        return catalog.getDisciplines().stream().filter(m -> m.getId() == idMaterie).findFirst().orElse(null);
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         int i = 0;
-        for (Situation s : catalog.getSituatii()) {
+        for (Situation s : catalog.getSituations()) {
             for (Grade grade : s.getNote()) {
                 if (i == rowIndex) {
                     Discipline m = getMaterie(grade.getSubjectId());

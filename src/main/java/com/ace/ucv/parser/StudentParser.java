@@ -11,14 +11,16 @@ import java.nio.file.Files;
  * Name of project: StudentManagement
  */
 
-// Parser specific to the Student entity
 public class StudentParser {
-
+   
     /**
-     * deserialization from xml file into object
+     * Deserializes an XML file into a StudentiType object using JAXB.
+     *
+     * @param file The XML configuration file to be deserialized.
+     * @return The StudentiType object representing the deserialized data.
+     * @throws Exception If any exception occurs during the deserialization process.
      */
     public StudentiType loadConfiguration(File file) throws Exception {
-
         if (file == null) {
             throw new IllegalArgumentException("XML configuration file is null.");
         }

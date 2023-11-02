@@ -11,13 +11,16 @@ import java.nio.file.Files;
  * Name of project: StudentManagement
  */
 
-// Parser specific to the Nota entity
 public class GradeParser {
 
     /**
-     * deserialization from xml file into object
+     * Deserializes an XML file into a NoteType object using JAXB.
+     *
+     * @param file The XML configuration file to be deserialized.
+     * @return The NoteType object representing the deserialized data.
+     * @throws Exception If any exception occurs during the deserialization process.
      */
-    public NoteType loadConfiguration(File file) throws RuntimeException, Exception {
+    public NoteType loadConfiguration(File file) throws Exception {
 
         if (file == null) {
             throw new IllegalArgumentException("XML configuration file is null.");

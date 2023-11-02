@@ -29,7 +29,7 @@ public class WriteXMLFile {
 
         Element root = doc.createElement("Catalog");
         doc.appendChild(root);
-        for (Situation situation : catalog.getSituatii()) {
+        for (Situation situation : catalog.getSituations()) {
             Element elem = doc.createElement("Student");
             elem.setAttribute("id", Integer.toString(situation.getStudent().getId()));
             elem.setAttribute("nume", situation.getStudent().getName());
@@ -37,7 +37,7 @@ public class WriteXMLFile {
             elem.setAttribute("sex", situation.getStudent().getGenre());
 
             for (Grade grade : situation.getNote()) {
-                Discipline discipline = this.getMaterieFrom(catalog.getMaterii(), grade.getSubjectId());
+                Discipline discipline = this.getMaterieFrom(catalog.getDisciplines(), grade.getSubjectId());
                 if (discipline != null) {
                     Element notaElem = doc.createElement("Materie");
                     notaElem.setAttribute("id", Integer.toString(discipline.getId()));

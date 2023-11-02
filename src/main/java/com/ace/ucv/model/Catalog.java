@@ -5,36 +5,36 @@ import java.util.List;
 
 public class Catalog {
 
-    private List<Discipline> materii;
-    private List<Situation> situatii;
+    private List<Discipline> disciplines;
+    private List<Situation> situations;
 
-    public List<Discipline> getMaterii() {
-        return materii;
+    public List<Discipline> getDisciplines() {
+        return disciplines;
     }
 
-    public void setMaterii(List<Discipline> materii) {
-        this.materii = materii;
+    public void setDisciplines(List<Discipline> disciplines) {
+        this.disciplines = disciplines;
     }
 
-    public List<Situation> getSituatii() {
-        return situatii;
+    public List<Situation> getSituations() {
+        return situations;
     }
 
-    public void setSituatii(List<Situation> situatii) {
-        this.situatii = situatii;
+    public void setSituations(List<Situation> situations) {
+        this.situations = situations;
     }
 
-    public void addMaterie(Discipline discipline) {
-        if (materii == null) {
-            materii = new ArrayList<Discipline>();
+    public void addDiscipline(Discipline discipline) {
+        if (disciplines == null) {
+            disciplines = new ArrayList<>();
         }
-        materii.add(discipline);
+        disciplines.add(discipline);
     }
 
-    public void addSituatie(Situation situation) {
-        if (situatii == null) {
-            situatii = new ArrayList<Situation>();
+    public void addSituation(Situation situation) {
+        if (situations == null) {
+            situations = new ArrayList<>();
         }
-        situatii.add(situation);
+        situations.add(situation);
     }
 }
