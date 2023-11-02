@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class CatalogAdapter extends DefaultTableModel {
 
-    private Catalog catalog;
+    private final Catalog catalog;
 
     public CatalogAdapter(Catalog catalog) {
         super();
