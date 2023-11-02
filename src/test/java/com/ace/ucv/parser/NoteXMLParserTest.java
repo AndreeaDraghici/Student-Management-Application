@@ -16,8 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class NoteXMLParserTest {
 
     @Test
-    void loadConfigurationTest() {
-
+    public void test_load_valid_xml_configuration_file() {
         NoteXMLParser xmlParser = new NoteXMLParser();
 
         try {
@@ -26,6 +25,36 @@ class NoteXMLParserTest {
         } catch (Exception e) {
             Assertions.fail(e);
         }
+    }
 
+    @Test
+    public void test_throw_exception_if_xml_configuration_file_is_null() {
+        NoteXMLParser xmlParser = new NoteXMLParser();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            xmlParser.loadConfiguration(null);
+        });
+    }
+
+    @Test
+    public void test_throw_exception_if_xml_configuration_file_not_found() {
+        NoteXMLParser xmlParser = new NoteXMLParser();
+
+        assertThrows(RuntimeException.class, () -> {
+            xmlParser.loadConfiguration(new File("nonexistent.xml"));
+        });
+    }
+
+    @Test
+    public void test_return_NoteType_with_list_of_NotaStudType_objects() {
+        NoteXMLParser xmlParser = new NoteXMLParser();
+
+        try {
+            NoteType type = xmlParser.loadConfiguration(new File("src/main/resources/view/Nota.xml"));
+            assertNotNull(type.getNotaStud());
+            assertFalse(type.getNotaStud().isEmpty());
+        } catch (Exception e) {
+            fail(e);
+        }
     }
 }

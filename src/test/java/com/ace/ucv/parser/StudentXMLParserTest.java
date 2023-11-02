@@ -34,4 +34,22 @@ class StudentXMLParserTest {
             Assertions.fail(e);
         }
     }
+
+    @Test
+    public void test_throw_exception_when_xml_file_is_null() {
+        StudentXMLParser xmlParser = new StudentXMLParser();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            xmlParser.loadConfiguration(null);
+        });
+    }
+
+    @Test
+    public void test_throw_exception_when_xml_file_path_is_incorrect() {
+        StudentXMLParser xmlParser = new StudentXMLParser();
+
+        assertThrows(RuntimeException.class, () -> {
+            xmlParser.loadConfiguration(new File("invalid/path/to/file.xml"));
+        });
+    }
 }
