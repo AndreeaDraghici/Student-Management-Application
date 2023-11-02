@@ -14,9 +14,9 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import com.ace.ucv.model.Catalog;
-import com.ace.ucv.model.Materie;
-import com.ace.ucv.model.Nota;
-import com.ace.ucv.model.Situatie;
+import com.ace.ucv.model.Discipline;
+import com.ace.ucv.model.Grade;
+import com.ace.ucv.model.Situation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -29,23 +29,23 @@ public class WriteXMLFile {
 
         Element root = doc.createElement("Catalog");
         doc.appendChild(root);
-        for (Situatie situatie : catalog.getSituatii()) {
+        for (Situation situation : catalog.getSituatii()) {
             Element elem = doc.createElement("Student");
-            elem.setAttribute("id", Integer.toString(situatie.getStudent().getId()));
-            elem.setAttribute("nume", situatie.getStudent().getNume());
-            elem.setAttribute("prenume", situatie.getStudent().getPrenume());
-            elem.setAttribute("sex", situatie.getStudent().getSex());
+            elem.setAttribute("id", Integer.toString(situation.getStudent().getId()));
+            elem.setAttribute("nume", situation.getStudent().getName());
+            elem.setAttribute("prenume", situation.getStudent().getSurname());
+            elem.setAttribute("sex", situation.getStudent().getGenre());
 
-            for (Nota nota : situatie.getNote()) {
-                Materie materie = this.getMaterieFrom(catalog.getMaterii(), nota.getIdMaterie());
-                if (materie != null) {
+            for (Grade grade : situation.getNote()) {
+                Discipline discipline = this.getMaterieFrom(catalog.getMaterii(), grade.getSubjectId());
+                if (discipline != null) {
                     Element notaElem = doc.createElement("Materie");
-                    notaElem.setAttribute("id", Integer.toString(materie.getId()));
-                    notaElem.setAttribute("denumire", materie.getDenumire());
-                    notaElem.setAttribute("profesor", materie.getProfesor());
-                    notaElem.setAttribute("an", materie.getAn());
-                    notaElem.setAttribute("sem", Integer.toString(materie.getSem()));
-                    notaElem.setTextContent(Float.toString(nota.getNota()));
+                    notaElem.setAttribute("id", Integer.toString(discipline.getId()));
+                    notaElem.setAttribute("denumire", discipline.getName());
+                    notaElem.setAttribute("profesor", discipline.getTeacher());
+                    notaElem.setAttribute("an", discipline.getYear());
+                    notaElem.setAttribute("sem", Integer.toString(discipline.getSemester()));
+                    notaElem.setTextContent(Float.toString(grade.getGrade()));
                     elem.appendChild(notaElem);
                 }
             }
@@ -59,10 +59,10 @@ public class WriteXMLFile {
         t.transform(source, result);
     }
 
-    private Materie getMaterieFrom(List<Materie> materii, int idMaterie) {
-        for (Materie materie : materii) {
-            if (materie.getId() == idMaterie) {
-                return materie;
+    private Discipline getMaterieFrom(List<Discipline> materii, int idMaterie) {
+        for (Discipline discipline : materii) {
+            if (discipline.getId() == idMaterie) {
+                return discipline;
             }
         }
         return null;

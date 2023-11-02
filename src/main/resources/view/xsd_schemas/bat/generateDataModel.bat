@@ -3,7 +3,7 @@
 SET xjc= "C:\Users\user\.jdks\corretto-1.8.0_312\bin\xjc.exe"
 
 :: Represents the package under which the classes will be generated
-SET packageName="nota"
+SET packageName="grade"
 
 :: Represents the path to the XSD schema based on which the classes will be generated
 SET schema="D:\Data\Facultate\Master\An 1\SEM 1\MSIC\Proiect\StudentManagement\src\main\resources\view\xsd_schemas\Nota.xsd"

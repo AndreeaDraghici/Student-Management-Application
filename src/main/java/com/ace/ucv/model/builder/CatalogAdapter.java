@@ -1,17 +1,17 @@
-package com.ace.ucv.model.data;
+package com.ace.ucv.model.builder;
 
 import com.ace.ucv.model.Catalog;
-import com.ace.ucv.model.Materie;
-import com.ace.ucv.model.Nota;
-import com.ace.ucv.model.Situatie;
+import com.ace.ucv.model.Grade;
+import com.ace.ucv.model.Discipline;
+import com.ace.ucv.model.Situation;
 
 import javax.swing.table.DefaultTableModel;
 
-public class CatalogModel extends DefaultTableModel {
+public class CatalogAdapter extends DefaultTableModel {
 
     private Catalog catalog;
 
-    public CatalogModel(Catalog catalog) {
+    public CatalogAdapter(Catalog catalog) {
         super();
         this.catalog = catalog;
     }
@@ -52,19 +52,19 @@ public class CatalogModel extends DefaultTableModel {
         return false;
     }
 
-    private Materie getMaterie(int idMaterie) {
+    private Discipline getMaterie(int idMaterie) {
         return catalog.getMaterii().stream().filter(m -> m.getId() == idMaterie).findFirst().orElse(null);
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         int i = 0;
-        for (Situatie s : catalog.getSituatii()) {
-            for (Nota nota : s.getNote()) {
+        for (Situation s : catalog.getSituatii()) {
+            for (Grade grade : s.getNote()) {
                 if (i == rowIndex) {
-                    Materie m = getMaterie(nota.getIdMaterie());
+                    Discipline m = getMaterie(grade.getSubjectId());
                     if (m != null && m.getId() == 3) {
-                        return getObject(columnIndex, s, nota, m);
+                        return getObject(columnIndex, s, grade, m);
                     }
                 }
                 i++;
@@ -73,16 +73,16 @@ public class CatalogModel extends DefaultTableModel {
         return null;
     }
 
-    private static Object getObject(int columnIndex, Situatie s, Nota nota, Materie m) {
+    private static Object getObject(int columnIndex, Situation situation, Grade grade, Discipline discipline) {
         switch (columnIndex) {
             case 0:
-                return s.getStudent().getNume();
+                return situation.getStudent().getName();
             case 1:
-                return s.getStudent().getPrenume();
+                return situation.getStudent().getSurname();
             case 2:
-                return m.getDenumire();
+                return discipline.getName();
             case 3:
-                return nota.getNota();
+                return grade.getGrade();
             default:
                 throw new IllegalStateException("Unexpected value: " + columnIndex);
         }

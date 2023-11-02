@@ -3,9 +3,9 @@ package com.ace.ucv.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Situatie {
+public class Situation {
     private Student student;
-    private List<Nota> note;
+    private List<Grade> note;
 
     public Student getStudent() {
         return student;
@@ -15,18 +15,18 @@ public class Situatie {
         this.student = student;
     }
 
-    public List<Nota> getNote() {
+    public List<Grade> getNote() {
         return note;
     }
 
-    public void setNote(List<Nota> note) {
+    public void setNote(List<Grade> note) {
         this.note = note;
     }
 
-    public void addNota(Nota nota) {
+    public void addNota(Grade grade) {
         if (note == null) {
-            note = new ArrayList<Nota>();
+            note = new ArrayList<>();
         }
-        note.add(nota);
+        note.add(grade);
     }
 }

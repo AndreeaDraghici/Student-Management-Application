@@ -2,49 +2,60 @@ package com.ace.ucv.model;
 
 public class Student {
 
-    private int id;
-    private String nume;
-    private String prenume;
-    private String telefon;
-    private String sex;
+    private final int id;
+    private String name;
+    private String surname;
+    private String phone;
+    private String genre;
+
+    public Student(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getName() {
+        return name;
     }
 
-    public String getNume() {
-        return nume;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setNume(String nume) {
-        this.nume = nume;
+    public String getSurname() {
+        return surname;
     }
 
-    public String getPrenume() {
-        return prenume;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
-    public void setPrenume(String prenume) {
-        this.prenume = prenume;
+    public java.lang.String getPhone() {
+        return phone;
     }
 
-    public String getTelefon() {
-        return telefon;
+    public void setPhone(String phone) {
+        if (isValidPhoneNumber(phone)) {
+            this.phone = phone;
+        } else {
+            throw new IllegalArgumentException("Invalid phone number format");
+        }
     }
 
-    public void setTelefon(String telefon) {
-        this.telefon = telefon;
+    public String getGenre() {
+        return genre;
     }
 
-    public String getSex() {
-        return sex;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public boolean isValidPhoneNumber(String phoneNumber) {
+        // Add phone number validation logic here
+        String regex = "^(\\+?40|0)7[2-8]\\d{1}(?:[.-]?\\d{2}){3}$";
+
+        return phoneNumber.matches(regex);
     }
 }

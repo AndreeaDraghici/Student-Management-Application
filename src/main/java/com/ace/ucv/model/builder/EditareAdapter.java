@@ -1,17 +1,17 @@
-package com.ace.ucv.model.data;
-
-import com.ace.ucv.model.Materie;
+package com.ace.ucv.model.builder;
+import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.Student;
 
-import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
-public class EditareModel extends DefaultTableModel {
+import javax.swing.table.DefaultTableModel;
+public class EditareAdapter extends DefaultTableModel{
+
     private List<Student> studenti = null;
-    private List<Materie> materii = null;
+    private List<Discipline> materii = null;
     private boolean isStudent = false;
 
-    public void setMaterii(List<Materie> materii) {
+    public void setMaterii(List<Discipline> materii) {
         this.materii = materii;
         isStudent = false;
     }
@@ -25,7 +25,10 @@ public class EditareModel extends DefaultTableModel {
     public int getRowCount() {
         if(studenti == null && materii == null)
             return 0;
-        return  isStudent? studenti.size(): materii.size();
+        if (isStudent) {
+            return studenti.size();
+        }
+        return materii.size();
     }
 
     @Override
@@ -100,18 +103,18 @@ public class EditareModel extends DefaultTableModel {
             if(rowIndex >= materii.size() || columnIndex > 5) {
                 return null;
             }
-            Materie m = materii.get(rowIndex);
+            Discipline m = materii.get(rowIndex);
             switch (columnIndex) {
                 case 0:
                     return m.getId();
                 case 1:
-                    return m.getDenumire();
+                    return m.getName();
                 case 2:
-                    return m.getProfesor();
+                    return m.getTeacher();
                 case 3:
-                    return m.getAn();
+                    return m.getYear();
                 case 4:
-                    return m.getSem();
+                    return m.getSemester();
             }
         } else {
             if(rowIndex >= studenti.size() || columnIndex > 5) {
@@ -122,16 +125,15 @@ public class EditareModel extends DefaultTableModel {
                 case 0:
                     return s.getId();
                 case 1:
-                    return s.getNume();
+                    return s.getName();
                 case 2:
-                    return s.getPrenume();
+                    return s.getSurname();
                 case 3:
-                    return s.getSex();
+                    return s.getGenre();
                 case 4:
-                    return s.getTelefon();
+                    return s.getPhone();
             }
         }
         return null;
     }
-
 }

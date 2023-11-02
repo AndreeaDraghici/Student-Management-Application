@@ -12,7 +12,7 @@ import java.nio.file.Files;
  */
 
 // Parser specific to the Nota entity
-public class NoteXMLParser{
+public class GradeParser {
 
     /**
      * deserialization from xml file into object

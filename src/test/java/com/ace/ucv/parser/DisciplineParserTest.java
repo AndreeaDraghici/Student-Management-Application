@@ -14,12 +14,12 @@ import static org.junit.jupiter.api.Assertions.*;
  * Created by Andreea Draghici on 10/27/2023
  * Name of project: StudentManagement
  */
-class DisciplineXMLParserTest {
+class DisciplineParserTest {
 
     @Test
     void loadConfigurationTest() {
 
-        DisciplineXMLParser xmlParser = new DisciplineXMLParser();
+        DisciplineParser xmlParser = new DisciplineParser();
 
         try {
             MateriiType type = xmlParser.loadConfiguration(new File("src/main/resources/view/Materie.xml"));
@@ -38,7 +38,7 @@ class DisciplineXMLParserTest {
 
     @Test
     public void test_throw_exception_when_file_argument_is_null() {
-        DisciplineXMLParser xmlParser = new DisciplineXMLParser();
+        DisciplineParser xmlParser = new DisciplineParser();
 
         assertThrows(IllegalArgumentException.class, () -> {
             xmlParser.loadConfiguration(null);
@@ -47,7 +47,7 @@ class DisciplineXMLParserTest {
 
     @Test
     public void test_throw_exception_when_file_argument_does_not_exist() {
-        DisciplineXMLParser xmlParser = new DisciplineXMLParser();
+        DisciplineParser xmlParser = new DisciplineParser();
 
         assertThrows(RuntimeException.class, () -> {
             xmlParser.loadConfiguration(new File("nonexistent.xml"));
@@ -56,7 +56,7 @@ class DisciplineXMLParserTest {
 
     @Test
     public void test_single_materia_element() {
-        DisciplineXMLParser xmlParser = new DisciplineXMLParser();
+        DisciplineParser xmlParser = new DisciplineParser();
 
         try {
             MateriiType type = xmlParser.loadConfiguration(new File("src/main/resources/view/Materie.xml"));

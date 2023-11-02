@@ -14,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.*;
  * Created by Andreea Draghici on 10/27/2023
  * Name of project: StudentManagement
  */
-class StudentXMLParserTest {
+class StudentParserTest {
 
     @Test
     void loadConfigurationTest() {
-        StudentXMLParser xmlParser = new StudentXMLParser();
+        StudentParser xmlParser = new StudentParser();
 
         try {
             StudentiType type = xmlParser.loadConfiguration(new File("src/main/resources/view/Student.xml"));
@@ -37,7 +37,7 @@ class StudentXMLParserTest {
 
     @Test
     public void test_throw_exception_when_xml_file_is_null() {
-        StudentXMLParser xmlParser = new StudentXMLParser();
+        StudentParser xmlParser = new StudentParser();
 
         assertThrows(IllegalArgumentException.class, () -> {
             xmlParser.loadConfiguration(null);
@@ -46,7 +46,7 @@ class StudentXMLParserTest {
 
     @Test
     public void test_throw_exception_when_xml_file_path_is_incorrect() {
-        StudentXMLParser xmlParser = new StudentXMLParser();
+        StudentParser xmlParser = new StudentParser();
 
         assertThrows(RuntimeException.class, () -> {
             xmlParser.loadConfiguration(new File("invalid/path/to/file.xml"));

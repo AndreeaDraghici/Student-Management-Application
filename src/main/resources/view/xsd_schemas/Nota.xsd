@@ -4,7 +4,7 @@
     <xs:element name="note" type="noteType"/>
     <xs:complexType name="nota_studType">
         <xs:sequence>
-            <xs:element name="nota">
+            <xs:element name="grade">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:enumeration value="10"/>
@@ -12,7 +12,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="materie">
+            <xs:element name="discipline">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:enumeration value="2"/>

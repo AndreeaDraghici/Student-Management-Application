@@ -11,7 +11,7 @@ import java.nio.file.Files;
  * Name of project: StudentManagement
  */
 // Parser specific to the Discipline entity
-public class DisciplineXMLParser{
+public class DisciplineParser {
 
     /**
      * deserialization from xml file into object

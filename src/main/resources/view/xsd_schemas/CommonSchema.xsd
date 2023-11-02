@@ -1,8 +1,8 @@
 <!-- main.xsd -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:student="student_namespace"
-           xmlns:nota="nota_namespace"
-           xmlns:materie="materie_namespace">
+           xmlns:grade="nota_namespace"
+           xmlns:discipline="materie_namespace">
 
     <!-- Importăm schemele individuale -->
     <xs:import namespace="student_namespace" schemaLocation="Student.xsd"/>

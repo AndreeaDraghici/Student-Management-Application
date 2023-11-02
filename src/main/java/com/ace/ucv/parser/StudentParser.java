@@ -12,7 +12,7 @@ import java.nio.file.Files;
  */
 
 // Parser specific to the Student entity
-public class StudentXMLParser {
+public class StudentParser {
 
     /**
      * deserialization from xml file into object
