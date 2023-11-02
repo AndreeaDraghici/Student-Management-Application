@@ -9,6 +9,7 @@
 package com.ace.ucv.model.xml.materie;
 
 import com.ace.ucv.model.xml.materie.MateriaType;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +67,7 @@ public class MateriiType {
      * 
      * 
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP")
     public List<MateriaType> getMateria() {
         if (materia == null) {
             materia = new ArrayList<MateriaType>();

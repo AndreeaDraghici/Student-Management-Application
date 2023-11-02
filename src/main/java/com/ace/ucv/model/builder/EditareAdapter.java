@@ -2,6 +2,7 @@ package com.ace.ucv.model.builder;
 
 import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.Student;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,10 +59,12 @@ public class EditareAdapter extends DefaultTableModel {
         }
     }
 
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public void setDisciplines(List<Discipline> disciplines) {
         this.disciplines = disciplines;
     }
 
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public void setStudents(List<Student> students) {
         this.students = students;
     }

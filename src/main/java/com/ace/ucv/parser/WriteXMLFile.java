@@ -36,7 +36,7 @@ public class WriteXMLFile {
             elem.setAttribute("prenume", situation.getStudent().getSurname());
             elem.setAttribute("sex", situation.getStudent().getGenre());
 
-            for (Grade grade : situation.getNote()) {
+            for (Grade grade : situation.getGrades()) {
                 Discipline discipline = this.getMaterieFrom(catalog.getDisciplines(), grade.getSubjectId());
                 if (discipline != null) {
                     Element notaElem = doc.createElement("Materie");

@@ -4,6 +4,7 @@ import com.ace.ucv.model.Catalog;
 import com.ace.ucv.model.Grade;
 import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.Situation;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -11,6 +12,7 @@ public class CatalogAdapter extends DefaultTableModel {
 
     private final Catalog catalog;
 
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public CatalogAdapter(Catalog catalog) {
         super();
         this.catalog = catalog;
@@ -18,7 +20,7 @@ public class CatalogAdapter extends DefaultTableModel {
 
     @Override
     public int getRowCount() {
-        return catalog == null ? 0 : catalog.getSituations().stream().mapToInt(s -> s.getNote().size()).sum();
+        return catalog == null ? 0 : catalog.getSituations().stream().mapToInt(s -> s.getGrades().size()).sum();
     }
 
     @Override
@@ -60,7 +62,7 @@ public class CatalogAdapter extends DefaultTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         int i = 0;
         for (Situation s : catalog.getSituations()) {
-            for (Grade grade : s.getNote()) {
+            for (Grade grade : s.getGrades()) {
                 if (i == rowIndex) {
                     Discipline m = getMaterie(grade.getSubjectId());
                     if (m != null && m.getId() == 3) {

@@ -8,6 +8,8 @@
 
 package com.ace.ucv.model.xml.student;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -60,6 +62,7 @@ public class StudentiType {
      * Objects of the following type(s) are allowed in the list
      * {@link StudentType }
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP")
     public List<StudentType> getStudent() {
         if (student == null) {
             student = new ArrayList<>();

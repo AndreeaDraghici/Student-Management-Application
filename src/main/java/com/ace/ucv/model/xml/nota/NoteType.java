@@ -8,6 +8,8 @@
 
 package com.ace.ucv.model.xml.nota;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -66,6 +68,7 @@ public class NoteType {
      * 
      * 
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP")
     public List<NotaStudType> getNotaStud() {
         if (notaStud == null) {
             notaStud = new ArrayList<NotaStudType>();
