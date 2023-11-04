@@ -38,6 +38,13 @@ public class DisciplineMapper {
         return disciplineList;
     }
 
+
+    /**
+     * Validates the MateriiType object and its associated list of disciplines.
+     *
+     * @param materiiType The MateriiType object to be checked.
+     * @throws ConfigurationMapperException Throws an exception if the MateriiType object or its list of disciplines is null.
+     */
     private void checkInput(MateriiType materiiType) {
         if (materiiType == null) {
             throw new ConfigurationMapperException("XML discipline object type cannot be null!");
@@ -74,6 +81,7 @@ public class DisciplineMapper {
         }
         return discipline;
     }
+
 
     /**
      * Builds a Discipline object from the provided MateriaType.

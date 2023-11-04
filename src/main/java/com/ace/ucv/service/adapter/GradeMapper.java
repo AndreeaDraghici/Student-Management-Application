@@ -38,6 +38,12 @@ public class GradeMapper {
         return gradeList;
     }
 
+    /**
+     * Validates the NoteType object and its associated list of grades.
+     *
+     * @param noteType The NoteType object to be checked.
+     * @throws ConfigurationMapperException Throws an exception if the NoteType object or its list of grades is null.
+     */
     private void checkInput(NoteType noteType) {
         if (noteType == null) {
             throw new ConfigurationMapperException("XML grade object type cannot be null!");

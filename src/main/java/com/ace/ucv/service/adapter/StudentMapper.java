@@ -38,6 +38,12 @@ public class StudentMapper {
         return studentList;
     }
 
+    /**
+     * Validates the StudentiType object and its associated list of students.
+     *
+     * @param studentiType The StudentiType object to be checked.
+     * @throws ConfigurationMapperException Throws an exception if the StudentiType object or its list of students is null.
+     */
     private void checkInput(StudentiType studentiType) {
         if (studentiType == null) {
             throw new ConfigurationMapperException("XML student object type cannot be null!");
