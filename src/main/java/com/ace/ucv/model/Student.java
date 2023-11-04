@@ -2,13 +2,29 @@ package com.ace.ucv.model;
 
 public class Student {
 
-    private final int id;
+    private int id;
     private String name;
     private String surname;
     private String phone;
     private String genre;
 
-    public Student(int id) {
+    public Student() {
+        this.id = 0;
+        this.name = "";
+        this.genre = "";
+        this.surname = "";
+        this.phone = "";
+    }
+
+    public Student(int id, String name, String surname, String phone, String genre) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.genre = genre;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -32,7 +48,7 @@ public class Student {
         this.surname = surname;
     }
 
-    public java.lang.String getPhone() {
+    public String getPhone() {
         return phone;
     }
 
@@ -54,6 +70,7 @@ public class Student {
 
     /**
      * Validates a Romanian phone number.
+     *
      * @param phoneNumber The phone number to validate.
      * @return true if the phone number is valid, false otherwise.
      */
