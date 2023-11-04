@@ -1,6 +1,7 @@
 package com.ace.ucv.service.parser;
 
 import com.ace.ucv.model.xml.nota.NoteType;
+import com.ace.ucv.model.xml.student.StudentiType;
 import com.ace.ucv.service.exception.ConfigurationLoaderException;
 import com.ace.ucv.service.parser.iface.IConfigLoader;
 
@@ -15,7 +16,8 @@ import java.nio.file.Files;
  * Name of project: StudentManagement
  */
 
-public class GradeParser implements IConfigLoader {
+// Implement the methods from the interface
+public class GradeParser implements IConfigLoader<NoteType>{
 
     /**
      * Deserializes an XML file into a NoteType object using JAXB.
@@ -38,6 +40,12 @@ public class GradeParser implements IConfigLoader {
         }
     }
 
+    /**
+     * Performs input checks for the specified file.
+     *
+     * @param file The XML configuration file to be checked.
+     * @throws ConfigurationLoaderException If any input parameters are invalid or missing.
+     */
     @Override
     public void inputCheck(File file) throws ConfigurationLoaderException {
         if (file == null) {

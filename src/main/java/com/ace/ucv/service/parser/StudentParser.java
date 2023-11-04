@@ -14,7 +14,9 @@ import java.nio.file.Files;
  * Name of project: StudentManagement
  */
 
-public class StudentParser implements IConfigLoader {
+
+// Implement the methods from the interface
+public class StudentParser implements IConfigLoader<StudentiType> {
 
     /**
      * Deserializes an XML file into a StudentiType object using JAXB.
@@ -37,6 +39,12 @@ public class StudentParser implements IConfigLoader {
         }
     }
 
+    /**
+     * Performs input checks for the specified file.
+     *
+     * @param file The XML configuration file to be checked.
+     * @throws ConfigurationLoaderException If any input parameters are invalid or missing.
+     */
     @Override
     public void inputCheck(File file) throws ConfigurationLoaderException {
         if (file == null) {
