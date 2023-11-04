@@ -1,8 +1,11 @@
 package com.ace.ucv.service.parser;
 
 import com.ace.ucv.model.xml.nota.NoteType;
+import com.ace.ucv.service.exception.ConfigurationLoadException;
+
 import javax.xml.bind.*;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 
 
@@ -18,21 +21,24 @@ public class GradeParser {
      *
      * @param file The XML configuration file to be deserialized.
      * @return The NoteType object representing the deserialized data.
-     * @throws Exception If any exception occurs during the deserialization process.
+     * @throws ConfigurationLoadException If any exception occurs during the deserialization process.
      */
-    public NoteType loadConfiguration(File file) throws Exception {
-
+    public NoteType loadConfiguration(File file) throws ConfigurationLoadException {
         if (file == null) {
             throw new IllegalArgumentException("XML configuration file is null.");
         }
 
         if (!file.exists()) {
-            throw new RuntimeException(file.getPath() + " could not be found!");
+            throw new ConfigurationLoadException(file.getPath() + " could not be found!");
         }
 
-        JAXBContext jaxbContext = JAXBContext.newInstance("com.ace.ucv.model.xml.nota");
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance("com.ace.ucv.model.xml.nota");
+            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 
-        return (NoteType) JAXBIntrospector.getValue(unmarshaller.unmarshal(Files.newInputStream(file.toPath())));
+            return (NoteType) JAXBIntrospector.getValue(unmarshaller.unmarshal(Files.newInputStream(file.toPath())));
+        } catch (JAXBException | IOException e) {
+            throw new ConfigurationLoadException("Failed to load grades configuration from XML file.", e);
+        }
     }
 }
