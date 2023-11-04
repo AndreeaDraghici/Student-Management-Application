@@ -2,6 +2,7 @@ package com.ace.ucv.service.parser;
 
 import com.ace.ucv.model.xml.student.StudentType;
 import com.ace.ucv.model.xml.student.StudentiType;
+import com.ace.ucv.service.exception.ConfigurationLoadException;
 import com.ace.ucv.service.parser.StudentParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -49,6 +50,6 @@ class StudentParserTest {
     void test_throw_exception_when_xml_file_path_is_incorrect() {
         StudentParser xmlParser = new StudentParser();
 
-        assertThrows(RuntimeException.class, () -> xmlParser.loadConfiguration(new File("invalid/path/to/file.xml")));
+        assertThrows(ConfigurationLoadException.class, () -> xmlParser.loadConfiguration(new File("invalid/path/to/file.xml")));
     }
 }
