@@ -3,6 +3,7 @@ package com.ace.ucv.service.adapter;
 import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.xml.materie.MateriaType;
 import com.ace.ucv.model.xml.materie.MateriiType;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -14,11 +15,17 @@ import static org.junit.jupiter.api.Assertions.*;
  * Name of project: StudentManagement
  */
 class DisciplineMapperTest {
+    private DisciplineMapper disciplineMapper;
+
+    @BeforeEach
+    void setUp() {
+        // Arrange
+        disciplineMapper = new DisciplineMapper();
+    }
 
     @Test
     void test_adaptXmlDisciplineTypeToDisciplineList_validMateriiType() {
         // Arrange
-        DisciplineMapper disciplineMapper = new DisciplineMapper();
         MateriiType materiiType = new MateriiType();
         MateriaType materiaType = new MateriaType();
         materiaType.setDenumire("Math");
@@ -44,8 +51,6 @@ class DisciplineMapperTest {
 
     @Test
     void test_adaptXmlDisciplineTypeToDisciplineList_nullMateriiType() {
-        // Arrange
-        DisciplineMapper disciplineMapper = new DisciplineMapper();
 
         // Act and Assert
         assertThrows(RuntimeException.class, () -> disciplineMapper.adaptXmlDisciplineTypeToDisciplineList(null));
@@ -54,7 +59,6 @@ class DisciplineMapperTest {
     @Test
     void test_adaptXmlObjectToDisciplineIntermediaryObject_nullFields() {
         // Arrange
-        DisciplineMapper disciplineMapper = new DisciplineMapper();
         MateriaType materiaType = new MateriaType();
         materiaType.setAn("2");
         materiaType.setDenumire("Name");
