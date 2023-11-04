@@ -1,5 +1,6 @@
 package com.ace.ucv.service.output;
 
+import com.ace.ucv.model.Catalog;
 import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.Grade;
 import com.ace.ucv.model.Student;
@@ -27,13 +28,10 @@ public class ProcessingManager {
     /**
      * Creates an XML document representing the catalog based on the provided lists of students, disciplines, and grades.
      *
-     * @param students    List of students.
-     * @param disciplines List of disciplines.
-     * @param grades      List of grades.
      * @return The created XML document.
      * @throws Exception If an error occurs during document creation.
      */
-    public Document createXmlDocument(List<Student> students, List<Discipline> disciplines, List<Grade> grades) throws Exception {
+    public Document createXmlDocument(Catalog catalog) throws Exception {
         DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
         Document document = documentBuilder.newDocument();
@@ -41,8 +39,8 @@ public class ProcessingManager {
         Element catalogElement = document.createElement(TAG_NAME);
         document.appendChild(catalogElement);
 
-        for (Student student : students) {
-            addStudentInfo(document, catalogElement, student, disciplines, grades);
+        for (Student student : catalog.getStudents()) {
+            addStudentInfo(document, catalogElement, student, catalog);
         }
 
         return document;
@@ -72,10 +70,8 @@ public class ProcessingManager {
      * @param document       The XML document.
      * @param catalogElement The catalog element in the XML document.
      * @param student        The student whose information will be added.
-     * @param disciplines    List of disciplines.
-     * @param grades         List of grades.
      */
-    private void addStudentInfo(Document document, Element catalogElement, Student student, List<Discipline> disciplines, List<Grade> grades) {
+    private void addStudentInfo(Document document, Element catalogElement, Student student, Catalog catalog) {
         Element studentElement = document.createElement(STUDENT);
         catalogElement.appendChild(studentElement);
 
@@ -85,7 +81,7 @@ public class ProcessingManager {
         createElementWithTextNode(document, studentElement, STUDENT_PHONE, student.getPhone());
         createElementWithTextNode(document, studentElement, STUDENT_GENDER, String.valueOf(student.getGenre()));
 
-        addStudentGrades(document, student, disciplines, grades, studentElement);
+        addStudentGrades(document, student, catalog, studentElement);
     }
 
 
@@ -94,14 +90,12 @@ public class ProcessingManager {
      *
      * @param document       The XML document.
      * @param student        The student whose grades information will be added.
-     * @param disciplines    List of disciplines.
-     * @param grades         List of grades.
      * @param studentElement The student element in the XML document.
      */
-    private void addStudentGrades(Document document, Student student, List<Discipline> disciplines, List<Grade> grades, Element studentElement) {
-        for (Grade grade : grades) {
+    private void addStudentGrades(Document document, Student student, Catalog catalog,Element studentElement) {
+        for (Grade grade : catalog.getGrades()) {
             if (grade.getStudentId() == student.getId()) {
-                Discipline discipline = findDisciplineById(disciplines, grade);
+                Discipline discipline = findDisciplineById(catalog.getDisciplines(), grade);
                 addDisciplineInfo(document, studentElement, discipline, grade);
             }
         }

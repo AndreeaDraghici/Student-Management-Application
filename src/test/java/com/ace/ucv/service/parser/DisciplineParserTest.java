@@ -2,9 +2,7 @@ package com.ace.ucv.service.parser;
 
 import com.ace.ucv.model.xml.materie.MateriaType;
 import com.ace.ucv.model.xml.materie.MateriiType;
-import com.ace.ucv.service.exception.ConfigurationLoadException;
-import com.ace.ucv.service.exception.ConfigurationMapperException;
-import com.ace.ucv.service.parser.DisciplineParser;
+import com.ace.ucv.service.exception.ConfigurationLoaderException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -52,7 +50,7 @@ class DisciplineParserTest {
     void test_throw_exception_when_file_argument_does_not_exist() {
         DisciplineParser xmlParser = new DisciplineParser();
 
-        assertThrows(ConfigurationLoadException.class, () -> xmlParser.loadConfiguration(new File("nonexistent.xml")));
+        assertThrows(ConfigurationLoaderException.class, () -> xmlParser.loadConfiguration(new File("nonexistent.xml")));
     }
 
     @Test

@@ -45,6 +45,12 @@ public class StudentMapper {
         return studentList;
     }
 
+    /**
+     * Adds an adapted Student object to the list of intermediary Student objects.
+     *
+     * @param studentList The list of intermediary Student objects.
+     * @param studentType The StudentType object to be adapted and added to the list.
+     */
     private void getIntermediaryStudentList(List<Student> studentList, StudentType studentType) {
         Student student = adaptXmlObjectToStudentIntermediaryObject(studentType);
         studentList.add(student);
@@ -60,15 +66,24 @@ public class StudentMapper {
         Student student = new Student();
 
         if (studentType != null) {
-            student.setId(Integer.parseInt(studentType.getId()));
-            student.setName(studentType.getNume());
-            student.setSurname(studentType.getPrenume());
-            student.setPhone(studentType.getTelefon());
-            student.setGenre(studentType.getSex());
-
-            logger.info("Mapped xml object to intermediary object.");
+            buildStudent(studentType, student);
+            logger.info("Mapped xml object to intermediary student object.");
         }
         return student;
+    }
+
+    /**
+     * Builds a Student object based on the information from the adapted StudentType object.
+     *
+     * @param studentType The StudentType object containing information about the student.
+     * @param student     The Student object to be built and populated.
+     */
+    private void buildStudent(StudentType studentType, Student student) {
+        student.setId(Integer.parseInt(studentType.getId()));
+        student.setName(studentType.getNume());
+        student.setSurname(studentType.getPrenume());
+        student.setPhone(studentType.getTelefon());
+        student.setGenre(studentType.getSex());
     }
 
 }

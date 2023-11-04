@@ -45,6 +45,12 @@ public class DisciplineMapper {
         return disciplineList;
     }
 
+    /**
+     * Converts a MateriaType object to a Discipline object and adds it to the provided list.
+     *
+     * @param disciplineList The list to which the converted Discipline object will be added.
+     * @param materieType    The MateriaType object to be converted.
+     */
     private void getIntermediaryDisciplineList(List<Discipline> disciplineList, MateriaType materieType) {
         Discipline discipline = adaptXmlObjectToDisciplineIntermediaryObject(materieType);
         disciplineList.add(discipline);
@@ -60,14 +66,23 @@ public class DisciplineMapper {
         Discipline discipline = new Discipline();
 
         if (materieType != null) {
-            discipline.setName(materieType.getDenumire());
-            discipline.setTeacher(materieType.getProfesor());
-            discipline.setYear(materieType.getAn());
-            discipline.setSemester(Integer.parseInt(materieType.getSemestru()));
-            discipline.setId(Integer.parseInt(materieType.getId()));
-
-            logger.info("Mapped xml object to intermediary object.");
+            buildDiscipline(materieType, discipline);
+            logger.info("Mapped xml object to intermediary discipline object.");
         }
         return discipline;
+    }
+
+    /**
+     * Builds a Discipline object from the provided MateriaType.
+     *
+     * @param materieType The MateriaType object containing discipline information.
+     * @param discipline  The Discipline object to be built.
+     */
+    private void buildDiscipline(MateriaType materieType, Discipline discipline) {
+        discipline.setName(materieType.getDenumire());
+        discipline.setTeacher(materieType.getProfesor());
+        discipline.setYear(materieType.getAn());
+        discipline.setSemester(Integer.parseInt(materieType.getSemestru()));
+        discipline.setId(Integer.parseInt(materieType.getId()));
     }
 }

@@ -1,9 +1,7 @@
 package com.ace.ucv.service.parser;
 
 import com.ace.ucv.model.xml.nota.NoteType;
-import com.ace.ucv.service.exception.ConfigurationLoadException;
-import com.ace.ucv.service.exception.ConfigurationMapperException;
-import com.ace.ucv.service.parser.GradeParser;
+import com.ace.ucv.service.exception.ConfigurationLoaderException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +38,7 @@ class GradeParserTest {
     @Test
     void test_throw_exception_if_xml_configuration_file_not_found() {
         GradeParser xmlParser = new GradeParser();
-        assertThrows(ConfigurationLoadException.class, () -> xmlParser.loadConfiguration(new File("nonexistent.xml")));
+        assertThrows(ConfigurationLoaderException.class, () -> xmlParser.loadConfiguration(new File("nonexistent.xml")));
     }
 
     @Test

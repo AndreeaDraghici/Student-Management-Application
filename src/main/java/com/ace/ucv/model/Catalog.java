@@ -7,15 +7,18 @@ public class Catalog {
 
     private List<Student> students;
     private List<Discipline> disciplines;
+    private List<Grade> grades;
 
     public Catalog() {
         this.disciplines = new ArrayList<>();
         this.students = new ArrayList<>();
+        this.grades = new ArrayList<>();
     }
 
-    public Catalog(List<Student> students, List<Discipline> disciplines) {
+    public Catalog(List<Student> students, List<Discipline> disciplines, List<Grade> grades) {
         this.students = students;
         this.disciplines = disciplines;
+        this.grades = grades;
     }
 
     public List<Student> getStudents() {
@@ -43,6 +46,18 @@ public class Catalog {
         this.disciplines = disciplines;
     }
 
+
+    public List<Grade> getGrades() {
+        if (grades == null) {
+            grades = new ArrayList<>();
+        }
+        return grades;
+    }
+
+    public void setGrades(List<Grade> grades) {
+        this.grades = grades;
+    }
+
     /**
      * Adds a student to the catalog.
      *
@@ -68,6 +83,19 @@ public class Catalog {
     }
 
     /**
+     * Adds a grade to the catalog.
+     *
+     * @param grade The grade to be added.
+     */
+    public void addGrade(Grade grade) {
+        if (grades == null) {
+            grades = new ArrayList<>();
+        }
+
+        grades.add(grade);
+    }
+
+    /**
      * Removes a student from the catalog.
      *
      * @param student The student to be removed.
@@ -88,6 +116,18 @@ public class Catalog {
     public void removeDiscipline(Discipline discipline) {
         if (disciplines != null) {
             disciplines.remove(discipline);
+        }
+    }
+
+    /**
+     * Removes a grade from the catalog.
+     *
+     * @param grade The grade to be removed.
+     */
+    @SuppressWarnings("unused") // Marking the method as used
+    public void removeGrade(Grade grade) {
+        if (grades != null) {
+            grades.remove(grade);
         }
     }
 }

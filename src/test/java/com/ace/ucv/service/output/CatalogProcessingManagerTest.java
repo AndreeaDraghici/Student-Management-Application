@@ -45,25 +45,27 @@ class CatalogProcessingManagerTest {
         catalog.addDiscipline(discipline);
 
         grades = Arrays.asList(new Grade(10, 1, 1));
+        catalog.setGrades(grades);
         filePath = "src/test/resources/out/catalog.xml";
     }
 
     @Test
     void testGenerateCatalogXMLWhenValidDataThenCatalogFileGenerated() {
-        catalogProcessingManager.generateCatalogXML(catalog, grades, filePath);
+        catalogProcessingManager.generateCatalogXML(catalog, filePath);
         File file = new File(filePath);
         assertTrue(file.exists());
     }
 
     @Test
     void testGenerateCatalogXMLWhenGradesNullThenRuntimeException() {
-        Exception exception = assertThrows(RuntimeException.class, () -> catalogProcessingManager.generateCatalogXML(catalog, null, filePath));
+        catalog.setGrades(null);
+        Exception exception = assertThrows(CatalogGenerationException.class, () -> catalogProcessingManager.generateCatalogXML(catalog, filePath));
         assertEquals("Discipline must have the associated grades!", exception.getMessage());
     }
 
     @Test
     void testGenerateCatalogXMLWhenFilePathEmptyThenRuntimeException() {
-        Exception exception = assertThrows(RuntimeException.class, () -> catalogProcessingManager.generateCatalogXML(catalog, grades, ""));
+        Exception exception = assertThrows(CatalogGenerationException.class, () -> catalogProcessingManager.generateCatalogXML(catalog, ""));
         assertEquals("Output file need to be exist to generate the catalog file!", exception.getMessage());
     }
 }

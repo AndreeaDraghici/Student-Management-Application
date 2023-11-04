@@ -45,6 +45,12 @@ public class GradeMapper {
         return gradeList;
     }
 
+    /**
+     * Adds an adapted Grade object to the list of intermediary Grade objects.
+     *
+     * @param gradeList The list to which the adapted Grade object will be added.
+     * @param gradeType The NotaStudType object to be adapted and added to the list.
+     */
     private void getIntermediaryGradeList(List<Grade> gradeList, NotaStudType gradeType) {
         Grade grade = adaptXmlObjectToGradeIntermediaryObject(gradeType);
         gradeList.add(grade);
@@ -60,12 +66,21 @@ public class GradeMapper {
         Grade grade = new Grade();
 
         if (gradeType != null) {
-            grade.setGradeValue(Integer.parseInt(gradeType.getNota()));
-            grade.setStudentId(Integer.parseInt(gradeType.getStudent()));
-            grade.setSubjectId(Integer.parseInt(gradeType.getMaterie()));
-
-            logger.info("Mapped xml object to intermediary object.");
+            buildGrade(gradeType, grade);
+            logger.info("Mapped xml object to intermediary grade object.");
         }
         return grade;
+    }
+
+    /**
+     * Builds a Grade object based on the information from a NotaStudType object.
+     *
+     * @param gradeType The NotaStudType object containing grade information.
+     * @param grade     The Grade object to be built.
+     */
+    private void buildGrade(NotaStudType gradeType, Grade grade) {
+        grade.setGradeValue(Integer.parseInt(gradeType.getNota()));
+        grade.setStudentId(Integer.parseInt(gradeType.getStudent()));
+        grade.setSubjectId(Integer.parseInt(gradeType.getMaterie()));
     }
 }
