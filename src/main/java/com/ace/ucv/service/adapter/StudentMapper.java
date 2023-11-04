@@ -3,6 +3,7 @@ package com.ace.ucv.service.adapter;
 import com.ace.ucv.model.Student;
 import com.ace.ucv.model.xml.student.StudentType;
 import com.ace.ucv.model.xml.student.StudentiType;
+import com.ace.ucv.service.exception.ConfigurationMapperException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,11 +28,11 @@ public class StudentMapper {
         List<Student> studentList = new ArrayList<>();
 
         if (studentiType == null) {
-            throw new RuntimeException("XML student object type cannot be null!");
+            throw new ConfigurationMapperException("XML student object type cannot be null!");
         }
 
         if (studentiType.getStudent() == null) {
-            throw new RuntimeException("XML list of student objects type cannot be null!");
+            throw new ConfigurationMapperException("XML list of student objects type cannot be null!");
         }
 
         try {
@@ -39,7 +40,7 @@ public class StudentMapper {
                 getIntermediaryStudentList(studentList, studentType);
             }
         } catch (Exception e) {
-            logger.error(String.format("Failed to adapt xml student to intermediary data model due to: %s", e.getMessage()));
+            throw new ConfigurationMapperException("Failed to adapt xml student to intermediary data model due to: ", e);
         }
         return studentList;
     }

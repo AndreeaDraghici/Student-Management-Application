@@ -3,6 +3,7 @@ package com.ace.ucv.service.adapter;
 import com.ace.ucv.model.Grade;
 import com.ace.ucv.model.xml.nota.NotaStudType;
 import com.ace.ucv.model.xml.nota.NoteType;
+import com.ace.ucv.service.exception.ConfigurationMapperException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,11 +28,11 @@ public class GradeMapper {
         List<Grade> gradeList = new ArrayList<>();
 
         if (noteType == null) {
-            throw new RuntimeException("XML grade object type cannot be null!");
+            throw new ConfigurationMapperException("XML grade object type cannot be null!");
         }
 
         if (noteType.getNotaStud() == null) {
-            throw new RuntimeException("XML list of grade objects type cannot be null!");
+            throw new ConfigurationMapperException("XML list of grade objects type cannot be null!");
         }
 
         try {
@@ -39,7 +40,7 @@ public class GradeMapper {
                 getIntermediaryGradeList(gradeList, gradeType);
             }
         } catch (Exception e) {
-            logger.error(String.format("Failed to adapt xml grade to intermediary data model due to: %s", e.getMessage()));
+            throw new ConfigurationMapperException("Failed to adapt xml grade to intermediary data model due to: ", e);
         }
         return gradeList;
     }

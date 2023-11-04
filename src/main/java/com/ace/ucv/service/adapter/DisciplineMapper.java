@@ -3,6 +3,7 @@ package com.ace.ucv.service.adapter;
 import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.xml.materie.MateriaType;
 import com.ace.ucv.model.xml.materie.MateriiType;
+import com.ace.ucv.service.exception.ConfigurationMapperException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,11 +28,11 @@ public class DisciplineMapper {
         List<Discipline> disciplineList = new ArrayList<>();
 
         if (materiiType == null) {
-            throw new RuntimeException("XML discipline object type cannot be null!");
+            throw new ConfigurationMapperException("XML discipline object type cannot be null!");
         }
 
         if (materiiType.getMateria() == null) {
-            throw new RuntimeException("XML list of discipline objects type cannot be null!");
+            throw new ConfigurationMapperException("XML list of discipline objects type cannot be null!");
         }
 
         try {
@@ -39,7 +40,7 @@ public class DisciplineMapper {
                 getIntermediaryDisciplineList(disciplineList, materieType);
             }
         } catch (Exception e) {
-            logger.error(String.format("Failed to adapt xml discipline to intermediary data model due to: %s", e.getMessage()));
+            throw new ConfigurationMapperException("Failed to adapt XML discipline to intermediary data model.", e);
         }
         return disciplineList;
     }
