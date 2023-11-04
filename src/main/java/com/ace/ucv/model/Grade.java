@@ -2,24 +2,24 @@ package com.ace.ucv.model;
 
 public class Grade {
 
-    private int grade;
+    private int gradeValue;
     private int subjectId;
     private int studentId;
 
     public Grade() {
-        this.grade = 0;
+        this.gradeValue = 0;
         this.studentId = 0;
         this.subjectId = 0;
     }
 
-    public Grade(int grade, int subjectId, int studentId) {
-        this.grade = grade;
+    public Grade(int gradeValue, int subjectId, int studentId) {
+        this.gradeValue = gradeValue;
         this.subjectId = subjectId;
         this.studentId = studentId;
     }
 
-    public int getGrade() {
-        return grade;
+    public int getGradeValue() {
+        return gradeValue;
     }
 
     public int getSubjectId() {
@@ -30,8 +30,8 @@ public class Grade {
         return studentId;
     }
 
-    public void setGrade(int grade) {
-        this.grade = grade;
+    public void setGradeValue(int gradeValue) {
+        this.gradeValue = gradeValue;
     }
 
     public void setSubjectId(int subjectId) {

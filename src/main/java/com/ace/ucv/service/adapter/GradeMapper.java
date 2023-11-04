@@ -59,7 +59,7 @@ public class GradeMapper {
         Grade grade = new Grade();
 
         if (gradeType != null) {
-            grade.setGrade(Integer.parseInt(gradeType.getNota()));
+            grade.setGradeValue(Integer.parseInt(gradeType.getNota()));
             grade.setStudentId(Integer.parseInt(gradeType.getStudent()));
             grade.setSubjectId(Integer.parseInt(gradeType.getMaterie()));
 

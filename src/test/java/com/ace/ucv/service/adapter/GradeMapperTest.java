@@ -64,7 +64,7 @@ class GradeMapperTest {
 
         // Assert
         assertNotNull(grade);
-        assertEquals(10, grade.getGrade());
+        assertEquals(10, grade.getGradeValue());
         assertEquals(1, grade.getSubjectId());
         assertEquals(1, grade.getStudentId());
     }
@@ -76,7 +76,7 @@ class GradeMapperTest {
 
         // Assert
         assertNotNull(grade);
-        assertEquals(0, grade.getGrade());
+        assertEquals(0, grade.getGradeValue());
         assertEquals(0, grade.getSubjectId());
         assertEquals(0, grade.getStudentId());
     }
