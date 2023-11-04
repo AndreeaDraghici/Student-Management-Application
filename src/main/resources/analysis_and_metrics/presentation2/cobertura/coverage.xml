@@ -1634,7 +1634,7 @@
 						<line number="35" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.ace.ucv.service.parser.WriteXMLFile" filename="com/ace/ucv/service/parser/WriteXMLFile.java" line-rate="0.0" branch-rate="0.0" complexity="4.0">
+				<class name="com.ace.ucv.service.output.WriteXMLFile" filename="com/ace/ucv/service/parser/WriteXMLFile.java" line-rate="0.0" branch-rate="0.0" complexity="4.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
