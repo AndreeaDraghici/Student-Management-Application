@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CatalogAdapter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">StudentManagement</a> &gt; <a href="index.source.html" class="el_package">com.ace.ucv.model.builder</a> &gt; <span class="el_source">CatalogAdapter.java</span></div><h1>CatalogAdapter.java</h1><pre class="source lang-java linenums">package com.ace.ucv.model.builder;
+
+import com.ace.ucv.model.Catalog;
+import com.ace.ucv.model.Grade;
+import com.ace.ucv.model.Discipline;
+import com.ace.ucv.model.Situation;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
+import javax.swing.table.DefaultTableModel;
+
+public class CatalogAdapter extends DefaultTableModel {
+
+    private final Catalog catalog;
+
+    @SuppressFBWarnings(&quot;EI_EXPOSE_REP2&quot;)
+    public CatalogAdapter(Catalog catalog) {
+<span class="nc" id="L17">        super();</span>
+<span class="nc" id="L18">        this.catalog = catalog;</span>
+<span class="nc" id="L19">    }</span>
+
+    @Override
+    public int getRowCount() {
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        return catalog == null ? 0 : catalog.getSituations().stream().mapToInt(s -&gt; s.getGrades().size()).sum();</span>
+    }
+
+    @Override
+    public int getColumnCount() {
+<span class="nc" id="L28">        return 4;</span>
+    }
+
+    @Override
+    public String getColumnName(int columnIndex) {
+<span class="nc bnc" id="L33" title="All 5 branches missed.">        switch (columnIndex) {</span>
+            case 0:
+<span class="nc" id="L35">                return &quot;Nume&quot;;</span>
+            case 1:
+<span class="nc" id="L37">                return &quot;Prenume&quot;;</span>
+            case 2:
+<span class="nc" id="L39">                return &quot;Materie&quot;;</span>
+            case 3:
+<span class="nc" id="L41">                return &quot;Nota&quot;;</span>
+            default:
+<span class="nc" id="L43">                return &quot;&quot;;</span>
+        }
+    }
+
+    @Override
+    public Class&lt;?&gt; getColumnClass(int columnIndex) {
+<span class="nc bnc" id="L49" title="All 4 branches missed.">        return (columnIndex == 2 || columnIndex == 3) ? String.class : Object.class;</span>
+    }
+
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+<span class="nc" id="L54">        return false;</span>
+    }
+
+    private Discipline getMaterie(int idMaterie) {
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        return catalog.getDisciplines().stream().filter(m -&gt; m.getId() == idMaterie).findFirst().orElse(null);</span>
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+<span class="nc" id="L63">        int i = 0;</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        for (Situation s : catalog.getSituations()) {</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            for (Grade grade : s.getGrades()) {</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">                if (i == rowIndex) {</span>
+<span class="nc" id="L67">                    Discipline discipline = getMaterie(grade.getSubjectId());</span>
+<span class="nc bnc" id="L68" title="All 4 branches missed.">                    if (discipline != null &amp;&amp; discipline.getId() == 3) {</span>
+<span class="nc" id="L69">                        return getObject(columnIndex, s, grade, discipline);</span>
+                    }
+                }
+<span class="nc" id="L72">                i++;</span>
+<span class="nc" id="L73">            }</span>
+<span class="nc" id="L74">        }</span>
+<span class="nc" id="L75">        return null;</span>
+    }
+
+    private static Object getObject(int columnIndex, Situation situation, Grade grade, Discipline discipline) {
+<span class="nc bnc" id="L79" title="All 5 branches missed.">        switch (columnIndex) {</span>
+            case 0:
+<span class="nc" id="L81">                return situation.getStudent().getName();</span>
+            case 1:
+<span class="nc" id="L83">                return situation.getStudent().getSurname();</span>
+            case 2:
+<span class="nc" id="L85">                return discipline.getName();</span>
+            case 3:
+<span class="nc" id="L87">                return grade.getGrade();</span>
+            default:
+<span class="nc" id="L89">                throw new IllegalStateException(&quot;Unexpected value: &quot; + columnIndex);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

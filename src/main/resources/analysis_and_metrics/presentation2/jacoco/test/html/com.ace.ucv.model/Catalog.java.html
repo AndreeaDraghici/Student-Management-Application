@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Catalog.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">StudentManagement</a> &gt; <a href="index.source.html" class="el_package">com.ace.ucv.model</a> &gt; <span class="el_source">Catalog.java</span></div><h1>Catalog.java</h1><pre class="source lang-java linenums">package com.ace.ucv.model;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="nc" id="L8">public class Catalog {</span>
+
+    private List&lt;Discipline&gt; disciplines;
+    private List&lt;Situation&gt; situations;
+
+    @SuppressFBWarnings(&quot;EI_EXPOSE_REP&quot;)
+    public List&lt;Discipline&gt; getDisciplines() {
+<span class="nc bnc" id="L15" title="All 2 branches missed.">        if (disciplines == null) {</span>
+<span class="nc" id="L16">            disciplines = new ArrayList&lt;&gt;();</span>
+        }
+<span class="nc" id="L18">        return disciplines;</span>
+    }
+
+    @SuppressFBWarnings(&quot;EI_EXPOSE_REP2&quot;)
+    public void setDisciplines(List&lt;Discipline&gt; disciplines) {
+<span class="nc" id="L23">        this.disciplines = disciplines;</span>
+<span class="nc" id="L24">    }</span>
+
+    @SuppressFBWarnings(&quot;EI_EXPOSE_REP&quot;)
+    public List&lt;Situation&gt; getSituations() {
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        if (situations == null) {</span>
+<span class="nc" id="L29">            situations = new ArrayList&lt;&gt;();</span>
+        }
+<span class="nc" id="L31">        return situations;</span>
+    }
+
+    @SuppressFBWarnings(&quot;EI_EXPOSE_REP2&quot;)
+    public void setSituations(List&lt;Situation&gt; situations) {
+<span class="nc" id="L36">        this.situations = situations;</span>
+<span class="nc" id="L37">    }</span>
+
+    public void addDiscipline(Discipline discipline) {
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        if (discipline == null) {</span>
+<span class="nc" id="L41">            return;</span>
+        }
+
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (disciplines == null) {</span>
+<span class="nc" id="L45">            disciplines = new ArrayList&lt;&gt;();</span>
+        }
+<span class="nc" id="L47">        disciplines.add(discipline);</span>
+<span class="nc" id="L48">    }</span>
+
+    @SuppressFBWarnings(&quot;RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE&quot;)
+    public void addSituation(Situation situation) {
+
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (situations == null) {</span>
+<span class="nc" id="L54">            return;</span>
+        }
+
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        if (situations == null) {</span>
+<span class="nc" id="L58">            situations = new ArrayList&lt;&gt;();</span>
+        }
+<span class="nc" id="L60">        situations.add(situation);</span>
+<span class="nc" id="L61">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
