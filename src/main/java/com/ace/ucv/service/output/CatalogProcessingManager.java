@@ -1,8 +1,7 @@
 package com.ace.ucv.service.output;
 
-import com.ace.ucv.model.Discipline;
+import com.ace.ucv.model.Catalog;
 import com.ace.ucv.model.Grade;
-import com.ace.ucv.model.Student;
 import com.ace.ucv.service.exception.CatalogGenerationException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,22 +19,21 @@ public class CatalogProcessingManager {
 
     private static final Logger logger = LogManager.getLogger(CatalogProcessingManager.class);
 
-
     /**
-     * Generates a catalog XML file based on the provided lists of students, disciplines, and grades.
+     * Generates a catalog XML file based on the provided catalog, list of grades, and file path.
      *
-     * @param students    List of students.
-     * @param disciplines List of disciplines.
-     * @param grades      List of grades.
-     * @param filePath    The path where the catalog XML file will be generated.
+     * @param catalog  The catalog containing the list of students and disciplines.
+     * @param grades   List of grades associated with the catalog.
+     * @param filePath The path where the catalog XML file will be generated.
+     * @throws CatalogGenerationException if the generation process fails.
      */
-    public void generateCatalogXML(List<Student> students, List<Discipline> disciplines, List<Grade> grades, String filePath) {
+    public void generateCatalogXML(Catalog catalog, List<Grade> grades, String filePath) {
 
-        inputChecks(students, disciplines, grades, filePath);
-
+        inputChecks(catalog, grades, filePath);
         ProcessingManager manager = new ProcessingManager();
+
         try {
-            Document document = manager.createXmlDocument(students, disciplines, grades);
+            Document document = manager.createXmlDocument(catalog.getStudents(), catalog.getDisciplines(), grades);
             manager.saveXmlDocument(document, filePath);
             logger.info("Catalog file was created!");
         } catch (Exception e) {
@@ -46,18 +44,17 @@ public class CatalogProcessingManager {
     /**
      * Validates input parameters for generating the catalog XML file.
      *
-     * @param students    List of students.
-     * @param disciplines List of disciplines.
-     * @param grades      List of grades.
-     * @param filePath    The path where the catalog XML file will be generated.
-     * @throws RuntimeException if any of the input parameters are invalid or missing.
+     * @param catalog  The catalog containing the list of students and disciplines.
+     * @param grades   List of grades.
+     * @param filePath The path where the catalog XML file will be generated.
+     * @throws CatalogGenerationException if any of the input parameters are invalid or missing.
      */
-    private void inputChecks(List<Student> students, List<Discipline> disciplines, List<Grade> grades, String filePath) {
-        if (students == null) {
+    private void inputChecks(Catalog catalog, List<Grade> grades, String filePath) {
+        if (catalog.getStudents() == null) {
             throw new CatalogGenerationException("Catalog must have the associated students!");
         }
 
-        if (disciplines == null) {
+        if (catalog.getDisciplines() == null) {
             throw new CatalogGenerationException("Catalog must have the associated disciplines!");
         }
 
@@ -69,4 +66,5 @@ public class CatalogProcessingManager {
             throw new CatalogGenerationException("Output file need to be exist to generate the catalog file!");
         }
     }
+
 }

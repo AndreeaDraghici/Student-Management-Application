@@ -52,8 +52,8 @@ public class ProcessingManager {
     /**
      * Saves the provided XML document to a file at the specified file path.
      *
-     * @param document  The XML document to save.
-     * @param filePath  The path where the XML document will be saved.
+     * @param document The XML document to save.
+     * @param filePath The path where the XML document will be saved.
      * @throws Exception If an error occurs during document saving.
      */
     public void saveXmlDocument(Document document, String filePath) throws Exception {
@@ -111,10 +111,10 @@ public class ProcessingManager {
     /**
      * Adds information about a discipline and associated grade to the student element in the catalog XML document.
      *
-     * @param document         The XML document.
-     * @param studentElement   The student element in the XML document.
-     * @param discipline       The discipline whose information will be added.
-     * @param grade            The grade associated with the discipline.
+     * @param document       The XML document.
+     * @param studentElement The student element in the XML document.
+     * @param discipline     The discipline whose information will be added.
+     * @param grade          The grade associated with the discipline.
      */
     private void addDisciplineInfo(Document document, Element studentElement, Discipline discipline, Grade grade) {
         Element disciplineElement = document.createElement(DISCIPLINE);
@@ -126,7 +126,7 @@ public class ProcessingManager {
         createElementWithTextNode(document, disciplineElement, DISCIPLINE_YEAR, discipline.getYear());
         createElementWithTextNode(document, disciplineElement, DISCIPLINE_SEMESTER, String.valueOf(discipline.getSemester()));
 
-        disciplineElement.setAttribute(GRADE, String.valueOf(grade.getGrade()));
+        disciplineElement.setAttribute(GRADE, String.valueOf(grade.getGradeValue()));
     }
 
     /**
@@ -151,7 +151,7 @@ public class ProcessingManager {
      * @param grade       The grade containing the subject ID.
      * @return The discipline associated with the subject ID, or a new Discipline object if not found.
      */
-    private Discipline findDisciplineById(List<Discipline> disciplines, Grade grade) {
+    public Discipline findDisciplineById(List<Discipline> disciplines, Grade grade) {
         return disciplines.stream()
                 .filter(entry -> entry.getId() == grade.getSubjectId())
                 .findFirst()

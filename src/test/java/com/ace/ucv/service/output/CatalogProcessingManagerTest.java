@@ -1,9 +1,11 @@
 package com.ace.ucv.service.output;
 
 
+import com.ace.ucv.model.Catalog;
 import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.Grade;
 import com.ace.ucv.model.Student;
+import com.ace.ucv.service.exception.CatalogGenerationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,57 +15,55 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Created by Andreea Draghici on 11/4/2023
- * Name of project: StudentManagement
- */
-
 class CatalogProcessingManagerTest {
 
     private CatalogProcessingManager catalogProcessingManager;
-    private List<Student> students;
-    private List<Discipline> disciplines;
+    private Student student;
+    private Discipline discipline;
     private List<Grade> grades;
     private String filePath;
+    private Catalog catalog;
 
     @BeforeEach
     void setUp() {
+        catalog = new Catalog();
         catalogProcessingManager = new CatalogProcessingManager();
-        students = Arrays.asList(new Student(1, "John", "Doe", "+40721111111", "Male"));
-        disciplines = Arrays.asList(new Discipline(1, "Math", "Mr. Smith", 1, "2023"));
+        student = new Student();
+        student.setId(1);
+        student.setName("John");
+        student.setSurname("Doe");
+        student.setPhone("+40721111111");
+        student.setGenre("Male");
+        catalog.addStudent(student);
+
+        discipline = new Discipline();
+        discipline.setId(1);
+        discipline.setName("Math");
+        discipline.setTeacher("Mr. Smith");
+        discipline.setYear("2023");
+        discipline.setSemester(1);
+        catalog.addDiscipline(discipline);
+
         grades = Arrays.asList(new Grade(10, 1, 1));
         filePath = "src/test/resources/out/catalog.xml";
     }
 
     @Test
     void testGenerateCatalogXMLWhenValidDataThenCatalogFileGenerated() {
-        catalogProcessingManager.generateCatalogXML(students, disciplines, grades, filePath);
+        catalogProcessingManager.generateCatalogXML(catalog, grades, filePath);
         File file = new File(filePath);
         assertTrue(file.exists());
     }
 
     @Test
-    void testGenerateCatalogXMLWhenStudentsNullThenRuntimeException() {
-        Exception exception = assertThrows(RuntimeException.class, () -> catalogProcessingManager.generateCatalogXML(null, disciplines, grades, filePath));
-        assertEquals("Catalog must have the associated students!", exception.getMessage());
-    }
-
-    @Test
-    void testGenerateCatalogXMLWhenDisciplinesNullThenRuntimeException() {
-        Exception exception = assertThrows(RuntimeException.class, () -> catalogProcessingManager.generateCatalogXML(students, null, grades, filePath));
-        assertEquals("Catalog must have the associated disciplines!", exception.getMessage());
-    }
-
-    @Test
     void testGenerateCatalogXMLWhenGradesNullThenRuntimeException() {
-        Exception exception = assertThrows(RuntimeException.class, () -> catalogProcessingManager.generateCatalogXML(students, disciplines, null, filePath));
+        Exception exception = assertThrows(RuntimeException.class, () -> catalogProcessingManager.generateCatalogXML(catalog, null, filePath));
         assertEquals("Discipline must have the associated grades!", exception.getMessage());
     }
 
     @Test
     void testGenerateCatalogXMLWhenFilePathEmptyThenRuntimeException() {
-        Exception exception = assertThrows(RuntimeException.class, () -> catalogProcessingManager.generateCatalogXML(students, disciplines, grades, ""));
+        Exception exception = assertThrows(RuntimeException.class, () -> catalogProcessingManager.generateCatalogXML(catalog, grades, ""));
         assertEquals("Output file need to be exist to generate the catalog file!", exception.getMessage());
     }
-
 }
