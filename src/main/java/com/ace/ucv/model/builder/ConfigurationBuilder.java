@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
-public class EditareAdapter extends DefaultTableModel {
+public class ConfigurationBuilder extends DefaultTableModel {
 
     private List<Student> students = new ArrayList<>();
     private List<Discipline> disciplines = new ArrayList<>();
@@ -99,7 +99,7 @@ public class EditareAdapter extends DefaultTableModel {
         if (students != null && rowIndex < students.size() && columnIndex <= 4) {
             return buildStudent(rowIndex, columnIndex);
         }
-        return new EditareAdapter();
+        return new ConfigurationBuilder();
     }
 
 
@@ -107,7 +107,7 @@ public class EditareAdapter extends DefaultTableModel {
         if (disciplines != null && rowIndex < disciplines.size() && columnIndex <= 5) {
             return buildDiscipline(rowIndex, columnIndex);
         }
-        return new EditareAdapter();
+        return new ConfigurationBuilder();
     }
 
     private Object buildDiscipline(int rowIndex, int columnIndex) {

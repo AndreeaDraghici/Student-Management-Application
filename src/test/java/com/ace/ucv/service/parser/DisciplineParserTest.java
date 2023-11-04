@@ -1,7 +1,8 @@
-package com.ace.ucv.parser;
+package com.ace.ucv.service.parser;
 
 import com.ace.ucv.model.xml.materie.MateriaType;
 import com.ace.ucv.model.xml.materie.MateriiType;
+import com.ace.ucv.service.parser.DisciplineParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

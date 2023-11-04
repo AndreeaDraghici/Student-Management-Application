@@ -1,7 +1,8 @@
-package com.ace.ucv.parser;
+package com.ace.ucv.service.parser;
 
 import com.ace.ucv.model.xml.student.StudentType;
 import com.ace.ucv.model.xml.student.StudentiType;
+import com.ace.ucv.service.parser.StudentParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

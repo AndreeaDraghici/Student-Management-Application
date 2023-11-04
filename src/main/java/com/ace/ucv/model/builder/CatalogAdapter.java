@@ -64,9 +64,9 @@ public class CatalogAdapter extends DefaultTableModel {
         for (Situation s : catalog.getSituations()) {
             for (Grade grade : s.getGrades()) {
                 if (i == rowIndex) {
-                    Discipline m = getMaterie(grade.getSubjectId());
-                    if (m != null && m.getId() == 3) {
-                        return getObject(columnIndex, s, grade, m);
+                    Discipline discipline = getMaterie(grade.getSubjectId());
+                    if (discipline != null && discipline.getId() == 3) {
+                        return getObject(columnIndex, s, grade, discipline);
                     }
                 }
                 i++;

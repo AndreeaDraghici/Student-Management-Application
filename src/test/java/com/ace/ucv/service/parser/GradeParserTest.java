@@ -1,6 +1,7 @@
-package com.ace.ucv.parser;
+package com.ace.ucv.service.parser;
 
 import com.ace.ucv.model.xml.nota.NoteType;
+import com.ace.ucv.service.parser.GradeParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

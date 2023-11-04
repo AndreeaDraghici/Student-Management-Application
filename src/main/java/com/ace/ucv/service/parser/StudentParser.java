@@ -1,6 +1,7 @@
-package com.ace.ucv.parser;
+package com.ace.ucv.service.parser;
 
-import com.ace.ucv.model.xml.materie.MateriiType;
+import com.ace.ucv.model.xml.student.StudentiType;
+
 import javax.xml.bind.*;
 import java.io.File;
 import java.nio.file.Files;
@@ -10,16 +11,16 @@ import java.nio.file.Files;
  * Name of project: StudentManagement
  */
 
-public class DisciplineParser {
-
+public class StudentParser {
+   
     /**
-     * Deserializes an XML file into a MateriiType object using JAXB.
+     * Deserializes an XML file into a StudentiType object using JAXB.
      *
      * @param file The XML configuration file to be deserialized.
-     * @return The MateriiType object representing the deserialized data.
+     * @return The StudentiType object representing the deserialized data.
      * @throws Exception If any exception occurs during the deserialization process.
      */
-    public MateriiType loadConfiguration(File file) throws Exception {
+    public StudentiType loadConfiguration(File file) throws Exception {
         if (file == null) {
             throw new IllegalArgumentException("XML configuration file is null.");
         }
@@ -28,10 +29,9 @@ public class DisciplineParser {
             throw new RuntimeException(file.getPath() + " could not be found!");
         }
 
-        JAXBContext jaxbContext = JAXBContext.newInstance("com.ace.ucv.model.xml.materie");
+        JAXBContext jaxbContext = JAXBContext.newInstance("com.ace.ucv.model.xml.student");
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 
-        return (MateriiType) JAXBIntrospector.getValue(unmarshaller.unmarshal(Files.newInputStream(file.toPath())));
+        return (StudentiType) JAXBIntrospector.getValue(unmarshaller.unmarshal(Files.newInputStream(file.toPath())));
     }
-
 }

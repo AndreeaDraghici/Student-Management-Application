@@ -1,13 +1,22 @@
 
 package com.ace.ucv.model;
 
-public  class Discipline {
+public class Discipline {
 
-    private final int id;
+    private int id;
     private String name;
     private String teacher;
     private int semester;
     private String year;
+
+
+    public Discipline() {
+        this.id = 0;
+        this.name = "";
+        this.teacher = "";
+        this.semester = 0;
+        this.year = "";
+    }
 
     public Discipline(int id, String name, String teacher, int semester, String year) {
         this.id = id;
@@ -51,5 +60,9 @@ public  class Discipline {
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
