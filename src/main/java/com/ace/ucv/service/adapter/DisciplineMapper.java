@@ -27,21 +27,26 @@ public class DisciplineMapper {
         List<Discipline> disciplineList = new ArrayList<>();
 
         if (materiiType == null) {
-            throw new RuntimeException("XML object type cannot be null!");
+            throw new RuntimeException("XML discipline object type cannot be null!");
+        }
+
+        if (materiiType.getMateria() == null) {
+            throw new RuntimeException("XML list of discipline objects type cannot be null!");
         }
 
         try {
-            if (materiiType.getMateria() != null) {
-                for (MateriaType materieType : materiiType.getMateria()) {
-                    Discipline discipline = adaptXmlObjectToDisciplineIntermediaryObject(materieType);
-                    disciplineList.add(discipline);
-                }
+            for (MateriaType materieType : materiiType.getMateria()) {
+                getIntermediaryDisciplineList(disciplineList, materieType);
             }
         } catch (Exception e) {
             logger.error(String.format("Failed to adapt xml discipline to intermediary data model due to: %s", e.getMessage()));
         }
-
         return disciplineList;
+    }
+
+    private void getIntermediaryDisciplineList(List<Discipline> disciplineList, MateriaType materieType) {
+        Discipline discipline = adaptXmlObjectToDisciplineIntermediaryObject(materieType);
+        disciplineList.add(discipline);
     }
 
     /**
@@ -54,7 +59,6 @@ public class DisciplineMapper {
         Discipline discipline = new Discipline();
 
         if (materieType != null) {
-
             discipline.setName(materieType.getDenumire());
             discipline.setTeacher(materieType.getProfesor());
             discipline.setYear(materieType.getAn());
@@ -63,7 +67,6 @@ public class DisciplineMapper {
 
             logger.info("Mapped xml object to intermediary object.");
         }
-
         return discipline;
     }
 }
