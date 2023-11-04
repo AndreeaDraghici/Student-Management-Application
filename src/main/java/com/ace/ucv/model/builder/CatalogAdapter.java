@@ -1,3 +1,4 @@
+/*
 package com.ace.ucv.model.builder;
 
 import com.ace.ucv.model.Catalog;
@@ -90,3 +91,4 @@ public class CatalogAdapter extends DefaultTableModel {
         }
     }
 }
+*/
