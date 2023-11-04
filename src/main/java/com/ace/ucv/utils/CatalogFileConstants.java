@@ -24,6 +24,7 @@ public class CatalogFileConstants {
     public static final String STUDENT_SURNAME           = "Surname";
     public static final String STUDENT_ID                = "ID";
     public static final String STUDENT_GENDER            = "Gender";
+    public static final String STUDENT_PHONE            = "Phone";
 
 
     /**
