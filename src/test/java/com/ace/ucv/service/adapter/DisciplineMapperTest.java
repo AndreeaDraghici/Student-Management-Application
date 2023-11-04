@@ -3,7 +3,6 @@ package com.ace.ucv.service.adapter;
 import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.xml.materie.MateriaType;
 import com.ace.ucv.model.xml.materie.MateriiType;
-import com.ace.ucv.service.DisciplineMapper;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

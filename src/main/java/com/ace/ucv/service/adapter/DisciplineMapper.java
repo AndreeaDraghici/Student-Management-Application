@@ -1,4 +1,4 @@
-package com.ace.ucv.service;
+package com.ace.ucv.service.adapter;
 
 import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.xml.materie.MateriaType;
