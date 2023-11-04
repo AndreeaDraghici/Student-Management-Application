@@ -2,6 +2,7 @@ package com.ace.ucv.service.parser;
 
 import com.ace.ucv.model.xml.student.StudentiType;
 import com.ace.ucv.service.exception.ConfigurationLoaderException;
+import com.ace.ucv.service.parser.iface.IConfigLoader;
 
 import javax.xml.bind.*;
 import java.io.File;
@@ -13,7 +14,7 @@ import java.nio.file.Files;
  * Name of project: StudentManagement
  */
 
-public class StudentParser {
+public class StudentParser implements IConfigLoader {
 
     /**
      * Deserializes an XML file into a StudentiType object using JAXB.
@@ -22,15 +23,10 @@ public class StudentParser {
      * @return The StudentiType object representing the deserialized data.
      * @throws ConfigurationLoaderException If any exception occurs during the deserialization process.
      */
+    @Override
+
     public StudentiType loadConfiguration(File file) throws ConfigurationLoaderException {
-        if (file == null) {
-            throw new IllegalArgumentException("XML configuration file is null.");
-        }
-
-        if (!file.exists()) {
-            throw new ConfigurationLoaderException(file.getPath() + " could not be found!");
-        }
-
+        inputCheck(file);
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance("com.ace.ucv.model.xml.student");
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
@@ -40,4 +36,16 @@ public class StudentParser {
             throw new ConfigurationLoaderException("Failed to load the student configuration from XML file.", e);
         }
     }
+
+    @Override
+    public void inputCheck(File file) throws ConfigurationLoaderException {
+        if (file == null) {
+            throw new IllegalArgumentException("XML configuration file is null.");
+        }
+
+        if (!file.exists()) {
+            throw new ConfigurationLoaderException(file.getPath() + " could not be found!");
+        }
+    }
+
 }

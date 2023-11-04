@@ -15,9 +15,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CatalogProcessingManagerTest {
+class CatalogGenerationTest {
 
-    private CatalogProcessingManager catalogProcessingManager;
+    private CatalogGeneration catalogGeneration;
     private Student student;
     private Discipline discipline;
     private List<Grade> grades;
@@ -27,7 +27,7 @@ class CatalogProcessingManagerTest {
     @BeforeEach
     void setUp() {
         catalog = new Catalog();
-        catalogProcessingManager = new CatalogProcessingManager();
+        catalogGeneration = new CatalogGeneration();
         student = new Student();
         student.setId(1);
         student.setName("John");
@@ -51,7 +51,7 @@ class CatalogProcessingManagerTest {
 
     @Test
     void testGenerateCatalogXMLWhenValidDataThenCatalogFileGenerated() {
-        catalogProcessingManager.generateCatalogXML(catalog, filePath);
+        catalogGeneration.generateXMLCatalog(catalog, filePath);
         File file = new File(filePath);
         assertTrue(file.exists());
     }
@@ -59,13 +59,13 @@ class CatalogProcessingManagerTest {
     @Test
     void testGenerateCatalogXMLWhenGradesNullThenRuntimeException() {
         catalog.setGrades(null);
-        Exception exception = assertThrows(CatalogGenerationException.class, () -> catalogProcessingManager.generateCatalogXML(catalog, filePath));
+        Exception exception = assertThrows(CatalogGenerationException.class, () -> catalogGeneration.generateXMLCatalog(catalog, filePath));
         assertEquals("Discipline must have the associated grades!", exception.getMessage());
     }
 
     @Test
     void testGenerateCatalogXMLWhenFilePathEmptyThenRuntimeException() {
-        Exception exception = assertThrows(CatalogGenerationException.class, () -> catalogProcessingManager.generateCatalogXML(catalog, ""));
+        Exception exception = assertThrows(CatalogGenerationException.class, () -> catalogGeneration.generateXMLCatalog(catalog, ""));
         assertEquals("Output file need to be exist to generate the catalog file!", exception.getMessage());
     }
 }

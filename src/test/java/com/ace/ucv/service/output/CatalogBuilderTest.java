@@ -14,13 +14,13 @@ import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ProcessingManagerTest {
-    private ProcessingManager processingManager;
+class CatalogBuilderTest {
+    private CatalogBuilder catalogBuilder;
     private Catalog catalog;
 
     @BeforeEach
     void setUp() {
-        processingManager = new ProcessingManager();
+        catalogBuilder = new CatalogBuilder();
         catalog = new Catalog();
     }
 
@@ -34,7 +34,7 @@ class ProcessingManagerTest {
         catalog.addDiscipline(discipline);
         catalog.addGrade(grade);
 
-        Document document = processingManager.createXmlDocument(catalog);
+        Document document = catalogBuilder.createXmlDocument(catalog);
 
         NodeList studentNodes = document.getElementsByTagName("Student");
         assertEquals(1, studentNodes.getLength());
@@ -57,7 +57,7 @@ class ProcessingManagerTest {
         Student student = new Student(1, "John", "Doe", "+40721111111", "M");
         catalog.addStudent(student);
 
-        Document document = processingManager.createXmlDocument(catalog);
+        Document document = catalogBuilder.createXmlDocument(catalog);
 
         NodeList studentNodes = document.getElementsByTagName("Student");
         assertEquals(1, studentNodes.getLength());
@@ -86,7 +86,7 @@ class ProcessingManagerTest {
         catalog.addGrade(grade1);
         catalog.addGrade(grade2);
 
-        Document document = processingManager.createXmlDocument(catalog);
+        Document document = catalogBuilder.createXmlDocument(catalog);
 
         NodeList studentNodes = document.getElementsByTagName("Student");
         assertEquals(2, studentNodes.getLength());
@@ -97,10 +97,10 @@ class ProcessingManagerTest {
 
     @Test
     void testSaveXmlDocumentWhenDocumentIsSavedSuccessfullyThenNoExceptionIsThrown() throws Exception {
-        Document document = processingManager.createXmlDocument(catalog);
+        Document document = catalogBuilder.createXmlDocument(catalog);
         String filePath = "test.xml";
 
-        assertDoesNotThrow(() -> processingManager.saveXmlDocument(document, filePath));
+        assertDoesNotThrow(() -> catalogBuilder.saveXmlDocument(document, filePath));
 
         File file = new File(filePath);
         assertTrue(file.exists());
@@ -114,14 +114,14 @@ class ProcessingManagerTest {
     void testSaveXmlDocumentWhenFilePathDoesNotExistThenExceptionIsThrown() {
         Document document = null;
         try {
-            document = processingManager.createXmlDocument(catalog);
+            document = catalogBuilder.createXmlDocument(catalog);
         } catch (Exception e) {
             fail(e);
         }
         String filePath = "/nonexistent/path/test.xml";
 
         Document finalDocument = document;
-        assertThrows(Exception.class, () -> processingManager.saveXmlDocument(finalDocument, filePath));
+        assertThrows(Exception.class, () -> catalogBuilder.saveXmlDocument(finalDocument, filePath));
     }
 
     @Test
@@ -130,7 +130,7 @@ class ProcessingManagerTest {
         catalog.addDiscipline(discipline);
         Grade grade = new Grade(10, 1, 1);
 
-        Discipline result = processingManager.findDisciplineById(catalog.getDisciplines(), grade);
+        Discipline result = catalogBuilder.findDisciplineById(catalog.getDisciplines(), grade);
 
         assertEquals(discipline, result);
     }
@@ -141,7 +141,7 @@ class ProcessingManagerTest {
         catalog.addDiscipline(discipline);
         Grade grade = new Grade(10, 1, 1);
 
-        Discipline result = processingManager.findDisciplineById(catalog.getDisciplines(), grade);
+        Discipline result = catalogBuilder.findDisciplineById(catalog.getDisciplines(), grade);
 
         assertEquals(1, result.getId());
     }

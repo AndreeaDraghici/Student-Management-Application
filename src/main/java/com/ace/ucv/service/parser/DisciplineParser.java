@@ -2,6 +2,7 @@ package com.ace.ucv.service.parser;
 
 import com.ace.ucv.model.xml.materie.MateriiType;
 import com.ace.ucv.service.exception.ConfigurationLoaderException;
+import com.ace.ucv.service.parser.iface.IConfigLoader;
 
 import javax.xml.bind.*;
 import java.io.File;
@@ -13,7 +14,7 @@ import java.nio.file.Files;
  * Name of project: StudentManagement
  */
 
-public class DisciplineParser {
+public class DisciplineParser implements IConfigLoader {
 
     /**
      * Deserializes an XML file into a MateriiType object using JAXB.
@@ -22,14 +23,10 @@ public class DisciplineParser {
      * @return The MateriiType object representing the deserialized data.
      * @throws ConfigurationLoaderException If any exception occurs during the deserialization process.
      */
-    public MateriiType loadConfiguration(File file) throws ConfigurationLoaderException {
-        if (file == null) {
-            throw new IllegalArgumentException("XML configuration file is null.");
-        }
 
-        if (!file.exists()) {
-            throw new ConfigurationLoaderException(file.getPath() + " could not be found!");
-        }
+    @Override
+    public MateriiType loadConfiguration(File file) throws ConfigurationLoaderException {
+        inputCheck(file);
 
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance("com.ace.ucv.model.xml.materie");
@@ -40,4 +37,17 @@ public class DisciplineParser {
             throw new ConfigurationLoaderException("Failed to load the discipline configuration from XML file.", e);
         }
     }
+
+    @Override
+    public void inputCheck(File file) throws ConfigurationLoaderException {
+        if (file == null) {
+            throw new IllegalArgumentException("XML configuration file is null.");
+        }
+
+        if (!file.exists()) {
+            throw new ConfigurationLoaderException(file.getPath() + " could not be found!");
+        }
+    }
+
+
 }

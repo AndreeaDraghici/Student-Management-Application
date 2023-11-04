@@ -22,7 +22,7 @@ import static com.ace.ucv.utils.CatalogFileConstants.*;
  * Created by Andreea Draghici on 11/4/2023
  * Name of project: StudentManagement
  */
-public class ProcessingManager {
+public class CatalogBuilder {
 
 
     /**

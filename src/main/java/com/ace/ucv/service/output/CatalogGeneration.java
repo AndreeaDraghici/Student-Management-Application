@@ -12,9 +12,9 @@ import org.w3c.dom.Document;
  * Name of project: StudentManagement
  */
 
-public class CatalogProcessingManager {
+public class CatalogGeneration {
 
-    private static final Logger logger = LogManager.getLogger(CatalogProcessingManager.class);
+    private static final Logger logger = LogManager.getLogger(CatalogGeneration.class);
 
     /**
      * Generates a catalog XML file based on the provided catalog, list of grades, and file path.
@@ -23,10 +23,10 @@ public class CatalogProcessingManager {
      * @param filePath The path where the catalog XML file will be generated.
      * @throws CatalogGenerationException if the generation process fails.
      */
-    public void generateCatalogXML(Catalog catalog, String filePath) {
+    public void generateXMLCatalog(Catalog catalog, String filePath) {
 
         inputChecks(catalog, filePath);
-        ProcessingManager manager = new ProcessingManager();
+        CatalogBuilder manager = new CatalogBuilder();
 
         try {
             Document document = manager.createXmlDocument(catalog);
