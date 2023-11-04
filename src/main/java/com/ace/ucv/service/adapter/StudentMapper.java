@@ -26,14 +26,7 @@ public class StudentMapper {
      */
     public List<Student> adaptXmlStudentTypeToStudentList(StudentiType studentiType) {
         List<Student> studentList = new ArrayList<>();
-
-        if (studentiType == null) {
-            throw new ConfigurationMapperException("XML student object type cannot be null!");
-        }
-
-        if (studentiType.getStudent() == null) {
-            throw new ConfigurationMapperException("XML list of student objects type cannot be null!");
-        }
+        checkInput(studentiType);
 
         try {
             for (StudentType studentType : studentiType.getStudent()) {
@@ -43,6 +36,16 @@ public class StudentMapper {
             throw new ConfigurationMapperException("Failed to adapt xml student to intermediary data model due to: ", e);
         }
         return studentList;
+    }
+
+    private void checkInput(StudentiType studentiType) {
+        if (studentiType == null) {
+            throw new ConfigurationMapperException("XML student object type cannot be null!");
+        }
+
+        if (studentiType.getStudent() == null) {
+            throw new ConfigurationMapperException("XML list of student objects type cannot be null!");
+        }
     }
 
     /**

@@ -26,14 +26,7 @@ public class DisciplineMapper {
      */
     public List<Discipline> adaptXmlDisciplineTypeToDisciplineList(MateriiType materiiType) {
         List<Discipline> disciplineList = new ArrayList<>();
-
-        if (materiiType == null) {
-            throw new ConfigurationMapperException("XML discipline object type cannot be null!");
-        }
-
-        if (materiiType.getMateria() == null) {
-            throw new ConfigurationMapperException("XML list of discipline objects type cannot be null!");
-        }
+        checkInput(materiiType);
 
         try {
             for (MateriaType materieType : materiiType.getMateria()) {
@@ -43,6 +36,16 @@ public class DisciplineMapper {
             throw new ConfigurationMapperException("Failed to adapt XML discipline to intermediary data model.", e);
         }
         return disciplineList;
+    }
+
+    private void checkInput(MateriiType materiiType) {
+        if (materiiType == null) {
+            throw new ConfigurationMapperException("XML discipline object type cannot be null!");
+        }
+
+        if (materiiType.getMateria() == null) {
+            throw new ConfigurationMapperException("XML list of discipline objects type cannot be null!");
+        }
     }
 
     /**

@@ -26,14 +26,7 @@ public class GradeMapper {
      */
     public List<Grade> adaptXmlGradeTypeToGradeList(NoteType noteType) {
         List<Grade> gradeList = new ArrayList<>();
-
-        if (noteType == null) {
-            throw new ConfigurationMapperException("XML grade object type cannot be null!");
-        }
-
-        if (noteType.getNotaStud() == null) {
-            throw new ConfigurationMapperException("XML list of grade objects type cannot be null!");
-        }
+        checkInput(noteType);
 
         try {
             for (NotaStudType gradeType : noteType.getNotaStud()) {
@@ -43,6 +36,16 @@ public class GradeMapper {
             throw new ConfigurationMapperException("Failed to adapt xml grade to intermediary data model due to: ", e);
         }
         return gradeList;
+    }
+
+    private void checkInput(NoteType noteType) {
+        if (noteType == null) {
+            throw new ConfigurationMapperException("XML grade object type cannot be null!");
+        }
+
+        if (noteType.getNotaStud() == null) {
+            throw new ConfigurationMapperException("XML list of grade objects type cannot be null!");
+        }
     }
 
     /**
