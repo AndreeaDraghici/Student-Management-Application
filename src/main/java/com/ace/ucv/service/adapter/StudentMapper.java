@@ -23,7 +23,7 @@ public class StudentMapper {
      * @param studentiType The StudentiType object to be mapped.
      * @return A list of Student objects representing the mapped data.
      */
-    public static List<Student> mapStudentiTypeToStudentList(StudentiType studentiType) {
+    public List<Student> mapStudentiTypeToStudentList(StudentiType studentiType) {
         List<Student> studentList = new ArrayList<>();
 
         if (studentiType == null) {
@@ -44,7 +44,7 @@ public class StudentMapper {
         return studentList;
     }
 
-    private static void getIntermediaryStudentList(List<Student> studentList, StudentType studentType) {
+    private void getIntermediaryStudentList(List<Student> studentList, StudentType studentType) {
         Student student = mapStudentTypeToStudent(studentType);
         studentList.add(student);
     }
@@ -55,7 +55,7 @@ public class StudentMapper {
      * @param studentType The StudentType object to be mapped.
      * @return A Student object representing the mapped data.
      */
-    public static Student mapStudentTypeToStudent(StudentType studentType) {
+    public Student mapStudentTypeToStudent(StudentType studentType) {
         Student student = new Student();
 
         if (studentType != null) {
