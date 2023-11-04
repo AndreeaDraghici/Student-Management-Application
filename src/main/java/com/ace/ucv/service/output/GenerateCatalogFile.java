@@ -16,7 +16,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.util.List;
-import java.util.Objects;
+
 
 /**
  * Created by Andreea Draghici on 11/4/2023
@@ -97,7 +97,8 @@ public class GenerateCatalogFile {
 
         for (Grade grade : grades) {
             if (grade.getStudentId() == student.getId()) {
-                addDisciplineInfo(document, studentElement, Objects.requireNonNull(findDisciplineById(disciplines, grade.getSubjectId())), grade);
+                Discipline discipline = findDisciplineById(disciplines, grade);
+                addDisciplineInfo(document, studentElement, discipline, grade);
             }
         }
     }
@@ -129,16 +130,11 @@ public class GenerateCatalogFile {
         disciplineElement.setAttribute("Grade", String.valueOf(grade.getGrade()));
     }
 
-    private Discipline findDisciplineById(List<Discipline> disciplines, int id) {
-        try {
-            for (Discipline discipline : disciplines) {
-                if (discipline.getId() == id) {
-                    return discipline;
-                }
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(String.format("Failed to find the discipline by id due to: %s", e.getMessage()));
-        }
-        return new Discipline();
+    private Discipline findDisciplineById(List<Discipline> disciplines, Grade grade) {
+        return disciplines.stream()
+                .filter(entry -> entry.getId() == grade.getSubjectId())
+                .findFirst()
+                .orElse(new Discipline());
     }
+
 }

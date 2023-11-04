@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class GradeParserTest {
 
-    public static final String PATHNAME = "src/main/resources/view/Nota.xml";
+    public static final String PATHNAME = "src/main/resources/input_files/Nota.xml";
 
     @Test
     void test_load_valid_xml_configuration_file() {

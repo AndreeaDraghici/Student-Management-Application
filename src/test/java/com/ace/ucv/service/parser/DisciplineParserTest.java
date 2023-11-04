@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class DisciplineParserTest {
 
-    public static final String PATHNAME = "src/main/resources/view/Materie.xml";
+    public static final String PATHNAME = "src/main/resources/input_files/Materie.xml";
 
     @Test
     void loadConfigurationTest() {
