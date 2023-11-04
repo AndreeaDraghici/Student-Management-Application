@@ -76,7 +76,7 @@ public class Student {
      */
     public boolean isValidPhoneNumber(String phoneNumber) {
         // Regex pattern for Romanian phone numbers, allowing optional separators.
-        String regex = "^(\\+?40|0)7[2-8]\\d{1}(?:[.-]?\\d{2}){3}$";
+        String regex = "^(\\+?40|0)7[2-8]\\d(?:[.-]?\\d{2}){3}$";
 
         // Check if the phone number matches the pattern.
         return phoneNumber.matches(regex);
