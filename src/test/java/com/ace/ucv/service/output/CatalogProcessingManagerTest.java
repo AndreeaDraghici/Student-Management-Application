@@ -18,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * Name of project: StudentManagement
  */
 
-class GenerateCatalogFileTest {
+class CatalogProcessingManagerTest {
 
-    private GenerateCatalogFile generateCatalogFile;
+    private CatalogProcessingManager catalogProcessingManager;
     private List<Student> students;
     private List<Discipline> disciplines;
     private List<Grade> grades;
@@ -28,7 +28,7 @@ class GenerateCatalogFileTest {
 
     @BeforeEach
     void setUp() {
-        generateCatalogFile = new GenerateCatalogFile();
+        catalogProcessingManager = new CatalogProcessingManager();
         students = Arrays.asList(new Student(1, "John", "Doe", "+40721111111", "Male"));
         disciplines = Arrays.asList(new Discipline(1, "Math", "Mr. Smith", 1, "2023"));
         grades = Arrays.asList(new Grade(10, 1, 1));
@@ -37,32 +37,32 @@ class GenerateCatalogFileTest {
 
     @Test
     void testGenerateCatalogXMLWhenValidDataThenCatalogFileGenerated() {
-        generateCatalogFile.generateCatalogXML(students, disciplines, grades, filePath);
+        catalogProcessingManager.generateCatalogXML(students, disciplines, grades, filePath);
         File file = new File(filePath);
         assertTrue(file.exists());
     }
 
     @Test
     void testGenerateCatalogXMLWhenStudentsNullThenRuntimeException() {
-        Exception exception = assertThrows(RuntimeException.class, () -> generateCatalogFile.generateCatalogXML(null, disciplines, grades, filePath));
+        Exception exception = assertThrows(RuntimeException.class, () -> catalogProcessingManager.generateCatalogXML(null, disciplines, grades, filePath));
         assertEquals("Catalog must have the associated students!", exception.getMessage());
     }
 
     @Test
     void testGenerateCatalogXMLWhenDisciplinesNullThenRuntimeException() {
-        Exception exception = assertThrows(RuntimeException.class, () -> generateCatalogFile.generateCatalogXML(students, null, grades, filePath));
+        Exception exception = assertThrows(RuntimeException.class, () -> catalogProcessingManager.generateCatalogXML(students, null, grades, filePath));
         assertEquals("Catalog must have the associated disciplines!", exception.getMessage());
     }
 
     @Test
     void testGenerateCatalogXMLWhenGradesNullThenRuntimeException() {
-        Exception exception = assertThrows(RuntimeException.class, () -> generateCatalogFile.generateCatalogXML(students, disciplines, null, filePath));
+        Exception exception = assertThrows(RuntimeException.class, () -> catalogProcessingManager.generateCatalogXML(students, disciplines, null, filePath));
         assertEquals("Discipline must have the associated grades!", exception.getMessage());
     }
 
     @Test
     void testGenerateCatalogXMLWhenFilePathEmptyThenRuntimeException() {
-        Exception exception = assertThrows(RuntimeException.class, () -> generateCatalogFile.generateCatalogXML(students, disciplines, grades, ""));
+        Exception exception = assertThrows(RuntimeException.class, () -> catalogProcessingManager.generateCatalogXML(students, disciplines, grades, ""));
         assertEquals("Output file need to be exist to generate the catalog file!", exception.getMessage());
     }
 

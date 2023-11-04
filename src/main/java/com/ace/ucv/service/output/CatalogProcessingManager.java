@@ -3,6 +3,7 @@ package com.ace.ucv.service.output;
 import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.Grade;
 import com.ace.ucv.model.Student;
+import com.ace.ucv.service.exception.CatalogGenerationException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -15,9 +16,9 @@ import java.util.List;
  * Name of project: StudentManagement
  */
 
-public class GenerateCatalogFile {
+public class CatalogProcessingManager {
 
-    private static final Logger logger = LogManager.getLogger(GenerateCatalogFile.class);
+    private static final Logger logger = LogManager.getLogger(CatalogProcessingManager.class);
 
 
     /**
@@ -36,8 +37,9 @@ public class GenerateCatalogFile {
         try {
             Document document = manager.createXmlDocument(students, disciplines, grades);
             manager.saveXmlDocument(document, filePath);
+            logger.info("Catalog file was created!");
         } catch (Exception e) {
-            logger.error(String.format("Failed to generate the output file due to: %s", e.getMessage()));
+            throw new CatalogGenerationException("Failed to generate the output file", e);
         }
     }
 
@@ -52,19 +54,19 @@ public class GenerateCatalogFile {
      */
     private void inputChecks(List<Student> students, List<Discipline> disciplines, List<Grade> grades, String filePath) {
         if (students == null) {
-            throw new RuntimeException("Catalog must have the associated students!");
+            throw new CatalogGenerationException("Catalog must have the associated students!");
         }
 
         if (disciplines == null) {
-            throw new RuntimeException("Catalog must have the associated disciplines!");
+            throw new CatalogGenerationException("Catalog must have the associated disciplines!");
         }
 
         if (grades == null) {
-            throw new RuntimeException("Discipline must have the associated grades!");
+            throw new CatalogGenerationException("Discipline must have the associated grades!");
         }
 
         if (filePath.isEmpty()) {
-            throw new RuntimeException("Output file need to be exist to generate the catalog file!");
+            throw new CatalogGenerationException("Output file need to be exist to generate the catalog file!");
         }
     }
 }
