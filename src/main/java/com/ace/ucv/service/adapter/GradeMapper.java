@@ -1,5 +1,6 @@
 package com.ace.ucv.service.adapter;
 
+import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.Grade;
 import com.ace.ucv.model.xml.nota.NotaStudType;
 import com.ace.ucv.model.xml.nota.NoteType;
@@ -17,6 +18,17 @@ import java.util.List;
 public class GradeMapper {
 
     private static final Logger logger = LogManager.getLogger(GradeMapper.class);
+
+    private List<Discipline> listOfDisciplines;
+
+    public GradeMapper() {
+        this.listOfDisciplines = new ArrayList<>();
+    }
+
+    public GradeMapper(List<Discipline> listOfDisciplines) {
+        this.listOfDisciplines = listOfDisciplines;
+    }
+
 
     /**
      * Maps a NoteType object to a list of Grade objects.
@@ -88,8 +100,34 @@ public class GradeMapper {
      * @param grade     The Grade object to be built.
      */
     private void buildGrade(NotaStudType gradeType, Grade grade) {
-        grade.setGradeValue(Integer.parseInt(gradeType.getNota()));
-        grade.setStudentId(Integer.parseInt(gradeType.getStudent()));
-        grade.setSubjectId(Integer.parseInt(gradeType.getMaterie()));
+        String notaString = gradeType.getNota();
+        String studentIdString = gradeType.getStudent();
+        String materieString = gradeType.getMaterie();
+
+        checkGradeRules(grade, notaString, studentIdString, materieString);
+    }
+
+    private void checkGradeRules(Grade grade, String notaString, String studentIdString, String materieString) {
+        if (notaString != null && !notaString.isEmpty()) {
+            grade.setGradeValue(Integer.parseInt(notaString));
+        }
+
+        if (studentIdString != null && !studentIdString.isEmpty()) {
+            grade.setStudentId(Integer.parseInt(studentIdString));
+        }
+
+        if (materieString != null && !materieString.isEmpty()) {
+            int subjectId = findSubjectIdByName(materieString);
+            grade.setSubjectId(subjectId);
+        }
+    }
+
+    private int findSubjectIdByName(String subjectName) {
+        for (Discipline discipline : listOfDisciplines) {
+            if (discipline.getName().equalsIgnoreCase(subjectName)) {
+                return discipline.getId();
+            }
+        }
+        return -1;
     }
 }

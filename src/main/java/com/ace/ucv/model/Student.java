@@ -53,11 +53,11 @@ public class Student {
     }
 
     public void setPhone(String phone) {
-        if (isValidPhoneNumber(phone)) {
+/*        if (isValidPhoneNumber(phone)) {*/
             this.phone = phone;
-        } else {
+        /*} else {
             throw new IllegalArgumentException("Invalid phone number format");
-        }
+        }*/
     }
 
     public String getGenre() {
