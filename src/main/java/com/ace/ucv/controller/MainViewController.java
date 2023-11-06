@@ -31,6 +31,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -206,7 +207,7 @@ public class MainViewController {
 
     private ObservableList<Grade> adaptGradeData(NoteType noteType) {
 
-        GradeMapper gradeMapper = new GradeMapper();
+        GradeMapper gradeMapper = new GradeMapper(disciplines);
         List<Grade> grad = new ArrayList<>();
         Grade grade;
 
@@ -247,8 +248,11 @@ public class MainViewController {
         } catch (Exception exception) {
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText(exception.getMessage());
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.initOwner(root.getScene().getWindow());
+            alert.setTitle("Warning Dialog Box");
             alert.setHeaderText("Warning");
+            alert.setContentText(exception.getMessage());
             alert.showAndWait();
         }
 

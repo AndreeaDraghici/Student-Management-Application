@@ -38,7 +38,6 @@ public class StudentController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeTable();
-       // loadData();
     }
 
     private void initializeTable() {
@@ -48,16 +47,6 @@ public class StudentController implements Initializable {
         genre.setCellValueFactory(new PropertyValueFactory<>("Genre"));
         phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
     }
-
-  /*  private void loadData() {
-        // Vom presupune că avem o listă de studenți
-        ObservableList<Student> students = FXCollections.observableArrayList(
-                new Student(1, "John", "Doe", "123-456-7890", "Male"),
-                new Student(2, "Jane", "Smith", "987-654-3210", "Female")
-        );
-
-        tbStudentData.setItems(students);
-    }*/
 
     public void populateTable(ObservableList<Student> students) {
         tbStudentData.setItems(students);
