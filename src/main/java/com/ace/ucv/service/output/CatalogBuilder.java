@@ -4,6 +4,8 @@ import com.ace.ucv.model.Catalog;
 import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.Grade;
 import com.ace.ucv.model.Student;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -24,6 +26,7 @@ import static com.ace.ucv.utils.CatalogFileConstants.*;
  */
 public class CatalogBuilder {
 
+    private static final Logger logger = LogManager.getLogger(CatalogBuilder.class);
 
     /**
      * Creates an XML document representing the catalog based on the provided lists of students, disciplines, and grades.
@@ -32,18 +35,24 @@ public class CatalogBuilder {
      * @throws Exception If an error occurs during document creation.
      */
     public Document createXmlDocument(Catalog catalog) throws Exception {
-        DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
-        Document document = documentBuilder.newDocument();
+        try {
+            DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+            Document document = documentBuilder.newDocument();
 
-        Element catalogElement = document.createElement(TAG_NAME);
-        document.appendChild(catalogElement);
+            Element catalogElement = document.createElement(TAG_NAME);
+            document.appendChild(catalogElement);
 
-        for (Student student : catalog.getStudents()) {
-            addStudentInfo(document, catalogElement, student, catalog);
+            for (Student student : catalog.getStudents()) {
+                addStudentInfo(document, catalogElement, student, catalog);
+            }
+
+            return document;
+
+        } catch (Exception e) {
+            logger.error(String.format("Failed to build the xml document representing the catalog due to: %s", e.getMessage()));
+            return null;
         }
-
-        return document;
     }
 
 
@@ -92,7 +101,7 @@ public class CatalogBuilder {
      * @param student        The student whose grades information will be added.
      * @param studentElement The student element in the XML document.
      */
-    private void addStudentGrades(Document document, Student student, Catalog catalog,Element studentElement) {
+    private void addStudentGrades(Document document, Student student, Catalog catalog, Element studentElement) {
         for (Grade grade : catalog.getGrades()) {
             if (grade.getStudentId() == student.getId()) {
                 Discipline discipline = findDisciplineById(catalog.getDisciplines(), grade);

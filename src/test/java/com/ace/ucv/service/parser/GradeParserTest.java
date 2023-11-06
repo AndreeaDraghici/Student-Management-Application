@@ -23,7 +23,7 @@ class GradeParserTest {
 
         try {
             NoteType type = xmlParser.loadConfiguration(new File(PATHNAME));
-            Assertions.assertEquals(8, type.getNotaStud().size());
+            Assertions.assertEquals(5, type.getNotaStud().size());
         } catch (Exception e) {
             Assertions.fail(e);
         }

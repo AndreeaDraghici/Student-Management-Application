@@ -45,7 +45,7 @@ public class GradeMapper {
                 getIntermediaryGradeList(gradeList, gradeType);
             }
         } catch (Exception e) {
-            throw new ConfigurationMapperException("Failed to adapt xml grade to intermediary data model. ", e);
+            throw new ConfigurationMapperException(String.format("Failed to adapt XML grade to intermediary data model. Unable to map the provided XML grade data due to: %s", e.getMessage()), e);
         }
         return gradeList;
     }
@@ -89,7 +89,7 @@ public class GradeMapper {
         if (gradeType != null) {
             buildGrade(gradeType, grade);
         }
-        logger.info("Mapped xml object to intermediary grade object.");
+        logger.info("Successfully mapped XML object to intermediary Grade object.");
         return grade;
     }
 

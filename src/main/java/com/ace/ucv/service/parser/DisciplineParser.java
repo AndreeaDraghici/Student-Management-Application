@@ -54,7 +54,7 @@ public class DisciplineParser implements IConfigLoader<MateriiType> {
         }
 
         if (!file.exists()) {
-            throw new ConfigurationLoaderException(file.getPath() + " could not be found!");
+            throw new ConfigurationLoaderException(String.format("%s could not be found!", file.getPath()));
         }
     }
 }

@@ -33,7 +33,7 @@ public class StudentMapper {
                 getIntermediaryStudentList(studentList, studentType);
             }
         } catch (Exception e) {
-            throw new ConfigurationMapperException("Failed to adapt xml student to intermediary data model due to: ", e);
+            throw new ConfigurationMapperException("Failed to adapt XML student to intermediary data model: " + e.getMessage(), e);
         }
         return studentList;
     }
@@ -77,7 +77,7 @@ public class StudentMapper {
         if (studentType != null) {
             buildStudent(studentType, student);
         }
-        logger.info("Mapped xml object to intermediary student object.");
+        logger.info("Successfully mapped XML object to intermediary Student object.");
         return student;
     }
 
@@ -88,11 +88,19 @@ public class StudentMapper {
      * @param student     The Student object to be built and populated.
      */
     private void buildStudent(StudentType studentType, Student student) {
-        student.setId(Integer.parseInt(studentType.getId()));
-        student.setName(studentType.getNume());
-        student.setSurname(studentType.getPrenume());
-        student.setPhone(studentType.getTelefon());
-        student.setGenre(studentType.getSex());
+        if (student == null) {
+            throw new RuntimeException("Student object is null.");
+        }
+
+        if (studentType != null) {
+            student.setId(Integer.parseInt(studentType.getId()));
+            student.setName(studentType.getNume());
+            student.setSurname(studentType.getPrenume());
+            student.setPhone(studentType.getTelefon());
+            student.setGenre(studentType.getSex());
+        } else {
+            logger.warn("Received null studentType while building Student object. ");
+        }
     }
 
 }

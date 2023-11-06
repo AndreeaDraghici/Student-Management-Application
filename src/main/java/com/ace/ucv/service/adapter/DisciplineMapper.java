@@ -33,7 +33,8 @@ public class DisciplineMapper {
                 getIntermediaryDisciplineList(disciplineList, materieType);
             }
         } catch (Exception e) {
-            throw new ConfigurationMapperException("Failed to adapt XML discipline to intermediary data model.", e);
+            throw new ConfigurationMapperException(String.format("Failed to adapt XML discipline to intermediary data model due to:  %s", e.getMessage()), e);
+
         }
         return disciplineList;
     }
@@ -78,7 +79,7 @@ public class DisciplineMapper {
         if (materieType != null) {
             buildDiscipline(materieType, discipline);
         }
-        logger.info("Mapped xml object to intermediary discipline object.");
+        logger.info("Successfully mapped XML object to intermediary Discipline object.");
         return discipline;
     }
 
@@ -90,10 +91,15 @@ public class DisciplineMapper {
      * @param discipline  The Discipline object to be built.
      */
     private void buildDiscipline(MateriaType materieType, Discipline discipline) {
-        discipline.setName(materieType.getDenumire());
-        discipline.setTeacher(materieType.getProfesor());
-        discipline.setYear(materieType.getAn());
-        discipline.setSemester(Integer.parseInt(materieType.getSemestru()));
-        discipline.setId(Integer.parseInt(materieType.getId()));
+        if (materieType != null) {
+            discipline.setName(materieType.getDenumire());
+            discipline.setTeacher(materieType.getProfesor());
+            discipline.setYear(materieType.getAn());
+            discipline.setSemester(Integer.parseInt(materieType.getSemestru()));
+            discipline.setId(Integer.parseInt(materieType.getId()));
+        } else {
+            logger.warn("Received null studentType while building Discipline object. ");
+        }
     }
+
 }

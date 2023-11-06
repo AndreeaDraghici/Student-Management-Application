@@ -35,7 +35,7 @@ public class StudentParser implements IConfigLoader<StudentiType> {
 
             return (StudentiType) JAXBIntrospector.getValue(unmarshaller.unmarshal(Files.newInputStream(file.toPath())));
         } catch (JAXBException | IOException e) {
-            throw new ConfigurationLoaderException("Failed to load the student configuration from XML file.", e);
+            throw new ConfigurationLoaderException(String.format("Failed to load the student configuration from XML file:  %s", file.getPath()), e);
         }
     }
 
@@ -52,7 +52,7 @@ public class StudentParser implements IConfigLoader<StudentiType> {
         }
 
         if (!file.exists()) {
-            throw new ConfigurationLoaderException(file.getPath() + " could not be found!");
+            throw new ConfigurationLoaderException(String.format("%s could not be found!", file.getPath()));
         }
     }
 

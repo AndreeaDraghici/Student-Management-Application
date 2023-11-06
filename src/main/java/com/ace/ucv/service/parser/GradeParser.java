@@ -36,7 +36,7 @@ public class GradeParser implements IConfigLoader<NoteType>{
 
             return (NoteType) JAXBIntrospector.getValue(unmarshaller.unmarshal(Files.newInputStream(file.toPath())));
         } catch (JAXBException | IOException e) {
-            throw new ConfigurationLoaderException("Failed to load grades configuration from XML file.", e);
+            throw new ConfigurationLoaderException(String.format("Failed to load the grade configuration from XML file:  %s", file.getPath()), e);
         }
     }
 
@@ -53,7 +53,7 @@ public class GradeParser implements IConfigLoader<NoteType>{
         }
 
         if (!file.exists()) {
-            throw new ConfigurationLoaderException(file.getPath() + " could not be found!");
+            throw new ConfigurationLoaderException(String.format("%s could not be found!", file.getPath()));
         }
     }
 }

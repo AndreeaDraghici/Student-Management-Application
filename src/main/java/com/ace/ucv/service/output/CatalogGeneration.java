@@ -33,7 +33,7 @@ public class CatalogGeneration {
             manager.saveXmlDocument(document, filePath);
             logger.info("Catalog file was created!");
         } catch (Exception e) {
-            throw new CatalogGenerationException("Failed to generate the output file", e);
+            throw new CatalogGenerationException(String.format("Failed to generate the output file: %s", e.getMessage()), e);
         }
     }
 
