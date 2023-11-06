@@ -35,8 +35,9 @@ public class DisciplineParser implements IConfigLoader<MateriiType> {
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 
             return (MateriiType) JAXBIntrospector.getValue(unmarshaller.unmarshal(Files.newInputStream(file.toPath())));
+
         } catch (JAXBException | IOException e) {
-            throw new ConfigurationLoaderException("Failed to load the discipline configuration from XML file.", e);
+            throw new ConfigurationLoaderException("Failed to load the discipline configuration from XML file: " + file.getPath(), e);
         }
     }
 
@@ -56,6 +57,4 @@ public class DisciplineParser implements IConfigLoader<MateriiType> {
             throw new ConfigurationLoaderException(file.getPath() + " could not be found!");
         }
     }
-
-
 }
