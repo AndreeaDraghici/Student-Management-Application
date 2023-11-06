@@ -6,16 +6,6 @@
         <student>1</student>
     </nota_stud>
     <nota_stud>
-        <grade>10</grade>
-        <discipline>3</discipline>
-        <student>1</student>
-    </nota_stud>
-    <nota_stud>
-        <grade>10</grade>
-        <discipline>2</discipline>
-        <student>2</student>
-    </nota_stud>
-    <nota_stud>
         <grade>8</grade>
         <discipline>3</discipline>
         <student>2</student>
@@ -23,11 +13,6 @@
     <nota_stud>
         <grade>10</grade>
         <discipline>3</discipline>
-        <student>3</student>
-    </nota_stud>
-    <nota_stud>
-        <grade>10</grade>
-        <discipline>2</discipline>
         <student>3</student>
     </nota_stud>
     <nota_stud>

@@ -78,7 +78,7 @@ public class GradeController implements Initializable {
 
         studentSurname.setCellValueFactory(cellData -> {
             int studentId = cellData.getValue().getStudentId();
-            String studentName = getStudentName(studentId);
+            String studentName = getStudentSurName(studentId);
             return new SimpleStringProperty(studentName);
         });
 
@@ -90,6 +90,15 @@ public class GradeController implements Initializable {
 
         grade.setCellValueFactory(new PropertyValueFactory<>("gradeValue"));
 
+    }
+
+    private String getStudentSurName(int studentId) {
+
+        return students.stream()
+                .filter(student -> student.getId() == studentId)
+                .map(Student::getSurname)
+                .findFirst()
+                .orElse("");
     }
 
     public void populateTable(ObservableList<Grade> grades) {
