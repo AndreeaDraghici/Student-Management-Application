@@ -77,8 +77,8 @@ public class DisciplineMapper {
 
         if (materieType != null) {
             buildDiscipline(materieType, discipline);
-            logger.info("Mapped xml object to intermediary discipline object.");
         }
+        logger.info("Mapped xml object to intermediary discipline object.");
         return discipline;
     }
 

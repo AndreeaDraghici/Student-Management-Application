@@ -76,8 +76,8 @@ public class StudentMapper {
 
         if (studentType != null) {
             buildStudent(studentType, student);
-            logger.info("Mapped xml object to intermediary student object.");
         }
+        logger.info("Mapped xml object to intermediary student object.");
         return student;
     }
 

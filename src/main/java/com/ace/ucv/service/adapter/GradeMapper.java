@@ -88,8 +88,8 @@ public class GradeMapper {
 
         if (gradeType != null) {
             buildGrade(gradeType, grade);
-            logger.info("Mapped xml object to intermediary grade object.");
         }
+        logger.info("Mapped xml object to intermediary grade object.");
         return grade;
     }
 
