@@ -19,7 +19,7 @@ public class GradeMapper {
 
     private static final Logger logger = LogManager.getLogger(GradeMapper.class);
 
-    private List<Discipline> listOfDisciplines;
+    private final List<Discipline> listOfDisciplines;
 
     public GradeMapper() {
         this.listOfDisciplines = new ArrayList<>();
@@ -45,7 +45,7 @@ public class GradeMapper {
                 getIntermediaryGradeList(gradeList, gradeType);
             }
         } catch (Exception e) {
-            throw new ConfigurationMapperException("Failed to adapt xml grade to intermediary data model due to: ", e);
+            throw new ConfigurationMapperException("Failed to adapt xml grade to intermediary data model. ", e);
         }
         return gradeList;
     }
@@ -100,12 +100,17 @@ public class GradeMapper {
      * @param grade     The Grade object to be built.
      */
     private void buildGrade(NotaStudType gradeType, Grade grade) {
-        String notaString = gradeType.getNota();
-        String studentIdString = gradeType.getStudent();
-        String materieString = gradeType.getMaterie();
+        if (gradeType != null) {
+            String notaString = gradeType.getNota();
+            String studentIdString = gradeType.getStudent();
+            String materieString = gradeType.getMaterie();
 
-        checkGradeRules(grade, notaString, studentIdString, materieString);
+            checkGradeRules(grade, notaString, studentIdString, materieString);
+        } else {
+            logger.warn("Received null gradeType while building Grade object.");
+        }
     }
+
 
     private void checkGradeRules(Grade grade, String notaString, String studentIdString, String materieString) {
         if (notaString != null && !notaString.isEmpty()) {
@@ -117,17 +122,7 @@ public class GradeMapper {
         }
 
         if (materieString != null && !materieString.isEmpty()) {
-            int subjectId = findSubjectIdByName(materieString);
-            grade.setSubjectId(subjectId);
+            grade.setSubjectId(Integer.parseInt(materieString));
         }
-    }
-
-    private int findSubjectIdByName(String subjectName) {
-        for (Discipline discipline : listOfDisciplines) {
-            if (discipline.getName().equalsIgnoreCase(subjectName)) {
-                return discipline.getId();
-            }
-        }
-        return -1;
     }
 }

@@ -3,6 +3,7 @@ package com.ace.ucv.controller.table;
 import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.Grade;
 import com.ace.ucv.model.Student;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -75,7 +76,6 @@ public class GradeController implements Initializable {
             return new SimpleStringProperty(studentName);
         });
 
-
         studentSurname.setCellValueFactory(cellData -> {
             int studentId = cellData.getValue().getStudentId();
             String studentName = getStudentSurName(studentId);
@@ -92,6 +92,10 @@ public class GradeController implements Initializable {
 
     }
 
+    public void populateTable(ObservableList<Grade> grades) {
+        tbGradeData.setItems(grades);
+    }
+
     private String getStudentSurName(int studentId) {
 
         return students.stream()
@@ -101,20 +105,12 @@ public class GradeController implements Initializable {
                 .orElse("");
     }
 
-    public void populateTable(ObservableList<Grade> grades) {
-        tbGradeData.setItems(grades);
-    }
-
-
     private String getDisciplineName(int disciplineId) {
-        System.out.println("Searching for discipline with ID: " + disciplineId);
-        for (Discipline discipline : disciplines) {
-            System.out.println("Current discipline ID: " + discipline.getId());
-            if (discipline.getId() == disciplineId) {
-                return discipline.getName();
-            }
-        }
-        return "";
+        return disciplines.stream()
+                .filter(discipline -> discipline.getId() == disciplineId)
+                .map(Discipline::getName)
+                .findFirst()
+                .orElse("");
     }
 
     private String getStudentName(int studentId) {

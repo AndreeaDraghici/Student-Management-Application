@@ -114,15 +114,15 @@ public class MainViewController {
     private ObservableList<Student> adaptStudentData(StudentiType studentData) {
 
         StudentMapper studentMapper = new StudentMapper();
-        List<Student> stud = new ArrayList<>();
+        List<Student> studentList = new ArrayList<>();
         Student student;
 
         for (StudentType studentType : studentData.getStudent()) {
             student = studentMapper.adaptXmlObjectToStudentIntermediaryObject(studentType);
-            stud.add(student);
+            studentList.add(student);
         }
 
-        students = FXCollections.observableArrayList(stud);
+        students = FXCollections.observableArrayList(studentList);
         return students;
     }
 
@@ -160,15 +160,14 @@ public class MainViewController {
 
     private ObservableList<Discipline> adaptDisciplineData(MateriiType materiiType) {
         DisciplineMapper disciplineMapper = new DisciplineMapper();
-        List<Discipline> disci = new ArrayList<>();
+        List<Discipline> disciplineList = new ArrayList<>();
         Discipline discipline;
 
-        for (MateriaType studentType : materiiType.getMateria()) {
-            discipline = disciplineMapper.adaptXmlObjectToDisciplineIntermediaryObject(studentType);
-            disci.add(discipline);
+        for (MateriaType materiaType : materiiType.getMateria()) {
+            discipline = disciplineMapper.adaptXmlObjectToDisciplineIntermediaryObject(materiaType);
+            disciplineList.add(discipline);
         }
-        disciplines = FXCollections.observableArrayList(disci);
-        return disciplines;
+        return FXCollections.observableArrayList(disciplineList);
     }
 
 
@@ -206,17 +205,24 @@ public class MainViewController {
     }
 
     private ObservableList<Grade> adaptGradeData(NoteType noteType) {
+        try {
+            System.out.println("Adapting grade data...");
+            GradeMapper gradeMapper = new GradeMapper();
+            List<Grade> gradeList = new ArrayList<>();
+            Grade grade;
 
-        GradeMapper gradeMapper = new GradeMapper(disciplines);
-        List<Grade> grad = new ArrayList<>();
-        Grade grade;
+            for (NotaStudType gradeType : noteType.getNotaStud()) {
+                grade = gradeMapper.adaptXmlObjectToGradeIntermediaryObject(gradeType);
+                gradeList.add(grade);
+            }
 
-        for (NotaStudType gradeType : noteType.getNotaStud()) {
-            grade = gradeMapper.adaptXmlObjectToGradeIntermediaryObject(gradeType);
-            grad.add(grade);
+            System.out.println("Grade data adapted successfully.");
+            return FXCollections.observableArrayList(gradeList);
+        } catch (Exception e) {
+            System.err.println("Error adapting grade data: " + e.getMessage());
+            e.printStackTrace();
         }
-
-        return FXCollections.observableArrayList(grad);
+        return null;
     }
 
 
