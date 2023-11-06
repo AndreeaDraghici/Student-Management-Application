@@ -62,6 +62,7 @@ public class MainViewController {
 
     private ObservableList<Student> students;
     private ObservableList<Discipline> disciplines;
+    private ObservableList<Grade> grades;
 
     @FXML
     private void initialize() {
@@ -184,7 +185,7 @@ public class MainViewController {
                 root = loader.load();
 
                 GradeController gradeController = loader.getController();
-                ObservableList<Grade> grades = adaptGradeData(noteType);
+                grades = adaptGradeData(noteType);
 
                 gradeController.setStudents(students);
                 gradeController.setDisciplines(disciplines);
@@ -206,15 +207,15 @@ public class MainViewController {
     private ObservableList<Grade> adaptGradeData(NoteType noteType) {
 
         GradeMapper gradeMapper = new GradeMapper();
-        List<Grade> grades = new ArrayList<>();
+        List<Grade> grad = new ArrayList<>();
         Grade grade;
 
         for (NotaStudType gradeType : noteType.getNotaStud()) {
             grade = gradeMapper.adaptXmlObjectToGradeIntermediaryObject(gradeType);
-            grades.add(grade);
+            grad.add(grade);
         }
 
-        return FXCollections.observableArrayList(grades);
+        return FXCollections.observableArrayList(grad);
     }
 
 
@@ -238,6 +239,7 @@ public class MainViewController {
             Catalog catalog = new Catalog();
             catalog.setDisciplines(disciplines);
             catalog.setStudents(students);
+            catalog.setGrades(grades);
 
             CatalogGeneration generation = new CatalogGeneration();
             generation.generateXMLCatalog(catalog, String.valueOf(file));
@@ -245,6 +247,7 @@ public class MainViewController {
         } catch (Exception exception) {
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText(exception.getMessage());
             alert.setHeaderText("Warning");
             alert.showAndWait();
         }
