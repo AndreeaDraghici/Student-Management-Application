@@ -70,10 +70,8 @@ public class GuiApplication extends Application implements IApplication {
             primaryStage.setResizable(false);
             primaryStage.show();
             setWindow(primaryStage);
-
         } catch (Exception exception) {
             logger.error(String.format("Could start the GUI application due to:  %s", exception.getMessage()));
-
         }
     }
 

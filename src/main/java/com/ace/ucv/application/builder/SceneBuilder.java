@@ -57,7 +57,6 @@ public class SceneBuilder {
 
         try {
             stackPane = loader.load();
-
         } catch (IOException exception) {
             logger.error(String.format("An error occurred when building the scene: %s", exception.getMessage()));
             return null;

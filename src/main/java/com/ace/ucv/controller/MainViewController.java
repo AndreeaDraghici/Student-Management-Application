@@ -121,7 +121,6 @@ public class MainViewController {
             student = studentMapper.adaptXmlObjectToStudentIntermediaryObject(studentType);
             studentList.add(student);
         }
-
         students = FXCollections.observableArrayList(studentList);
         return students;
     }
@@ -215,7 +214,6 @@ public class MainViewController {
             return FXCollections.observableArrayList(gradeList);
         } catch (Exception e) {
             System.err.println("Error adapting grade data: " + e.getMessage());
-            e.printStackTrace();
         }
         return FXCollections.emptyObservableList();
     }
