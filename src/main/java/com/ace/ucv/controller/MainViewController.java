@@ -107,7 +107,7 @@ public class MainViewController {
                 stage.show();
             }
         } catch (IOException | ConfigurationLoaderException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -150,10 +150,7 @@ public class MainViewController {
                 stage.setScene(new Scene(root));
                 stage.show();
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ConfigurationLoaderException e) {
+        } catch (ConfigurationLoaderException | IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -197,9 +194,7 @@ public class MainViewController {
                 stage.setScene(new Scene(root));
                 stage.show();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ConfigurationLoaderException e) {
+        } catch (ConfigurationLoaderException | IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -222,7 +217,7 @@ public class MainViewController {
             System.err.println("Error adapting grade data: " + e.getMessage());
             e.printStackTrace();
         }
-        return null;
+        return FXCollections.emptyObservableList();
     }
 
 
