@@ -1,5 +1,7 @@
 package com.ace.ucv;
 
+import com.ace.ucv.application.ApplicationFactory;
+import com.ace.ucv.application.iface.IApplication;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,27 +12,27 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
-public class Main extends Application {
 
-    private static final Logger logger = LogManager.getLogger(Main.class);
+/**
+ * The entry point for the GUI application.
+ */
+public class Main {
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        try {
-            FXMLLoader loader = new FXMLLoader(new File("D:\\Data\\Facultate\\Master\\An 1\\SEM 1\\MSIC\\Proiect\\StudentManagement\\src\\main\\resources\\views\\main_view.fxml").toURI().toURL());
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            logger.error(String.format("Failed to run the application due to: %s", e.getMessage()));
-        }
-    }
-
-
+    /**
+     * The main method responsible for initiating and running the GUI application.
+     *
+     * @param args Command-line arguments provided to the application.
+     */
     public static void main(String[] args) {
-        launch(args);
+
+        // Create an instance of the ApplicationFactory
+        ApplicationFactory factory = new ApplicationFactory();
+
+        // Use the factory to obtain an instance of IApplication based on command-line arguments
+        IApplication application = factory.applicationRunner(args);
+
+        // Run the obtained application
+        application.run(args);
+
     }
 }
