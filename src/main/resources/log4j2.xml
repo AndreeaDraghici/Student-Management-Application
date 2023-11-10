@@ -5,7 +5,7 @@
             <PatternLayout disableAnsi="false"
                            pattern="%highlight{%d{HH:mm:ss} %-5level %logger{36} --> %msg%n}{FATAL=red blink, ERROR=red bold, WARN=yellow bold, INFO=blue bold, DEBUG=green bold, TRACE=blue}"/>
         </Console>
-        <File name="FileAppender" fileName="./logs/StudentManagementTool.log" immediateFlush="false"
+        <File name="FileAppender" fileName="./logs/StudentManagement_${date:yyyy-MM-dd}.log" immediateFlush="false"
               append="true">
             <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss}  -  %-5level  -  %logger{36} -->  %msg%n"/>
         </File>
