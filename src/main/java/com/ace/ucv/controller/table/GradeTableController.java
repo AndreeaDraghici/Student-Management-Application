@@ -3,12 +3,12 @@ package com.ace.ucv.controller.table;
 import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.Grade;
 import com.ace.ucv.model.Student;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
  * Created by Andreea Draghici on 11/4/2023
  * Name of project: StudentManagement
  */
-public class GradeController implements Initializable {
+public class GradeTableController implements Initializable {
 
     @FXML
     private TableView<Grade> tbGradeData;
@@ -45,12 +45,12 @@ public class GradeController implements Initializable {
     private ObservableList<Student> students;
     private ObservableList<Discipline> disciplines;
 
-    public GradeController(ObservableList<Student> students, ObservableList<Discipline> disciplines) {
+    public GradeTableController(ObservableList<Student> students, ObservableList<Discipline> disciplines) {
         this.students = students;
         this.disciplines = disciplines;
     }
 
-    public GradeController() {
+    public GradeTableController() {
         this.disciplines = FXCollections.observableArrayList();
         this.students = FXCollections.observableArrayList();
     }
@@ -91,6 +91,7 @@ public class GradeController implements Initializable {
         grade.setCellValueFactory(new PropertyValueFactory<>("gradeValue"));
 
     }
+
 
     public void populateTable(ObservableList<Grade> grades) {
         tbGradeData.setItems(grades);

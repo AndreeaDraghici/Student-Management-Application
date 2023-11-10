@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
  * Created by Andreea Draghici on 11/4/2023
  * Name of project: StudentManagement
  */
-public class DisciplineController  implements Initializable {
+public class DisciplineTableController implements Initializable {
 
     @FXML
     public TableView<Discipline> tbDisciplineData;

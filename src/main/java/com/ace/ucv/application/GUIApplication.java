@@ -9,7 +9,7 @@ import javafx.stage.Window;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static com.ace.ucv.utils.GuiConstants.*;
+import static com.ace.ucv.utils.GUIConstants.*;
 
 /**
  * Created by Andreea Draghici on 11/7/2023
@@ -20,9 +20,9 @@ import static com.ace.ucv.utils.GuiConstants.*;
  * A class representing a graphical user interface (GUI) application.
  * Extends Application and implements the IApplication interface.
  */
-public class GuiApplication extends Application implements IApplication {
+public class GUIApplication extends Application implements IApplication {
 
-    private static final Logger logger = LogManager.getLogger(GuiApplication.class);
+    private static final Logger logger = LogManager.getLogger(GUIApplication.class);
 
     private final SceneBuilder sceneBuilder;
 
@@ -36,7 +36,7 @@ public class GuiApplication extends Application implements IApplication {
      * Constructs a new GuiApplication instance.
      * Initializes the SceneBuilder with the view path and icon path.
      */
-    public GuiApplication() {
+    public GUIApplication() {
         this.sceneBuilder = new SceneBuilder(VIEW_PATH, ICON_PATH);
     }
 
@@ -59,7 +59,7 @@ public class GuiApplication extends Application implements IApplication {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        GuiApplication.mainStage = primaryStage;
+        GUIApplication.mainStage = primaryStage;
         logger.info("Application is running...");
 
         try {
@@ -90,7 +90,7 @@ public class GuiApplication extends Application implements IApplication {
      * @param window The window to set.
      */
     private static void setWindow(Window window) {
-        GuiApplication.window = window;
+        GUIApplication.window = window;
     }
 
 }

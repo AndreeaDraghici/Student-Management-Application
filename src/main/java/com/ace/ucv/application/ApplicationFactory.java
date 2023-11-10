@@ -21,7 +21,7 @@ public class ApplicationFactory {
      */
     public IApplication applicationRunner(String[] args) {
         if (args.length == 0) {
-            return new GuiApplication();
+            return new GUIApplication();
         } else {
             throw new RuntimeException("Tool is just running using the graphical user interface functionality!");
         }

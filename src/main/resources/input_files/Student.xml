@@ -6,14 +6,12 @@
         <Telefon>0374826495</Telefon>
         <Sex>Male</Sex>
     </student>
-
     <student Id="2">
         <Nume>Vaneet</Nume>
         <Prenume>Gupta</Prenume>
         <Telefon>0375628585</Telefon>
         <Sex>Female</Sex>
     </student>
-
     <student Id="3">
         <Nume>jasvir</Nume>
         <Prenume>singn</Prenume>

@@ -1,43 +1,36 @@
 package com.ace.ucv.controller;
 
-import com.ace.ucv.controller.table.DisciplineController;
-import com.ace.ucv.controller.table.GradeController;
-import com.ace.ucv.controller.table.StudentController;
-import com.ace.ucv.model.Catalog;
+import com.ace.ucv.controller.table.DisciplineTableController;
+import com.ace.ucv.controller.table.GradeTableController;
+import com.ace.ucv.controller.table.StudentTableController;
 import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.Grade;
 import com.ace.ucv.model.Student;
-import com.ace.ucv.model.xml.materie.MateriaType;
-import com.ace.ucv.model.xml.materie.MateriiType;
-import com.ace.ucv.model.xml.nota.NotaStudType;
-import com.ace.ucv.model.xml.nota.NoteType;
 import com.ace.ucv.model.xml.student.StudentType;
 import com.ace.ucv.model.xml.student.StudentiType;
 import com.ace.ucv.service.adapter.DisciplineMapper;
-import com.ace.ucv.service.adapter.GradeMapper;
 import com.ace.ucv.service.adapter.StudentMapper;
 import com.ace.ucv.service.exception.ConfigurationLoaderException;
-import com.ace.ucv.service.output.CatalogGeneration;
-import com.ace.ucv.service.parser.DisciplineParser;
-import com.ace.ucv.service.parser.GradeParser;
 import com.ace.ucv.service.parser.StudentParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.ace.ucv.utils.GUIConstants.STUDENT_VIEW_FXML;
 
 /**
  * Created by Andreea Draghici on 11/4/2023
@@ -46,215 +39,123 @@ import java.util.List;
 
 public class MainViewController {
 
-    @FXML
-    private Button btnStudents;
+    private static final Logger logger = LogManager.getLogger(MainViewController.class);
 
     @FXML
-    private Button btnDisciplines;
+    private AnchorPane studentTabContent;
 
     @FXML
-    private Button btnGrades;
+    private Button studentBtn;
 
     @FXML
-    private Button btnCatalog;
+    private Button gradeBtn;
 
     @FXML
-    private AnchorPane root;
+    private Button disciplineBtn;
 
-    private ObservableList<Student> students;
+    @FXML
+    private TextField studentTextField;
+
+    @FXML
+    private TextField disciplineTextField;
+
+    @FXML
+    private TextField gradeTextField;
+
+    @FXML
+    private Tab studentTab;
+
+    @FXML
+    private Tab disciplineTab;
+
+    @FXML
+    public Tab gradeTab;
+
+    @FXML
+    private Button generateBtn;
+
+    @FXML
+    AnchorPane root;
+
     private ObservableList<Discipline> disciplines;
     private ObservableList<Grade> grades;
 
-    @FXML
-    private void initialize() {
 
+    public MainViewController() {
     }
 
-    @FXML
-    private void handleButtonClicks(ActionEvent event) {
-        if (event.getSource() == btnStudents) {
-            openStudentManagementView();
-        } else if (event.getSource() == btnDisciplines) {
-            openDisciplineManagementView();
-        } else if (event.getSource() == btnGrades) {
-            displayData();
-            openGradeManagementView();
-        } else if (event.getSource() == btnCatalog) {
-            generateCatalog();
+
+    private void initializeTabs() {
+        if (studentTabContent != null) {
+            studentTab.setContent(studentTabContent);
+        } else {
+            throw new RuntimeException("TabStudent must have the associated table of students information.");
         }
     }
 
-    private void openStudentManagementView() {
-        try {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
-            File selectedFile = fileChooser.showOpenDialog(null);
-
-            if (selectedFile != null) {
-                StudentParser studentParser = new StudentParser();
-                StudentiType studentData = studentParser.loadConfiguration(selectedFile);
-
-                FXMLLoader loader = new FXMLLoader(new File("D:\\Data\\Facultate\\Master\\An 1\\SEM 1\\MSIC\\Proiect\\StudentManagement\\src\\main\\resources\\views\\student_view.fxml").toURI().toURL());
-                root = loader.load();
-
-                StudentController studentController = loader.getController();
-                students = adaptStudentData(studentData);
-                studentController.populateTable(students);
-
-                Stage stage = new Stage();
-                stage.setTitle("Student Information");
-                stage.setScene(new Scene(root));
-                stage.show();
-            }
-        } catch (IOException | ConfigurationLoaderException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private ObservableList<Student> adaptStudentData(StudentiType studentData) {
-
-        StudentMapper studentMapper = new StudentMapper();
-        List<Student> studentList = new ArrayList<>();
-        Student student;
-
-        for (StudentType studentType : studentData.getStudent()) {
-            student = studentMapper.adaptXmlObjectToStudentIntermediaryObject(studentType);
-            studentList.add(student);
-        }
-        students = FXCollections.observableArrayList(studentList);
-        return students;
-    }
-
-    private void openDisciplineManagementView() {
-
-        try {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
-            File selectedFile = fileChooser.showOpenDialog(null);
-
-            if (selectedFile != null) {
-
-                DisciplineParser disciplineParser = new DisciplineParser();
-                MateriiType materiiType = disciplineParser.loadConfiguration(selectedFile);
-
-                FXMLLoader loader = new FXMLLoader(new File("D:\\Data\\Facultate\\Master\\An 1\\SEM 1\\MSIC\\Proiect\\StudentManagement\\src\\main\\resources\\views\\discipline_view.fxml").toURI().toURL());
-                root = loader.load();
-
-                DisciplineController disciplineController = loader.getController();
-                disciplines = adaptDisciplineData(materiiType);
-                disciplineController.populateTable(disciplines);
-
-                Stage stage = new Stage();
-                stage.setTitle("Discipline Information");
-                stage.setScene(new Scene(root));
-                stage.show();
-            }
-        } catch (ConfigurationLoaderException | IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private ObservableList<Discipline> adaptDisciplineData(MateriiType materiiType) {
-        DisciplineMapper disciplineMapper = new DisciplineMapper();
-        List<Discipline> disciplineList = new ArrayList<>();
-        Discipline discipline;
-
-        for (MateriaType materiaType : materiiType.getMateria()) {
-            discipline = disciplineMapper.adaptXmlObjectToDisciplineIntermediaryObject(materiaType);
-            disciplineList.add(discipline);
-        }
-        return FXCollections.observableArrayList(disciplineList);
-    }
-
-
-    private void openGradeManagementView() {
-        try {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
-            File selectedFile = fileChooser.showOpenDialog(null);
-
-            if (selectedFile != null) {
-                GradeParser gradeParser = new GradeParser();
-                NoteType noteType = gradeParser.loadConfiguration(selectedFile);
-
-                FXMLLoader loader = new FXMLLoader(new File("D:\\Data\\Facultate\\Master\\An 1\\SEM 1\\MSIC\\Proiect\\StudentManagement\\src\\main\\resources\\views\\grade_view.fxml").toURI().toURL());
-                root = loader.load();
-
-                GradeController gradeController = loader.getController();
-                grades = adaptGradeData(noteType);
-
-                gradeController.setStudents(students);
-                gradeController.setDisciplines(disciplines);
-
-                gradeController.populateTable(grades);
-
-                Stage stage = new Stage();
-                stage.setTitle("Grade Information");
-                stage.setScene(new Scene(root));
-                stage.show();
-            }
-        } catch (ConfigurationLoaderException | IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private ObservableList<Grade> adaptGradeData(NoteType noteType) {
-        try {
-            System.out.println("Adapting grade data...");
-            GradeMapper gradeMapper = new GradeMapper();
-            List<Grade> gradeList = new ArrayList<>();
-            Grade grade;
-
-            for (NotaStudType gradeType : noteType.getNotaStud()) {
-                grade = gradeMapper.adaptXmlObjectToGradeIntermediaryObject(gradeType);
-                gradeList.add(grade);
-            }
-
-            System.out.println("Grade data adapted successfully.");
-            return FXCollections.observableArrayList(gradeList);
-        } catch (Exception e) {
-            System.err.println("Error adapting grade data: " + e.getMessage());
-        }
-        return FXCollections.emptyObservableList();
-    }
-
-
-    private void displayData() {
-        System.out.println("Disciplines:");
-        disciplines.forEach(discipline -> System.out.println(discipline.getId() + ": " + discipline.getName()));
-
-        System.out.println("Students:");
-        students.forEach(student -> System.out.println(student.getId() + ": " + student.getName()));
-    }
-
-
-    private void generateCatalog() {
-
+    private void loadFile(TextField textField, String fileType) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose output directory and save the report");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
-        File file = fileChooser.showSaveDialog(root.getScene().getWindow());
+        fileChooser.setTitle(String.format("Select %s File", fileType));
+
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+
+        if (selectedFile != null) {
+            textField.setText(selectedFile.getAbsolutePath());
+        }
+    }
+
+    @FXML
+    private void handleStudentButton() {
 
         try {
-            Catalog catalog = new Catalog();
-            catalog.setDisciplines(disciplines);
-            catalog.setStudents(students);
-            catalog.setGrades(grades);
+            loadFile(studentTextField, "Student");
 
-            CatalogGeneration generation = new CatalogGeneration();
-            generation.generateXMLCatalog(catalog, String.valueOf(file));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(STUDENT_VIEW_FXML));
+            root = loader.load();
 
-        } catch (Exception exception) {
+            StudentTableController studentController = loader.getController();
+            ObservableList<Student> studentData = loadDataFromFile(studentTextField.getText());
+            studentController.populateTable(studentData);
 
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initModality(Modality.APPLICATION_MODAL);
-            alert.initOwner(root.getScene().getWindow());
-            alert.setTitle("Warning Dialog Box");
-            alert.setHeaderText("Warning");
-            alert.setContentText(exception.getMessage());
-            alert.showAndWait();
+            studentTabContent.getChildren().clear();
+            studentTabContent.getChildren().add(root);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
     }
-}
 
+    private ObservableList<Student> loadDataFromFile(String text) {
+        try {
+            StudentParser studentParser = new StudentParser();
+            StudentiType studentData = studentParser.loadConfiguration(new File(text));
+
+            StudentMapper studentMapper = new StudentMapper();
+            List<Student> studentList = new ArrayList<>();
+            Student student;
+
+            for (StudentType studentType : studentData.getStudent()) {
+                student = studentMapper.adaptXmlObjectToStudentIntermediaryObject(studentType);
+                studentList.add(student);
+            }
+            return FXCollections.observableArrayList(studentList);
+        } catch (ConfigurationLoaderException e) {
+            logger.error(String.format("Error loading students information from input file due to: %s", e.getMessage()));
+            return FXCollections.emptyObservableList();
+        }
+    }
+
+    @FXML
+    private void handleDisciplineButton() {
+        loadFile(disciplineTextField, "Discipline");
+    }
+
+    @FXML
+    private void handleGradeButton() {
+        loadFile(gradeTextField, "Grade");
+    }
+
+}
