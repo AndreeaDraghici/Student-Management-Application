@@ -6,11 +6,14 @@ import com.ace.ucv.controller.table.StudentTableController;
 import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.Grade;
 import com.ace.ucv.model.Student;
+import com.ace.ucv.model.xml.materie.MateriaType;
+import com.ace.ucv.model.xml.materie.MateriiType;
 import com.ace.ucv.model.xml.student.StudentType;
 import com.ace.ucv.model.xml.student.StudentiType;
 import com.ace.ucv.service.adapter.DisciplineMapper;
 import com.ace.ucv.service.adapter.StudentMapper;
 import com.ace.ucv.service.exception.ConfigurationLoaderException;
+import com.ace.ucv.service.parser.DisciplineParser;
 import com.ace.ucv.service.parser.StudentParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,6 +33,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.ace.ucv.utils.GUIConstants.DISCIPLINE_VIEW_FXML;
 import static com.ace.ucv.utils.GUIConstants.STUDENT_VIEW_FXML;
 
 /**
@@ -40,6 +44,12 @@ import static com.ace.ucv.utils.GUIConstants.STUDENT_VIEW_FXML;
 public class MainViewController {
 
     private static final Logger logger = LogManager.getLogger(MainViewController.class);
+
+    @FXML
+    public AnchorPane gradeTabContent;
+
+    @FXML
+    public AnchorPane disciplineTabContent;
 
     @FXML
     private AnchorPane studentTabContent;
@@ -86,6 +96,20 @@ public class MainViewController {
 
 
     private void initializeTabs() {
+        getStudentTabContent();
+        getDisciplineTabContent();
+
+    }
+
+    private void getDisciplineTabContent() {
+        if (disciplineTabContent != null) {
+            disciplineTab.setContent(disciplineTabContent);
+        } else {
+            throw new RuntimeException("TabDiscipline must have the associated table of disciplines information.");
+        }
+    }
+
+    private void getStudentTabContent() {
         if (studentTabContent != null) {
             studentTab.setContent(studentTabContent);
         } else {
@@ -117,7 +141,7 @@ public class MainViewController {
             root = loader.load();
 
             StudentTableController studentController = loader.getController();
-            ObservableList<Student> studentData = loadDataFromFile(studentTextField.getText());
+            ObservableList<Student> studentData = loadStudentDataFromFile(studentTextField.getText());
             studentController.populateTable(studentData);
 
             studentTabContent.getChildren().clear();
@@ -128,7 +152,7 @@ public class MainViewController {
         }
     }
 
-    private ObservableList<Student> loadDataFromFile(String text) {
+    private ObservableList<Student> loadStudentDataFromFile(String text) {
         try {
             StudentParser studentParser = new StudentParser();
             StudentiType studentData = studentParser.loadConfiguration(new File(text));
@@ -150,7 +174,43 @@ public class MainViewController {
 
     @FXML
     private void handleDisciplineButton() {
-        loadFile(disciplineTextField, "Discipline");
+        try {
+            loadFile(disciplineTextField, "Discipline");
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(DISCIPLINE_VIEW_FXML));
+            root = loader.load();
+
+            DisciplineTableController disciplineTableController = loader.getController();
+            ObservableList<Discipline> disciplineData = loadDisciplineDataFromFile(disciplineTextField.getText());
+            disciplineTableController.populateTable(disciplineData);
+
+            disciplineTabContent.getChildren().clear();
+            disciplineTabContent.getChildren().add(root);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private ObservableList<Discipline> loadDisciplineDataFromFile(String text) {
+        try {
+            DisciplineParser disciplineParser = new DisciplineParser();
+            MateriiType disciplineData = disciplineParser.loadConfiguration(new File(text));
+
+            DisciplineMapper disciplineMapper = new DisciplineMapper();
+            List<Discipline> disciplineList = new ArrayList<>();
+            Discipline discipline;
+
+            for (MateriaType materiaType : disciplineData.getMateria()) {
+                discipline = disciplineMapper.adaptXmlObjectToDisciplineIntermediaryObject(materiaType);
+                disciplineList.add(discipline);
+            }
+            return FXCollections.observableArrayList(disciplineList);
+        } catch (ConfigurationLoaderException e) {
+            logger.error(String.format("Error loading disciplines information from input file due to: %s", e.getMessage()));
+            return FXCollections.emptyObservableList();
+        }
+
     }
 
     @FXML

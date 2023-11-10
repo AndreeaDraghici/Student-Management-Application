@@ -105,10 +105,10 @@
                     <AnchorPane fx:id="studentTabContent" minHeight="0.0" minWidth="0.0" prefHeight="426.0" prefWidth="980.0" />
                 </Tab>
                 <Tab fx:id="disciplineTab" text="Discipline">
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    <AnchorPane fx:id="disciplineTabContent" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                 </Tab>
                 <Tab fx:id="gradeTab" text="Grade">
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="282.0" prefWidth="943.0" />
+                    <AnchorPane fx:id="gradeTabContent" minHeight="0.0" minWidth="0.0" prefHeight="282.0" prefWidth="943.0" />
                 </Tab>
             </TabPane>
          <padding>
