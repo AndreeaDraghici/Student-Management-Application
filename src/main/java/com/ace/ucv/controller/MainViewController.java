@@ -160,23 +160,23 @@ public class MainViewController implements Initializable {
         if (selectedFile == null) {
             String errorMessage = String.format("No input selected for %s file.", fileType);
             creator.createErrorModal(root, errorMessage);
-            return false;
+            return true;
         }
 
         if (!selectedFile.toString().endsWith(".xml")) {
             String errorMessage = "Select a valid input file! Input file must have the .xml extension!";
             creator.createErrorModal(root, errorMessage);
-            return false;
+            return true;
         }
         textField.setText(selectedFile.getAbsolutePath());
-        return true;
+        return false;
     }
 
     @FXML
     private void handleStudentButton() {
 
         try {
-            if (!loadInputFile(studentTextField, "Student")) {
+            if (loadInputFile(studentTextField, "Student")) {
                 return;
             }
 
@@ -229,7 +229,7 @@ public class MainViewController implements Initializable {
     @FXML
     private void handleDisciplineButton() {
         try {
-            if (!loadInputFile(disciplineTextField, "Discipline")) {
+            if (loadInputFile(disciplineTextField, "Discipline")) {
                 return;
             }
 
@@ -282,7 +282,7 @@ public class MainViewController implements Initializable {
     @FXML
     private void handleGradeButton() {
         try {
-            if (!loadInputFile(gradeTextField, "Grade")) {
+            if (loadInputFile(gradeTextField, "Grade")) {
                 return;
             }
 
