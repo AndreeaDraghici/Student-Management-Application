@@ -22,26 +22,26 @@ import com.ace.ucv.service.parser.DisciplineParser;
 import com.ace.ucv.service.parser.GradeParser;
 import com.ace.ucv.service.parser.StudentParser;
 import com.ace.ucv.utils.AlertCreator;
+import com.ace.ucv.utils.PathChooser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import static com.ace.ucv.utils.GUIConstants.*;
 
@@ -50,7 +50,7 @@ import static com.ace.ucv.utils.GUIConstants.*;
  * Name of project: StudentManagement
  */
 
-public class MainViewController {
+public class MainViewController implements Initializable {
 
     private static final Logger logger = LogManager.getLogger(MainViewController.class);
 
@@ -100,14 +100,26 @@ public class MainViewController {
     private ObservableList<Discipline> disciplines;
     private ObservableList<Grade> grades;
 
+    private boolean isStudentFileLoaded = false;
+    private boolean isDisciplineFileLoaded = false;
+    private boolean isGradeFileLoaded = false;
+    private final AlertCreator creator;
+
     public MainViewController() {
+        this.creator = new AlertCreator();
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        initializeTabs();
+        generateBtn.setDisable(true);
+    }
 
     private void initializeTabs() {
         getStudentTabContent();
         getDisciplineTabContent();
         getGradeTabContent();
+        checkGenerateButton();
     }
 
     private void getGradeTabContent() {
@@ -134,37 +146,56 @@ public class MainViewController {
         }
     }
 
-    private void loadFile(TextField textField, String fileType) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle(String.format("Select %s File", fileType));
+    private boolean loadInputFile(TextField textField, String fileType) {
 
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
-        fileChooser.getExtensionFilters().add(extFilter);
+        PathChooser chooser = new PathChooser();
+        FileChooser fileChooser = chooser.getFileChooser(fileType);
 
-        File selectedFile = fileChooser.showOpenDialog(new Stage());
-
-        if (selectedFile != null) {
-            textField.setText(selectedFile.getAbsolutePath());
+        File lastUsed = new File(textField.getText());
+        if (lastUsed.exists()) {
+            fileChooser.setInitialDirectory(new File(lastUsed.getParent()));
         }
+
+        File selectedFile = fileChooser.showOpenDialog(root.getScene().getWindow());
+        if (selectedFile == null) {
+            String errorMessage = String.format("No input selected for %s file.", fileType);
+            creator.createErrorModal(root, errorMessage);
+            return false;
+        }
+
+        if (!selectedFile.toString().endsWith(".xml")) {
+            String errorMessage = "Select a valid input file! Input file must have the .xml extension!";
+            creator.createErrorModal(root, errorMessage);
+            return false;
+        }
+        textField.setText(selectedFile.getAbsolutePath());
+        return true;
     }
 
     @FXML
     private void handleStudentButton() {
 
         try {
-            loadFile(studentTextField, "Student");
+            if (!loadInputFile(studentTextField, "Student")) {
+                return;
+            }
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource(STUDENT_VIEW_FXML));
             root = loader.load();
 
             StudentTableController studentController = loader.getController();
+
             students = loadStudentDataFromFile(studentTextField.getText());
             studentController.populateTable(students);
 
             studentTabContent.getChildren().clear();
             studentTabContent.getChildren().add(root);
 
+            isStudentFileLoaded = true;
+            checkGenerateButton();
+
         } catch (IOException e) {
+            isStudentFileLoaded = false;
             throw new RuntimeException(e);
         }
     }
@@ -184,12 +215,13 @@ public class MainViewController {
             }
 
             logger.info("Students information loaded successfully.");
-
             students = FXCollections.observableArrayList(studentList);
             return students;
 
         } catch (ConfigurationLoaderException e) {
-            logger.error(String.format("Error loading students information from input file due to: %s", e.getMessage()));
+            String string = String.format("Error loading students information from input file due to: %s", e.getMessage());
+            creator.createErrorModal(root, string);
+            logger.error(string);
             return FXCollections.emptyObservableList();
         }
     }
@@ -197,7 +229,9 @@ public class MainViewController {
     @FXML
     private void handleDisciplineButton() {
         try {
-            loadFile(disciplineTextField, "Discipline");
+            if (!loadInputFile(disciplineTextField, "Discipline")) {
+                return;
+            }
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource(DISCIPLINE_VIEW_FXML));
             root = loader.load();
@@ -209,7 +243,11 @@ public class MainViewController {
             disciplineTabContent.getChildren().clear();
             disciplineTabContent.getChildren().add(root);
 
+            isDisciplineFileLoaded = true;
+            checkGenerateButton();
+
         } catch (IOException e) {
+            isDisciplineFileLoaded = false;
             throw new RuntimeException(e);
         }
     }
@@ -234,7 +272,9 @@ public class MainViewController {
             return disciplines;
 
         } catch (ConfigurationLoaderException e) {
-            logger.error(String.format("Error loading disciplines information from input file due to: %s", e.getMessage()));
+            String string = String.format("Error loading disciplines information from input file due to: %s", e.getMessage());
+            creator.createErrorModal(root, string);
+            logger.error(string);
             return FXCollections.emptyObservableList();
         }
     }
@@ -242,7 +282,10 @@ public class MainViewController {
     @FXML
     private void handleGradeButton() {
         try {
-            loadFile(gradeTextField, "Grade");
+            if (!loadInputFile(gradeTextField, "Grade")) {
+                return;
+            }
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource(GRADE_VIEW_FXML));
             root = loader.load();
 
@@ -257,7 +300,11 @@ public class MainViewController {
             gradeTabContent.getChildren().clear();
             gradeTabContent.getChildren().add(root);
 
+            isGradeFileLoaded = true;
+            checkGenerateButton();
+
         } catch (IOException e) {
+            isGradeFileLoaded = false;
             throw new RuntimeException(e);
         }
     }
@@ -277,25 +324,31 @@ public class MainViewController {
             }
 
             logger.info("Grades information loaded successfully.");
-
             grades = FXCollections.observableArrayList(gradeList);
             return grades;
 
         } catch (ConfigurationLoaderException e) {
-            logger.error(String.format("Error loading grades information from input file due to: %s", e.getMessage()));
+            String string = String.format("Error loading grades information from input file due to: %s", e.getMessage());
+            creator.createErrorModal(root, string);
+            logger.error(string);
             return FXCollections.emptyObservableList();
         }
     }
 
+    private void checkGenerateButton() {
+        generateBtn.setDisable(!(isStudentFileLoaded && isDisciplineFileLoaded && isGradeFileLoaded));
+    }
+
     @FXML
     private void handleGenerateButton() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose output directory and save the report");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
-        File file = fileChooser.showSaveDialog(root.getScene().getWindow());
-        Catalog catalog = new Catalog();
-
         try {
+            PathChooser chooser = new PathChooser();
+            File file = chooser.chooseOuputDirectoryAndSaveTheCatalogFile(root);
+            if (file == null) {
+                throw new RuntimeException("Please specify the output file name and directory.");
+            }
+
+            Catalog catalog = new Catalog();
             catalog.setDisciplines(disciplines);
             catalog.setStudents(students);
             catalog.setGrades(grades);
@@ -304,8 +357,9 @@ public class MainViewController {
             generation.generateXMLCatalog(catalog, String.valueOf(file));
 
         } catch (Exception exception) {
-            AlertCreator creator = new AlertCreator();
-            creator.createWarningModal(root, exception);
+            String string = String.format("Failed to generate the output catalog due to: %s", exception.getMessage());
+            creator.createWarningModal(root, string);
+            logger.error(string);
         }
     }
 }
