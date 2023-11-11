@@ -36,8 +36,8 @@ public class GUIConstants {
 
 
 
-    public static final String STUDENT_VIEW_FXML =                "/views/student_view.fxml";
+    public static final String STUDENT_VIEW_FXML                   = "/views/student_view.fxml";
 
-    public static final String DISCIPLINE_VIEW_FXML =             "/views/discipline_view.fxml";
+    public static final String DISCIPLINE_VIEW_FXML               = "/views/discipline_view.fxml";
 
 }
