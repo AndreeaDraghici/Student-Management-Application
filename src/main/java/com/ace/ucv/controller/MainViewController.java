@@ -3,6 +3,7 @@ package com.ace.ucv.controller;
 import com.ace.ucv.controller.table.DisciplineTableController;
 import com.ace.ucv.controller.table.GradeTableController;
 import com.ace.ucv.controller.table.StudentTableController;
+import com.ace.ucv.model.Catalog;
 import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.Grade;
 import com.ace.ucv.model.Student;
@@ -16,18 +17,22 @@ import com.ace.ucv.service.adapter.DisciplineMapper;
 import com.ace.ucv.service.adapter.GradeMapper;
 import com.ace.ucv.service.adapter.StudentMapper;
 import com.ace.ucv.service.exception.ConfigurationLoaderException;
+import com.ace.ucv.service.output.CatalogGeneration;
 import com.ace.ucv.service.parser.DisciplineParser;
 import com.ace.ucv.service.parser.GradeParser;
 import com.ace.ucv.service.parser.StudentParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -90,9 +95,9 @@ public class MainViewController {
     @FXML
     AnchorPane root;
 
+    private ObservableList<Student> students;
     private ObservableList<Discipline> disciplines;
     private ObservableList<Grade> grades;
-
 
     public MainViewController() {
     }
@@ -152,8 +157,8 @@ public class MainViewController {
             root = loader.load();
 
             StudentTableController studentController = loader.getController();
-            ObservableList<Student> studentData = loadStudentDataFromFile(studentTextField.getText());
-            studentController.populateTable(studentData);
+            students = loadStudentDataFromFile(studentTextField.getText());
+            studentController.populateTable(students);
 
             studentTabContent.getChildren().clear();
             studentTabContent.getChildren().add(root);
@@ -176,7 +181,12 @@ public class MainViewController {
                 student = studentMapper.adaptXmlObjectToStudentIntermediaryObject(studentType);
                 studentList.add(student);
             }
-            return FXCollections.observableArrayList(studentList);
+
+            logger.info("Students information loaded successfully.");
+
+            students = FXCollections.observableArrayList(studentList);
+            return students;
+
         } catch (ConfigurationLoaderException e) {
             logger.error(String.format("Error loading students information from input file due to: %s", e.getMessage()));
             return FXCollections.emptyObservableList();
@@ -192,8 +202,8 @@ public class MainViewController {
             root = loader.load();
 
             DisciplineTableController disciplineTableController = loader.getController();
-            ObservableList<Discipline> disciplineData = loadDisciplineDataFromFile(disciplineTextField.getText());
-            disciplineTableController.populateTable(disciplineData);
+            disciplines = loadDisciplineDataFromFile(disciplineTextField.getText());
+            disciplineTableController.populateTable(disciplines);
 
             disciplineTabContent.getChildren().clear();
             disciplineTabContent.getChildren().add(root);
@@ -216,7 +226,12 @@ public class MainViewController {
                 discipline = disciplineMapper.adaptXmlObjectToDisciplineIntermediaryObject(materiaType);
                 disciplineList.add(discipline);
             }
-            return FXCollections.observableArrayList(disciplineList);
+
+            logger.info("Disciplines information loaded successfully.");
+
+            disciplines = FXCollections.observableArrayList(disciplineList);
+            return disciplines;
+
         } catch (ConfigurationLoaderException e) {
             logger.error(String.format("Error loading disciplines information from input file due to: %s", e.getMessage()));
             return FXCollections.emptyObservableList();
@@ -231,8 +246,12 @@ public class MainViewController {
             root = loader.load();
 
             GradeTableController gradeTableController = loader.getController();
-            ObservableList<Grade> gradeData = loadGradeDataFromFile(gradeTextField.getText());
-            gradeTableController.populateTable(gradeData);
+            grades = loadGradeDataFromFile(gradeTextField.getText());
+
+            gradeTableController.setStudents(students);
+            gradeTableController.setDisciplines(disciplines);
+
+            gradeTableController.populateTable(grades);
 
             gradeTabContent.getChildren().clear();
             gradeTabContent.getChildren().add(root);
@@ -255,11 +274,44 @@ public class MainViewController {
                 grade = gradeMapper.adaptXmlObjectToGradeIntermediaryObject(notaStudType);
                 gradeList.add(grade);
             }
-            return FXCollections.observableArrayList(gradeList);
+
+            logger.info("Grades information loaded successfully.");
+
+            grades = FXCollections.observableArrayList(gradeList);
+            return grades;
+
         } catch (ConfigurationLoaderException e) {
             logger.error(String.format("Error loading grades information from input file due to: %s", e.getMessage()));
             return FXCollections.emptyObservableList();
         }
     }
 
+    @FXML
+    private void handleGenerateButton() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose output directory and save the report");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
+        File file = fileChooser.showSaveDialog(root.getScene().getWindow());
+
+        try {
+            Catalog catalog = new Catalog();
+            catalog.setDisciplines(disciplines);
+            catalog.setStudents(students);
+            catalog.setGrades(grades);
+
+            CatalogGeneration generation = new CatalogGeneration();
+            generation.generateXMLCatalog(catalog, String.valueOf(file));
+
+        } catch (Exception exception) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.initOwner(root.getScene().getWindow());
+            alert.setTitle("Warning Dialog Box");
+            alert.setHeaderText("Warning");
+            alert.setContentText(exception.getMessage());
+            alert.showAndWait();
+        }
+
+    }
 }
