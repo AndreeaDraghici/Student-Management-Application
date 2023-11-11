@@ -17,12 +17,10 @@ public class GUIConstants {
     public static final String TOOL_NAME                                 = "Student Management";
 
 
-
     /**
      * The version of the GUI application tool.
      */
     public static final String TOOL_VERSION                             = "V1.0.1";
-
 
 
     /**
@@ -31,19 +29,27 @@ public class GUIConstants {
     public static final String VIEW_PATH                                   = "views/main_view.fxml";
 
 
-
     /**
      * The path to the image file representing the application icon.
      */
     public static final String ICON_PATH                                   = "/logo/logo.jpg";
 
 
-
-
+    /**
+     * The path to the FXML file representing the student view.
+     */
     public static final String STUDENT_VIEW_FXML                   = "/views/student_view.fxml";
 
+
+    /**
+     * The path to the FXML file representing the discipline view.
+     */
     public static final String DISCIPLINE_VIEW_FXML               = "/views/discipline_view.fxml";
 
+
+    /**
+     * The path to the FXML file representing the grade view.
+     */
     public static final String GRADE_VIEW_FXML                       ="/views/grade_view.fxml";
 
 }

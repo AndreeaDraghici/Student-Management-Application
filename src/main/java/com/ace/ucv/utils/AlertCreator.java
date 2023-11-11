@@ -1,6 +1,5 @@
 package com.ace.ucv.utils;
 
-import com.ace.ucv.controller.MainViewController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -18,13 +17,28 @@ import static com.ace.ucv.utils.GUIConstants.ICON_PATH;
  * Created by Andreea Draghici on 11/11/2023
  * Name of project: StudentManagement
  */
+
+/*
+* Utility class for creating alert dialogs in the GUI application.
+ */
 public class AlertCreator {
 
     private static final Logger logger = LogManager.getLogger(AlertCreator.class);
 
+
+    /**
+     * Default constructor for AlertCreator.
+     */
     public AlertCreator() {
     }
 
+
+    /**
+     * Creates and displays a warning modal dialog.
+     *
+     * @param root        The root AnchorPane used to display the warning dialog.
+     * @param contentText The content text of the warning dialog.
+     */
     public void createWarningModal(AnchorPane root, String contentText) {
         try {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -39,6 +53,13 @@ public class AlertCreator {
         }
     }
 
+
+    /**
+     * Creates and displays an error modal dialog.
+     *
+     * @param root        The root AnchorPane used to display the error dialog.
+     * @param contentText The content text of the error dialog.
+     */
     public void createErrorModal(AnchorPane root, String contentText) {
         try {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -53,6 +74,8 @@ public class AlertCreator {
         }
     }
 
+
+    // Expands the content of the dialog by adding a TextArea.
     private static void expandTheDialogExceptionMessage(String string, Alert alert) {
         TextArea textArea = new TextArea(string);
         textArea.setEditable(false);
@@ -60,7 +83,7 @@ public class AlertCreator {
         alert.getDialogPane().setContent(textArea);
     }
 
-
+    // Sets the default application icon for the alert dialog.
     private void getAlertDefaultIcon(Alert alert) {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(Objects.requireNonNull(this.getClass().getResource(ICON_PATH)).toString()));

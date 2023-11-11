@@ -36,19 +36,13 @@ public class StudentTableController implements Initializable {
     @FXML
     private AnchorPane root;
 
+    // This method is called automatically when the FXML file is loaded.
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        if (tbStudentData == null) {
-            System.out.println("Elementul TableView (tbStudentData) este nul.");
-        }
-        if (studentId == null || firstName == null || lastName == null || genre == null || phone == null) {
-            System.out.println("Unul sau mai multe elemente din tabel sunt nule.");
-        }
-
         initializeTable();
     }
 
+    // Initializes the table columns with their respective properties.
     private void initializeTable() {
         studentId.setCellValueFactory(new PropertyValueFactory<>("Id"));
         firstName.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -57,17 +51,9 @@ public class StudentTableController implements Initializable {
         phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
     }
 
+    // Populates the table with the provided list of students.
     public void populateTable(ObservableList<Student> students) {
-        // Verificați dacă tbStudentData este null
-        if (tbStudentData != null) {
-            tbStudentData.setItems(students);
-        } else {
-            System.err.println("tbStudentData is null");
-        }
-    }
-
-    public Parent getRoot() {
-        return tbStudentData;
+        tbStudentData.setItems(students);
     }
 
 }

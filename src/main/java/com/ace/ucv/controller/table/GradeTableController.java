@@ -8,7 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -45,29 +44,36 @@ public class GradeTableController implements Initializable {
     private ObservableList<Student> students;
     private ObservableList<Discipline> disciplines;
 
+    // Constructor with parameters for initializing students and disciplines.
     public GradeTableController(ObservableList<Student> students, ObservableList<Discipline> disciplines) {
         this.students = students;
         this.disciplines = disciplines;
     }
 
+    // Default constructor with empty observable lists.
     public GradeTableController() {
         this.disciplines = FXCollections.observableArrayList();
         this.students = FXCollections.observableArrayList();
     }
 
+    // Setter for students.
     public void setStudents(ObservableList<Student> students) {
         this.students = students;
     }
 
+    // Setter for disciplines.
     public void setDisciplines(ObservableList<Discipline> disciplines) {
         this.disciplines = disciplines;
     }
 
+
+    // Initialization method called automatically when the FXML file is loaded.
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeTable();
     }
 
+    // Initializes the table columns with their respective properties.
     private void initializeTable() {
 
         studentName.setCellValueFactory(cellData -> {
@@ -92,11 +98,12 @@ public class GradeTableController implements Initializable {
 
     }
 
-
+    // Populates the table with the provided list of grades.
     public void populateTable(ObservableList<Grade> grades) {
         tbGradeData.setItems(grades);
     }
 
+    // Helper method to get the surname of a student based on the student ID.
     private String getStudentSurName(int studentId) {
 
         return students.stream()
@@ -106,6 +113,7 @@ public class GradeTableController implements Initializable {
                 .orElse("");
     }
 
+    // Helper method to get the name of a discipline based on the discipline ID.
     private String getDisciplineName(int disciplineId) {
         return disciplines.stream()
                 .filter(discipline -> discipline.getId() == disciplineId)
@@ -114,6 +122,7 @@ public class GradeTableController implements Initializable {
                 .orElse("");
     }
 
+    // Helper method to get the name of a student based on the student ID.
     private String getStudentName(int studentId) {
         return students.stream()
                 .filter(student -> student.getId() == studentId)

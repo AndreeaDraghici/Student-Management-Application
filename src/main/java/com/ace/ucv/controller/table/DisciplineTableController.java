@@ -35,12 +35,13 @@ public class DisciplineTableController implements Initializable {
     @FXML
     public TableColumn<Discipline, String> semester;
 
-
+    // Initialization method called automatically when the FXML file is loaded.
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeTable();
     }
 
+    // Initializes the table columns with their respective properties.
     private void initializeTable() {
         disciplineId.setCellValueFactory(new PropertyValueFactory<>("id"));
         firstName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -49,9 +50,8 @@ public class DisciplineTableController implements Initializable {
         semester.setCellValueFactory(new PropertyValueFactory<>("semester"));
     }
 
-
+    // Populates the table with the provided list of disciplines.
     public void populateTable(ObservableList<Discipline> disciplines) {
-
         tbDisciplineData.setItems(disciplines);
     }
 }

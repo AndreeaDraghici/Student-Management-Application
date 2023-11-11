@@ -27,7 +27,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
@@ -38,10 +37,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import static com.ace.ucv.utils.GUIConstants.*;
 
@@ -109,12 +106,13 @@ public class MainViewController {
         this.creator = new AlertCreator();
     }
 
-
+    // Initializes the controller.
     public void initialize() {
         initializeTabs();
         generateBtn.setDisable(true);
     }
 
+    // Initializes the tabs with their respective content.
     private void initializeTabs() {
         getStudentTabContent();
         getDisciplineTabContent();
@@ -122,6 +120,7 @@ public class MainViewController {
         checkGenerateButton();
     }
 
+    // Retrieves the content for the Grade tab.
     private void getGradeTabContent() {
         if (gradeTabContent != null) {
             gradeTab.setContent(gradeTabContent);
@@ -130,6 +129,7 @@ public class MainViewController {
         }
     }
 
+    // Retrieves the content for the Discipline tab.
     private void getDisciplineTabContent() {
         if (disciplineTabContent != null) {
             disciplineTab.setContent(disciplineTabContent);
@@ -138,6 +138,7 @@ public class MainViewController {
         }
     }
 
+    // Retrieves the content for the Student tab.
     private void getStudentTabContent() {
         if (studentTabContent != null) {
             studentTab.setContent(studentTabContent);
@@ -146,6 +147,7 @@ public class MainViewController {
         }
     }
 
+    // Handles the loading of input file.
     private boolean loadInputFile(TextField textField, String fileType) {
 
         PathChooser chooser = new PathChooser();
@@ -172,6 +174,7 @@ public class MainViewController {
         return false;
     }
 
+    // Handles the button click to load student information.
     @FXML
     private void handleStudentButton() {
 
@@ -200,6 +203,7 @@ public class MainViewController {
         }
     }
 
+    // Loads student data from an XML file.
     private ObservableList<Student> loadStudentDataFromFile(String text) {
         try {
             StudentParser studentParser = new StudentParser();
@@ -226,6 +230,7 @@ public class MainViewController {
         }
     }
 
+    // Handles the button click to load discipline information.
     @FXML
     private void handleDisciplineButton() {
         try {
@@ -252,6 +257,7 @@ public class MainViewController {
         }
     }
 
+    // Loads discipline data from an XML file.
     private ObservableList<Discipline> loadDisciplineDataFromFile(String text) {
         try {
             DisciplineParser disciplineParser = new DisciplineParser();
@@ -279,6 +285,7 @@ public class MainViewController {
         }
     }
 
+    // Handles the button click to load grade information.
     @FXML
     private void handleGradeButton() {
         try {
@@ -309,6 +316,7 @@ public class MainViewController {
         }
     }
 
+    // Loads grade data from an XML file.
     private ObservableList<Grade> loadGradeDataFromFile(String text) {
         try {
             GradeParser gradeParser = new GradeParser();
@@ -335,10 +343,12 @@ public class MainViewController {
         }
     }
 
+    // Checks if all necessary files are loaded to enable the generate button.
     private void checkGenerateButton() {
         generateBtn.setDisable(!(isStudentFileLoaded && isDisciplineFileLoaded && isGradeFileLoaded));
     }
 
+    // Handles the button click to generate the output catalog.
     @FXML
     private void handleGenerateButton() {
         try {
