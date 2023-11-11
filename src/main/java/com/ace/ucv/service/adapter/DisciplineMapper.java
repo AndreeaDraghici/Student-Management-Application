@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Andreea Draghici on 11/4/2023
@@ -34,7 +35,6 @@ public class DisciplineMapper {
             }
         } catch (Exception e) {
             throw new ConfigurationMapperException(String.format("Failed to adapt XML discipline to intermediary data model due to:  %s", e.getMessage()), e);
-
         }
         return disciplineList;
     }
@@ -79,7 +79,7 @@ public class DisciplineMapper {
         if (materieType != null) {
             buildDiscipline(materieType, discipline);
         }
-        logger.info("Successfully mapped XML object to intermediary Discipline object.");
+        logger.info(String.format("Successfully mapped %s XML object to intermediary Discipline object.", Objects.requireNonNull(materieType).getDenumire()));
         return discipline;
     }
 
@@ -98,7 +98,7 @@ public class DisciplineMapper {
             discipline.setSemester(Integer.parseInt(materieType.getSemestru()));
             discipline.setId(Integer.parseInt(materieType.getId()));
         } else {
-            logger.warn("Received null studentType while building Discipline object. ");
+           throw new RuntimeException("Received null studentType while building Discipline object. ");
         }
     }
 

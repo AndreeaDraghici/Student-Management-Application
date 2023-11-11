@@ -107,7 +107,7 @@ public class GradeMapper {
 
             checkGradeRules(grade, notaString, studentIdString, materieString);
         } else {
-            logger.warn("Received null gradeType while building Grade object.");
+            throw new RuntimeException("Received null gradeType while building Grade object.");
         }
     }
 

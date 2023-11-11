@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Andreea Draghici on 11/4/2023
@@ -77,7 +78,7 @@ public class StudentMapper {
         if (studentType != null) {
             buildStudent(studentType, student);
         }
-        logger.info("Successfully mapped XML object to intermediary Student object.");
+        logger.info(String.format("Successfully mapped %s XML object to intermediary Student object.", Objects.requireNonNull(studentType).getNume()));
         return student;
     }
 
@@ -99,7 +100,7 @@ public class StudentMapper {
             student.setPhone(studentType.getTelefon());
             student.setGenre(studentType.getSex());
         } else {
-            logger.warn("Received null studentType while building Student object. ");
+            throw new RuntimeException("Received null studentType while building Student object. ");
         }
     }
 
