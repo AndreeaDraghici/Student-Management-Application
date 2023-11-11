@@ -50,7 +50,7 @@ import static com.ace.ucv.utils.GUIConstants.*;
  * Name of project: StudentManagement
  */
 
-public class MainViewController implements Initializable {
+public class MainViewController {
 
     private static final Logger logger = LogManager.getLogger(MainViewController.class);
 
@@ -109,8 +109,8 @@ public class MainViewController implements Initializable {
         this.creator = new AlertCreator();
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+
+    public void initialize() {
         initializeTabs();
         generateBtn.setDisable(true);
     }
