@@ -21,6 +21,7 @@ import com.ace.ucv.service.output.CatalogGeneration;
 import com.ace.ucv.service.parser.DisciplineParser;
 import com.ace.ucv.service.parser.GradeParser;
 import com.ace.ucv.service.parser.StudentParser;
+import com.ace.ucv.utils.AlertCreator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -292,9 +293,9 @@ public class MainViewController {
         fileChooser.setTitle("Choose output directory and save the report");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
         File file = fileChooser.showSaveDialog(root.getScene().getWindow());
+        Catalog catalog = new Catalog();
 
         try {
-            Catalog catalog = new Catalog();
             catalog.setDisciplines(disciplines);
             catalog.setStudents(students);
             catalog.setGrades(grades);
@@ -303,15 +304,8 @@ public class MainViewController {
             generation.generateXMLCatalog(catalog, String.valueOf(file));
 
         } catch (Exception exception) {
-
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initModality(Modality.APPLICATION_MODAL);
-            alert.initOwner(root.getScene().getWindow());
-            alert.setTitle("Warning Dialog Box");
-            alert.setHeaderText("Warning");
-            alert.setContentText(exception.getMessage());
-            alert.showAndWait();
+            AlertCreator creator = new AlertCreator();
+            creator.createWarningModal(root, exception);
         }
-
     }
 }
