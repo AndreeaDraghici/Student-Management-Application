@@ -18,6 +18,8 @@ import com.ace.ucv.service.adapter.GradeMapper;
 import com.ace.ucv.service.adapter.StudentMapper;
 import com.ace.ucv.service.exception.ConfigurationLoaderException;
 import com.ace.ucv.service.output.CatalogGeneration;
+import com.ace.ucv.service.output.poperties.PropertiesHandler;
+import com.ace.ucv.service.output.poperties.PropertiesModel;
 import com.ace.ucv.service.parser.DisciplineParser;
 import com.ace.ucv.service.parser.GradeParser;
 import com.ace.ucv.service.parser.StudentParser;
@@ -40,6 +42,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.ace.ucv.utils.ApplicationPropertiesConstants.APPLICATION_PROPERTIES;
 import static com.ace.ucv.utils.GUIConstants.*;
 
 /**
@@ -100,6 +103,7 @@ public class MainViewController {
     private boolean isStudentFileLoaded = false;
     private boolean isDisciplineFileLoaded = false;
     private boolean isGradeFileLoaded = false;
+
     private final AlertCreator creator;
 
     public MainViewController() {
@@ -109,6 +113,7 @@ public class MainViewController {
     // Initializes the controller.
     public void initialize() {
         initializeTabs();
+        loadApplicationProperties();
         generateBtn.setDisable(true);
     }
 
@@ -146,6 +151,7 @@ public class MainViewController {
             throw new RuntimeException("TabStudent must have the associated table of students information.");
         }
     }
+
 
     // Handles the loading of input file.
     private boolean loadInputFile(TextField textField, String fileType) {
@@ -366,10 +372,87 @@ public class MainViewController {
             CatalogGeneration generation = new CatalogGeneration();
             generation.generateXMLCatalog(catalog, String.valueOf(file));
 
+            saveApplicationProperties();
+
         } catch (Exception exception) {
             String string = String.format("Failed to generate the output catalog due to: %s", exception.getMessage());
-            creator.createWarningModal(root, string);
+            creator.createErrorModal(root, string);
             logger.error(string);
         }
     }
+
+    /**
+     * Loads application properties from the specified file and updates the UI components accordingly.
+     * If the properties file does not exist, no action is taken.
+     */
+    private void loadApplicationProperties() {
+        try {
+            File file = new File(APPLICATION_PROPERTIES);
+
+            if (!file.exists()) {
+                return;
+            }
+
+            PropertiesHandler handler = new PropertiesHandler();
+            PropertiesModel model = handler.loadProperties(file);
+
+            updateUIComponentsWithLoadedProperties(model);
+            logger.info("Loaded  application properties successfully.");
+
+        } catch (Exception e) {
+            String string = String.format("Could not load application properties due to: %s", e.getMessage());
+            creator.createErrorModal(root, string);
+            logger.error(string);
+        }
+    }
+
+
+    /**
+     * Sets the application properties in the UI based on the provided PropertiesModel.
+     *
+     * @param model The PropertiesModel containing the application properties.
+     */
+    private void updateUIComponentsWithLoadedProperties(PropertiesModel model) {
+        if (new File(model.getStudentPath()).exists()) {
+            studentTextField.setText(model.getStudentPath());
+        }
+
+        if (new File(model.getDisciplinePath()).exists()) {
+            disciplineTextField.setText(model.getDisciplinePath());
+        }
+
+        if (new File(model.getGradePath()).exists()) {
+            gradeTextField.setText(model.getGradePath());
+        }
+    }
+
+
+    /**
+     * Saves the current state of UI components as application properties to the specified file.
+     */
+    private void saveApplicationProperties() {
+        try {
+
+            PropertiesModel model = new PropertiesModel();
+            model.setGradePath(gradeTextField.getText());
+            model.setDisciplinePath(disciplineTextField.getText());
+            model.setStudentPath(studentTextField.getText());
+
+            File file = new File(APPLICATION_PROPERTIES);
+
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            PropertiesHandler handler = new PropertiesHandler();
+            handler.saveProperties(model, file);
+            logger.info("Saved application properties successfully.");
+
+        } catch (Exception e) {
+            String string = String.format("Failed to save application properties due to: %s", e.getMessage());
+            creator.createErrorModal(root, string);
+            logger.error(string);
+        }
+    }
+
 }
