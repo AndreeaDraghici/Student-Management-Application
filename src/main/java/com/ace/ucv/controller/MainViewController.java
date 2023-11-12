@@ -20,9 +20,11 @@ import com.ace.ucv.service.exception.ConfigurationLoaderException;
 import com.ace.ucv.service.output.CatalogGeneration;
 import com.ace.ucv.service.output.poperties.PropertiesHandler;
 import com.ace.ucv.service.output.poperties.PropertiesModel;
+import com.ace.ucv.service.output.poperties.iface.IProperties;
 import com.ace.ucv.service.parser.DisciplineParser;
 import com.ace.ucv.service.parser.GradeParser;
 import com.ace.ucv.service.parser.StudentParser;
+import com.ace.ucv.service.parser.iface.IConfigurationLoader;
 import com.ace.ucv.utils.AlertCreator;
 import com.ace.ucv.utils.PathChooser;
 import javafx.collections.FXCollections;
@@ -106,8 +108,17 @@ public class MainViewController {
 
     private final AlertCreator creator;
 
+    private final IProperties propertiesHandler; // Use the interface
+    private IConfigurationLoader<StudentiType> studentParser; // Use the interface
+    private IConfigurationLoader<MateriiType> disciplineParser; // Use the interface
+    private IConfigurationLoader<NoteType> gradeParser; // Use the interface
+
     public MainViewController() {
         this.creator = new AlertCreator();
+        this.propertiesHandler = new PropertiesHandler();
+        this.studentParser = new StudentParser();
+        this.disciplineParser = new DisciplineParser();
+        this.gradeParser = new GradeParser();
     }
 
     // Initializes the controller.
@@ -212,7 +223,7 @@ public class MainViewController {
     // Loads student data from an XML file.
     private ObservableList<Student> loadStudentDataFromFile(String text) {
         try {
-            StudentParser studentParser = new StudentParser();
+            studentParser.inputCheck(new File(text));
             StudentiType studentData = studentParser.loadConfiguration(new File(text));
 
             StudentMapper studentMapper = new StudentMapper();
@@ -266,7 +277,7 @@ public class MainViewController {
     // Loads discipline data from an XML file.
     private ObservableList<Discipline> loadDisciplineDataFromFile(String text) {
         try {
-            DisciplineParser disciplineParser = new DisciplineParser();
+            disciplineParser.inputCheck(new File(text));
             MateriiType disciplineData = disciplineParser.loadConfiguration(new File(text));
 
             DisciplineMapper disciplineMapper = new DisciplineMapper();
@@ -325,7 +336,7 @@ public class MainViewController {
     // Loads grade data from an XML file.
     private ObservableList<Grade> loadGradeDataFromFile(String text) {
         try {
-            GradeParser gradeParser = new GradeParser();
+            gradeParser.inputCheck(new File(text));
             NoteType gradeData = gradeParser.loadConfiguration(new File(text));
 
             GradeMapper gradeMapper = new GradeMapper();
@@ -393,8 +404,7 @@ public class MainViewController {
                 return;
             }
 
-            PropertiesHandler handler = new PropertiesHandler();
-            PropertiesModel model = handler.loadProperties(file);
+            PropertiesModel model = propertiesHandler.loadProperties(file);
 
             updateUIComponentsWithLoadedProperties(model);
             logger.info("Loaded  application properties successfully.");
@@ -444,8 +454,7 @@ public class MainViewController {
                 file.createNewFile();
             }
 
-            PropertiesHandler handler = new PropertiesHandler();
-            handler.saveProperties(model, file);
+            propertiesHandler.saveProperties(model, file);
             logger.info("Saved application properties successfully.");
 
         } catch (Exception e) {

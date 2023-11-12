@@ -14,7 +14,7 @@ import java.io.File;
  *
  * @param <T> The type of configuration object to be loaded.
  */
-public interface IConfigLoader<T> {
+public interface IConfigurationLoader<T> {
 
     /**
      * Loads configuration from the specified file.

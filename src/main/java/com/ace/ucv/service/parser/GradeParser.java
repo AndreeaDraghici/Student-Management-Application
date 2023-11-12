@@ -1,9 +1,8 @@
 package com.ace.ucv.service.parser;
 
 import com.ace.ucv.model.xml.nota.NoteType;
-import com.ace.ucv.model.xml.student.StudentiType;
 import com.ace.ucv.service.exception.ConfigurationLoaderException;
-import com.ace.ucv.service.parser.iface.IConfigLoader;
+import com.ace.ucv.service.parser.iface.IConfigurationLoader;
 
 import javax.xml.bind.*;
 import java.io.File;
@@ -17,7 +16,7 @@ import java.nio.file.Files;
  */
 
 // Implement the methods from the interface
-public class GradeParser implements IConfigLoader<NoteType>{
+public class GradeParser implements IConfigurationLoader<NoteType> {
 
     /**
      * Deserializes an XML file into a NoteType object using JAXB.
