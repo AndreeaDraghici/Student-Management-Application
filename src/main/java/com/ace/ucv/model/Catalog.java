@@ -1,9 +1,11 @@
 package com.ace.ucv.model;
 
+import com.ace.ucv.model.iface.ICatalog;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Catalog implements ICatalog{
+public class Catalog implements ICatalog {
 
     private List<Student> students;
     private List<Discipline> disciplines;

@@ -1,8 +1,7 @@
 package com.ace.ucv.service.output.poperties;
 
 import com.ace.ucv.service.exception.ApplicationPropertiesException;
-import com.ace.ucv.service.exception.ConfigurationLoaderException;
-import com.ace.ucv.service.exception.ConfigurationMapperException;
+import com.ace.ucv.service.output.poperties.iface.IProperties;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -21,7 +20,7 @@ import static com.ace.ucv.utils.ApplicationPropertiesConstants.*;
 /*
  * Utility class for handling application properties, providing methods to load and save properties.
  */
-public class PropertiesHandler {
+public class PropertiesHandler implements IProperties {
 
     // Configuration properties instance
     private final Properties instance = new Properties();
@@ -33,6 +32,7 @@ public class PropertiesHandler {
      * @return A PropertiesModel containing the loaded properties.
      * @throws ApplicationPropertiesException If an error occurs during loading.
      */
+    @Override
     public PropertiesModel loadProperties(File file) throws ApplicationPropertiesException {
         PropertiesModel model = new PropertiesModel();
 
@@ -53,6 +53,7 @@ public class PropertiesHandler {
      * @param file  The file to which properties are to be saved.
      * @throws ApplicationPropertiesException If an error occurs during saving.
      */
+    @Override
     public void saveProperties(PropertiesModel model, File file) throws ApplicationPropertiesException {
         checkInputs(model, file);
 
