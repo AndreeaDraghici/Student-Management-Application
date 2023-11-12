@@ -109,9 +109,9 @@ public class MainViewController {
     private final AlertCreator creator;
 
     private final IProperties propertiesHandler; // Use the interface
-    private IConfigurationLoader<StudentiType> studentParser; // Use the interface
-    private IConfigurationLoader<MateriiType> disciplineParser; // Use the interface
-    private IConfigurationLoader<NoteType> gradeParser; // Use the interface
+    private final IConfigurationLoader<StudentiType> studentParser; // Use the interface
+    private final IConfigurationLoader<MateriiType> disciplineParser; // Use the interface
+    private final IConfigurationLoader<NoteType> gradeParser; // Use the interface
 
     public MainViewController() {
         this.creator = new AlertCreator();
