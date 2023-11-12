@@ -126,6 +126,7 @@ public class MainViewController {
         initializeTabs();
         loadApplicationProperties();
         generateCatalogButton.setDisable(true);
+        loadGradeButton.setDisable(true);
     }
 
     // Initializes the tabs with their respective content.
@@ -134,6 +135,7 @@ public class MainViewController {
         getDisciplineTabContent();
         getGradeTabContent();
         checkGenerateButton();
+        checkLoadGradeButton();
     }
 
     // Retrieves the content for the Grade tab.
@@ -207,6 +209,7 @@ public class MainViewController {
 
             isStudentFileLoaded = true;
             checkGenerateButton();
+            checkLoadGradeButton();
 
         } catch (IOException e) {
             isStudentFileLoaded = false;
@@ -260,6 +263,7 @@ public class MainViewController {
 
             isDisciplineFileLoaded = true;
             checkGenerateButton();
+            checkLoadGradeButton();
 
         } catch (IOException e) {
             isDisciplineFileLoaded = false;
@@ -355,6 +359,11 @@ public class MainViewController {
     // Checks if all necessary files are loaded to enable the generate button.
     private void checkGenerateButton() {
         generateCatalogButton.setDisable(!(isStudentFileLoaded && isDisciplineFileLoaded && isGradeFileLoaded));
+    }
+
+    // Checks the state of the Load Grade button.
+    private void checkLoadGradeButton() {
+        loadGradeButton.setDisable(!(isStudentFileLoaded && isDisciplineFileLoaded));
     }
 
     // Handles the button click to generate the output catalog.
