@@ -3,7 +3,7 @@ package com.ace.ucv.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Catalog {
+public class Catalog implements ICatalog{
 
     private List<Student> students;
     private List<Discipline> disciplines;
@@ -63,6 +63,7 @@ public class Catalog {
      *
      * @param student The student to be added.
      */
+    @Override
     public void addStudent(Student student) {
         if (students == null) {
             students = new ArrayList<>();
@@ -75,6 +76,7 @@ public class Catalog {
      *
      * @param discipline The discipline to be added.
      */
+    @Override
     public void addDiscipline(Discipline discipline) {
         if (disciplines == null) {
             disciplines = new ArrayList<>();
@@ -87,47 +89,12 @@ public class Catalog {
      *
      * @param grade The grade to be added.
      */
+    @Override
     public void addGrade(Grade grade) {
         if (grades == null) {
             grades = new ArrayList<>();
         }
 
         grades.add(grade);
-    }
-
-    /**
-     * Removes a student from the catalog.
-     *
-     * @param student The student to be removed.
-     */
-    @SuppressWarnings("unused") // Marking the method as used
-    public void removeStudent(Student student) {
-        if (students != null) {
-            students.remove(student);
-        }
-    }
-
-    /**
-     * Removes a discipline from the catalog.
-     *
-     * @param discipline The discipline to be removed.
-     */
-    @SuppressWarnings("unused") // Marking the method as used
-    public void removeDiscipline(Discipline discipline) {
-        if (disciplines != null) {
-            disciplines.remove(discipline);
-        }
-    }
-
-    /**
-     * Removes a grade from the catalog.
-     *
-     * @param grade The grade to be removed.
-     */
-    @SuppressWarnings("unused") // Marking the method as used
-    public void removeGrade(Grade grade) {
-        if (grades != null) {
-            grades.remove(grade);
-        }
     }
 }
