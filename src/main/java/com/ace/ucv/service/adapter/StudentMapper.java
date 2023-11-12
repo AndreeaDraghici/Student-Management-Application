@@ -3,6 +3,7 @@ package com.ace.ucv.service.adapter;
 import com.ace.ucv.model.Student;
 import com.ace.ucv.model.xml.student.StudentType;
 import com.ace.ucv.model.xml.student.StudentiType;
+import com.ace.ucv.service.adapter.iface.IStudentMapper;
 import com.ace.ucv.service.exception.ConfigurationMapperException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +16,7 @@ import java.util.Objects;
  * Created by Andreea Draghici on 11/4/2023
  * Name of project: StudentManagement
  */
-public class StudentMapper {
+public class StudentMapper implements IStudentMapper {
 
     private static final Logger logger = LogManager.getLogger(StudentMapper.class);
 
@@ -72,6 +73,7 @@ public class StudentMapper {
      * @param studentType The StudentType object to be mapped.
      * @return A Student object representing the mapped data.
      */
+    @Override
     public Student adaptXmlObjectToStudentIntermediaryObject(StudentType studentType) {
         Student student = new Student();
 

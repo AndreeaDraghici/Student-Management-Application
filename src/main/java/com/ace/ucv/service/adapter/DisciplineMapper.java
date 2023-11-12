@@ -3,6 +3,7 @@ package com.ace.ucv.service.adapter;
 import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.xml.materie.MateriaType;
 import com.ace.ucv.model.xml.materie.MateriiType;
+import com.ace.ucv.service.adapter.iface.IDisciplineMapper;
 import com.ace.ucv.service.exception.ConfigurationMapperException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +16,7 @@ import java.util.Objects;
  * Created by Andreea Draghici on 11/4/2023
  * Name of project: StudentManagement
  */
-public class DisciplineMapper {
+public class DisciplineMapper implements IDisciplineMapper {
 
     private static final Logger logger = LogManager.getLogger(DisciplineMapper.class);
 
@@ -73,6 +74,7 @@ public class DisciplineMapper {
      * @param materieType The MaterieType object to be mapped.
      * @return A Discipline object representing the mapped data.
      */
+    @Override
     public Discipline adaptXmlObjectToDisciplineIntermediaryObject(MateriaType materieType) {
         Discipline discipline = new Discipline();
 

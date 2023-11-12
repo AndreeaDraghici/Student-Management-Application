@@ -2,7 +2,7 @@ package com.ace.ucv.service.parser;
 
 import com.ace.ucv.model.xml.student.StudentiType;
 import com.ace.ucv.service.exception.ConfigurationLoaderException;
-import com.ace.ucv.service.parser.iface.IConfigurationLoader;
+import com.ace.ucv.service.parser.iface.IStudentParser;
 
 import javax.xml.bind.*;
 import java.io.File;
@@ -16,7 +16,7 @@ import java.nio.file.Files;
 
 
 // Implement the methods from the interface
-public class StudentParser implements IConfigurationLoader<StudentiType> {
+public class StudentParser implements IStudentParser {
 
     /**
      * Deserializes an XML file into a StudentiType object using JAXB.

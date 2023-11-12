@@ -16,6 +16,9 @@ import com.ace.ucv.model.xml.student.StudentiType;
 import com.ace.ucv.service.adapter.DisciplineMapper;
 import com.ace.ucv.service.adapter.GradeMapper;
 import com.ace.ucv.service.adapter.StudentMapper;
+import com.ace.ucv.service.adapter.iface.IDisciplineMapper;
+import com.ace.ucv.service.adapter.iface.IGradeMapper;
+import com.ace.ucv.service.adapter.iface.IStudentMapper;
 import com.ace.ucv.service.exception.ConfigurationLoaderException;
 import com.ace.ucv.service.output.CatalogGeneration;
 import com.ace.ucv.service.output.poperties.PropertiesHandler;
@@ -24,7 +27,9 @@ import com.ace.ucv.service.output.poperties.iface.IProperties;
 import com.ace.ucv.service.parser.DisciplineParser;
 import com.ace.ucv.service.parser.GradeParser;
 import com.ace.ucv.service.parser.StudentParser;
-import com.ace.ucv.service.parser.iface.IConfigurationLoader;
+import com.ace.ucv.service.parser.iface.IDisciplineParser;
+import com.ace.ucv.service.parser.iface.IGradeParser;
+import com.ace.ucv.service.parser.iface.IStudentParser;
 import com.ace.ucv.utils.AlertCreator;
 import com.ace.ucv.utils.PathChooser;
 import javafx.collections.FXCollections;
@@ -108,10 +113,13 @@ public class MainViewController {
 
     private final AlertCreator creator;
 
-    private final IProperties propertiesHandler; // Use the interface
-    private final IConfigurationLoader<StudentiType> studentParser; // Use the interface
-    private final IConfigurationLoader<MateriiType> disciplineParser; // Use the interface
-    private final IConfigurationLoader<NoteType> gradeParser; // Use the interface
+    private final IProperties propertiesHandler;
+    private final IStudentParser studentParser;
+    private final IDisciplineParser disciplineParser;
+    private final IGradeParser gradeParser;
+    private final IDisciplineMapper disciplineMapper;
+    private final IStudentMapper studentMapper;
+    private final IGradeMapper gradeMapper;
 
     public MainViewController() {
         this.creator = new AlertCreator();
@@ -119,7 +127,11 @@ public class MainViewController {
         this.studentParser = new StudentParser();
         this.disciplineParser = new DisciplineParser();
         this.gradeParser = new GradeParser();
+        this.disciplineMapper = new DisciplineMapper();
+        this.gradeMapper = new GradeMapper();
+        this.studentMapper = new StudentMapper();
     }
+
 
     // Initializes the controller.
     public void initialize() {
@@ -223,7 +235,6 @@ public class MainViewController {
             studentParser.inputCheck(new File(text));
             StudentiType studentData = studentParser.loadConfiguration(new File(text));
 
-            StudentMapper studentMapper = new StudentMapper();
             List<Student> studentList = new ArrayList<>();
             Student student;
 
@@ -277,7 +288,6 @@ public class MainViewController {
             disciplineParser.inputCheck(new File(text));
             MateriiType disciplineData = disciplineParser.loadConfiguration(new File(text));
 
-            DisciplineMapper disciplineMapper = new DisciplineMapper();
             List<Discipline> disciplineList = new ArrayList<>();
             Discipline discipline;
 
@@ -335,7 +345,6 @@ public class MainViewController {
             gradeParser.inputCheck(new File(text));
             NoteType gradeData = gradeParser.loadConfiguration(new File(text));
 
-            GradeMapper gradeMapper = new GradeMapper();
             List<Grade> gradeList = new ArrayList<>();
             Grade grade;
 
@@ -472,7 +481,7 @@ public class MainViewController {
      * @param errorMessage The error message to display in the modal.
      */
     private void showErrorModal(String errorMessage) {
-        creator.createErrorModal( errorMessage);
+        creator.createErrorModal(errorMessage);
     }
 
 

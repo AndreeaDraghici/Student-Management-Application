@@ -2,7 +2,7 @@ package com.ace.ucv.service.parser;
 
 import com.ace.ucv.model.xml.materie.MateriiType;
 import com.ace.ucv.service.exception.ConfigurationLoaderException;
-import com.ace.ucv.service.parser.iface.IConfigurationLoader;
+import com.ace.ucv.service.parser.iface.IDisciplineParser;
 
 import javax.xml.bind.*;
 import java.io.File;
@@ -15,7 +15,7 @@ import java.nio.file.Files;
  */
 
 // Implement the methods from the interface
-public class DisciplineParser implements IConfigurationLoader<MateriiType> {
+public class DisciplineParser implements IDisciplineParser {
 
     /**
      * Deserializes an XML file into a MateriiType object using JAXB.

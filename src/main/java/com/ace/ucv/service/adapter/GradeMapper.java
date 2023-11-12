@@ -3,6 +3,7 @@ package com.ace.ucv.service.adapter;
 import com.ace.ucv.model.Grade;
 import com.ace.ucv.model.xml.nota.NotaStudType;
 import com.ace.ucv.model.xml.nota.NoteType;
+import com.ace.ucv.service.adapter.iface.IGradeMapper;
 import com.ace.ucv.service.exception.ConfigurationMapperException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +15,7 @@ import java.util.List;
  * Created by Andreea Draghici on 11/4/2023
  * Name of project: StudentManagement
  */
-public class GradeMapper {
+public class GradeMapper implements IGradeMapper {
 
     private static final Logger logger = LogManager.getLogger(GradeMapper.class);
 
@@ -74,6 +75,7 @@ public class GradeMapper {
      * @param gradeType The NoteType.Grade object to be mapped.
      * @return A Grade object representing the mapped data.
      */
+    @Override
     public Grade adaptXmlObjectToGradeIntermediaryObject(NotaStudType gradeType) {
         Grade grade = new Grade();
 
