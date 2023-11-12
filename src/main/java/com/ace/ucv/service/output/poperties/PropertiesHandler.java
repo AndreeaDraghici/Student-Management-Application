@@ -1,5 +1,9 @@
 package com.ace.ucv.service.output.poperties;
 
+import com.ace.ucv.service.exception.ApplicationPropertiesException;
+import com.ace.ucv.service.exception.ConfigurationLoaderException;
+import com.ace.ucv.service.exception.ConfigurationMapperException;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,7 +19,7 @@ import static com.ace.ucv.utils.ApplicationPropertiesConstants.*;
  */
 
 /*
-* Utility class for handling application properties, providing methods to load and save properties.
+ * Utility class for handling application properties, providing methods to load and save properties.
  */
 public class PropertiesHandler {
 
@@ -27,21 +31,17 @@ public class PropertiesHandler {
      *
      * @param file The file from which properties are to be loaded.
      * @return A PropertiesModel containing the loaded properties.
-     * @throws RuntimeException If an error occurs during loading.
+     * @throws ApplicationPropertiesException If an error occurs during loading.
      */
-    public PropertiesModel loadProperties(File file) {
+    public PropertiesModel loadProperties(File file) throws ApplicationPropertiesException {
         PropertiesModel model = new PropertiesModel();
 
         try (InputStream stream = Files.newInputStream(file.toPath())) {
             instance.load(stream);
-
-            model.setStudentPath(instance.getProperty(STUDENT_PATH));
-            model.setDisciplinePath(instance.getProperty(DISCIPLINE_PATH));
-            model.setGradePath(instance.getProperty(GRADE_PATH));
-
+            setModelProperties(model);
             return model;
         } catch (IOException ioException) {
-            throw new RuntimeException(String.format("Failed to load the properties due to: %s", ioException.getMessage()));
+            throw new ApplicationPropertiesException("Failed to load the properties.", ioException);
         }
     }
 
@@ -51,16 +51,16 @@ public class PropertiesHandler {
      *
      * @param model The PropertiesModel containing properties to be saved.
      * @param file  The file to which properties are to be saved.
-     * @throws RuntimeException If an error occurs during saving.
+     * @throws ApplicationPropertiesException If an error occurs during saving.
      */
-    public void saveProperties(PropertiesModel model, File file) {
+    public void saveProperties(PropertiesModel model, File file) throws ApplicationPropertiesException {
         checkInputs(model, file);
 
         try (FileWriter writer = new FileWriter(file)) {
             setConfigurationProperties(model);
             instance.store(writer, null);
         } catch (IOException ioException) {
-            throw new RuntimeException(String.format("Could not save properties file to the system due to: %s", ioException.getMessage()));
+            throw new ApplicationPropertiesException("Could not save properties file to the system.", ioException);
         }
     }
 
@@ -70,15 +70,15 @@ public class PropertiesHandler {
      *
      * @param model The PropertiesModel to be checked.
      * @param file  The File to be checked.
-     * @throws RuntimeException If either the model or the file is null.
+     * @throws ApplicationPropertiesException If either the model or the file is null.
      */
     private static void checkInputs(PropertiesModel model, File file) {
         if (model == null) {
-            throw new RuntimeException("Properties handler module cannot be null!");
+            throw new ApplicationPropertiesException("Properties handler module cannot be null!");
         }
 
         if (file == null) {
-            throw new RuntimeException("Properties handler file cannot be null!");
+            throw new ApplicationPropertiesException("Properties handler file cannot be null!");
         }
     }
 
@@ -89,22 +89,34 @@ public class PropertiesHandler {
      * @param model The PropertiesModel containing properties to be set.
      */
     private void setConfigurationProperties(PropertiesModel model) {
-        if (model.getStudentPath() == null) {
-            instance.setProperty(STUDENT_PATH, "");
-        } else {
-            instance.setProperty(STUDENT_PATH, model.getStudentPath());
-        }
+        setPropertyIfNotNull(STUDENT_PATH, model.getStudentPath());
+        setPropertyIfNotNull(DISCIPLINE_PATH, model.getDisciplinePath());
+        setPropertyIfNotNull(GRADE_PATH, model.getGradePath());
+    }
 
-        if (model.getDisciplinePath() == null) {
-            instance.setProperty(DISCIPLINE_PATH, "");
-        } else {
-            instance.setProperty(DISCIPLINE_PATH, model.getDisciplinePath());
-        }
 
-        if (model.getGradePath() == null) {
-            instance.setProperty(GRADE_PATH, "");
+    /**
+     * Sets properties in the provided PropertiesModel.
+     *
+     * @param model The PropertiesModel to be set.
+     */
+    private void setModelProperties(PropertiesModel model) {
+        model.setStudentPath(instance.getProperty(STUDENT_PATH));
+        model.setDisciplinePath(instance.getProperty(DISCIPLINE_PATH));
+        model.setGradePath(instance.getProperty(GRADE_PATH));
+    }
+
+    /**
+     * Sets a property in the instance if the provided value is not null.
+     *
+     * @param key   The key of the property.
+     * @param value The value to be set.
+     */
+    private void setPropertyIfNotNull(String key, String value) {
+        if (value == null) {
+            instance.setProperty(key, "");
         } else {
-            instance.setProperty(GRADE_PATH, model.getGradePath());
+            instance.setProperty(key, value);
         }
     }
 }

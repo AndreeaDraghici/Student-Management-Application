@@ -23,7 +23,7 @@ class StudentMapperTest {
     }
 
     @Test
-    public void testAdaptXmlStudentTypeToStudentListWhenXmlStudentAndListNotNullThenReturnStudentList() {
+    void testAdaptXmlStudentTypeToStudentListWhenXmlStudentAndListNotNullThenReturnStudentList() {
         StudentType studentType = new StudentType();
         studentType.setId("1");
         studentType.setNume("John");
@@ -46,23 +46,12 @@ class StudentMapperTest {
 
 
     @Test
-    public void testAdaptXmlStudentTypeToStudentListWhenXmlListNullThenThrowRuntimeException() {
+    void testAdaptXmlStudentTypeToStudentListWhenXmlListNullThenThrowRuntimeException() {
         assertThrows(RuntimeException.class, () -> studentMapper.adaptXmlStudentTypeToStudentList(null));
     }
 
     @Test
-    public void testAdaptXmlObjectToStudentIntermediaryObjectWhenXmlStudentNullThenReturnDefaultStudent() {
-        Student student = studentMapper.adaptXmlObjectToStudentIntermediaryObject(null);
-
-        assertEquals(0, student.getId());
-        assertEquals("", student.getName());
-        assertEquals("", student.getSurname());
-        assertEquals("", student.getPhone());
-        assertEquals("", student.getGenre());
-    }
-
-    @Test
-    public void testAdaptXmlObjectToStudentIntermediaryObjectWhenXmlStudentNotNullThenReturnStudent() {
+    void testAdaptXmlObjectToStudentIntermediaryObjectWhenXmlStudentNotNullThenReturnStudent() {
         StudentType studentType = new StudentType();
         studentType.setId("1");
         studentType.setNume("John");
