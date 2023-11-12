@@ -33,9 +33,8 @@ public class CatalogBuilder {
      * Creates an XML document representing the catalog based on the provided lists of students, disciplines, and grades.
      *
      * @return The created XML document.
-     * @throws Exception If an error occurs during document creation.
      */
-    public Document createXmlDocument(Catalog catalog) throws Exception {
+    public Document createXmlDocument(Catalog catalog) {
         try {
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
