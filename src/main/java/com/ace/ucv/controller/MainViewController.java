@@ -20,6 +20,7 @@ import com.ace.ucv.service.exception.ConfigurationLoaderException;
 import com.ace.ucv.service.output.CatalogGeneration;
 import com.ace.ucv.service.output.poperties.PropertiesHandler;
 import com.ace.ucv.service.output.poperties.PropertiesModel;
+import com.ace.ucv.service.output.poperties.iface.IProperties;
 import com.ace.ucv.service.parser.DisciplineParser;
 import com.ace.ucv.service.parser.GradeParser;
 import com.ace.ucv.service.parser.StudentParser;
@@ -106,8 +107,11 @@ public class MainViewController {
 
     private final AlertCreator creator;
 
+    private final IProperties propertiesHandler; // Use the interface
+
     public MainViewController() {
         this.creator = new AlertCreator();
+        this.propertiesHandler = new PropertiesHandler();
     }
 
     // Initializes the controller.
@@ -393,8 +397,7 @@ public class MainViewController {
                 return;
             }
 
-            PropertiesHandler handler = new PropertiesHandler();
-            PropertiesModel model = handler.loadProperties(file);
+            PropertiesModel model = propertiesHandler.loadProperties(file);
 
             updateUIComponentsWithLoadedProperties(model);
             logger.info("Loaded  application properties successfully.");
@@ -444,8 +447,7 @@ public class MainViewController {
                 file.createNewFile();
             }
 
-            PropertiesHandler handler = new PropertiesHandler();
-            handler.saveProperties(model, file);
+            propertiesHandler.saveProperties(model, file);
             logger.info("Saved application properties successfully.");
 
         } catch (Exception e) {
