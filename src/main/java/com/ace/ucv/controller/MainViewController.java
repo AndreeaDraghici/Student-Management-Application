@@ -175,12 +175,12 @@ public class MainViewController {
 
         File selectedFile = fileChooser.showOpenDialog(root.getScene().getWindow());
         if (selectedFile == null) {
-            showErrorModal(String.format("No input selected for %s file.", fileType));
+            showWarningModal(String.format("No input selected for %s file.", fileType));
             return true;
         }
 
         if (!selectedFile.toString().endsWith(XML)) {
-            showErrorModal("Select a valid input file! Input file must have the .xml extension!");
+            showWarningModal("Select a valid input file! Input file must have the .xml extension!");
             return true;
         }
 
@@ -377,6 +377,7 @@ public class MainViewController {
             CatalogGeneration generation = new CatalogGeneration();
             generation.generateXMLCatalog(catalog, String.valueOf(file));
 
+            showInformationModal(String.format("Catalog was generated with succes! Check output path: %s ", file.getPath()));
             saveApplicationProperties();
 
         } catch (Exception exception) {
@@ -466,6 +467,27 @@ public class MainViewController {
     private void showErrorModal(String errorMessage) {
         creator.createErrorModal(root, errorMessage);
     }
+
+
+    /**
+     * Shows a warning modal with the specified warning message.
+     *
+     * @param warningMessage The warning message to display in the modal.
+     */
+    private void showWarningModal(String warningMessage) {
+        creator.createWarningModal(root, warningMessage);
+    }
+
+
+    /**
+     * Shows an information modal with the specified information message.
+     *
+     * @param informationMessage The information message to display in the modal.
+     */
+    private void showInformationModal(String informationMessage) {
+        creator.createInformationModal(root, informationMessage);
+    }
+
 
     /**
      * Loads an FXML file and returns the FXMLLoader instance.

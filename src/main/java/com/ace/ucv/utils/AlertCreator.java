@@ -46,7 +46,7 @@ public class AlertCreator {
             getAlertDefaultIcon(alert);
             alert.setTitle("Warning Dialog Box");
             alert.setHeaderText("Warning");
-            expandTheDialogExceptionMessage(contentText, alert);
+            expandTheDialogMessage(contentText, alert);
             alert.showAndWait();
         } catch (Exception e) {
             logger.warn(String.format("Failed to show the warning alert box due to: %s", e.getMessage()), e);
@@ -67,7 +67,7 @@ public class AlertCreator {
             getAlertDefaultIcon(alert);
             alert.setTitle("Error Dialog Box");
             alert.setHeaderText("Error");
-            expandTheDialogExceptionMessage(contentText, alert);
+            expandTheDialogMessage(contentText, alert);
             alert.showAndWait();
         } catch (Exception e) {
             logger.warn(String.format("Failed to show the error alert box due to: %s", e.getMessage()), e);
@@ -75,8 +75,29 @@ public class AlertCreator {
     }
 
 
+    /**
+     * Creates and displays an info modal dialog.
+     *
+     * @param root        The root AnchorPane used to display the Information dialog.
+     * @param contentText The content text of the Information dialog.
+     */
+    public void createInformationModal(AnchorPane root, String contentText) {
+        try {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.initModality(Modality.APPLICATION_MODAL);
+            getAlertDefaultIcon(alert);
+            alert.setTitle("Information Dialog Box");
+            alert.setHeaderText("Information");
+            expandTheDialogMessage(contentText, alert);
+            alert.showAndWait();
+        } catch (Exception e) {
+            logger.warn(String.format("Failed to show the information alert box due to: %s", e.getMessage()), e);
+        }
+    }
+
+
     // Expands the content of the dialog by adding a TextArea.
-    private static void expandTheDialogExceptionMessage(String string, Alert alert) {
+    private static void expandTheDialogMessage(String string, Alert alert) {
         TextArea textArea = new TextArea(string);
         textArea.setEditable(false);
         textArea.setWrapText(true);
