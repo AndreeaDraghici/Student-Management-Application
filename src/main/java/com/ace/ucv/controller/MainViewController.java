@@ -56,6 +56,8 @@ public class MainViewController {
 
     private static final Logger logger = LogManager.getLogger(MainViewController.class);
 
+    public static final String XML = ".xml";
+
     @FXML
     public AnchorPane gradeTabContent;
 
@@ -66,13 +68,13 @@ public class MainViewController {
     private AnchorPane studentTabContent;
 
     @FXML
-    private Button studentBtn;
+    private Button loadStudentButton;
 
     @FXML
-    private Button gradeBtn;
+    private Button loadGradeButton;
 
     @FXML
-    private Button disciplineBtn;
+    private Button loadDisciplineButton;
 
     @FXML
     private TextField studentTextField;
@@ -93,7 +95,7 @@ public class MainViewController {
     public Tab gradeTab;
 
     @FXML
-    private Button generateBtn;
+    private Button generateCatalogButton;
 
     @FXML
     AnchorPane root;
@@ -125,7 +127,7 @@ public class MainViewController {
     public void initialize() {
         initializeTabs();
         loadApplicationProperties();
-        generateBtn.setDisable(true);
+        generateCatalogButton.setDisable(true);
     }
 
     // Initializes the tabs with their respective content.
@@ -163,33 +165,29 @@ public class MainViewController {
         }
     }
 
-
     // Handles the loading of input file.
     private boolean loadInputFile(TextField textField, String fileType) {
-
         PathChooser chooser = new PathChooser();
         FileChooser fileChooser = chooser.getFileChooser(fileType);
 
         File lastUsed = new File(textField.getText());
-        if (lastUsed.exists()) {
-            fileChooser.setInitialDirectory(new File(lastUsed.getParent()));
-        }
+        chooser.setInitialDirectoryIfExists(fileChooser, lastUsed);
 
         File selectedFile = fileChooser.showOpenDialog(root.getScene().getWindow());
         if (selectedFile == null) {
-            String errorMessage = String.format("No input selected for %s file.", fileType);
-            creator.createErrorModal(root, errorMessage);
+            showErrorModal(String.format("No input selected for %s file.", fileType));
             return true;
         }
 
-        if (!selectedFile.toString().endsWith(".xml")) {
-            String errorMessage = "Select a valid input file! Input file must have the .xml extension!";
-            creator.createErrorModal(root, errorMessage);
+        if (!selectedFile.toString().endsWith(XML)) {
+            showErrorModal("Select a valid input file! Input file must have the .xml extension!");
             return true;
         }
+
         textField.setText(selectedFile.getAbsolutePath());
         return false;
     }
+
 
     // Handles the button click to load student information.
     @FXML
@@ -200,9 +198,7 @@ public class MainViewController {
                 return;
             }
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(STUDENT_VIEW_FXML));
-            root = loader.load();
-
+            FXMLLoader loader = loadFXML(STUDENT_VIEW_FXML);
             StudentTableController studentController = loader.getController();
 
             students = loadStudentDataFromFile(studentTextField.getText());
@@ -241,7 +237,7 @@ public class MainViewController {
 
         } catch (ConfigurationLoaderException e) {
             String string = String.format("Error loading students information from input file due to: %s", e.getMessage());
-            creator.createErrorModal(root, string);
+            showErrorModal(string);
             logger.error(string);
             return FXCollections.emptyObservableList();
         }
@@ -255,8 +251,7 @@ public class MainViewController {
                 return;
             }
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(DISCIPLINE_VIEW_FXML));
-            root = loader.load();
+            FXMLLoader loader = loadFXML(DISCIPLINE_VIEW_FXML);
 
             DisciplineTableController disciplineTableController = loader.getController();
             disciplines = loadDisciplineDataFromFile(disciplineTextField.getText());
@@ -296,7 +291,7 @@ public class MainViewController {
 
         } catch (ConfigurationLoaderException e) {
             String string = String.format("Error loading disciplines information from input file due to: %s", e.getMessage());
-            creator.createErrorModal(root, string);
+            showErrorModal(string);
             logger.error(string);
             return FXCollections.emptyObservableList();
         }
@@ -310,8 +305,7 @@ public class MainViewController {
                 return;
             }
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(GRADE_VIEW_FXML));
-            root = loader.load();
+            FXMLLoader loader = loadFXML(GRADE_VIEW_FXML);
 
             GradeTableController gradeTableController = loader.getController();
             grades = loadGradeDataFromFile(gradeTextField.getText());
@@ -354,7 +348,7 @@ public class MainViewController {
 
         } catch (ConfigurationLoaderException e) {
             String string = String.format("Error loading grades information from input file due to: %s", e.getMessage());
-            creator.createErrorModal(root, string);
+            showErrorModal(string);
             logger.error(string);
             return FXCollections.emptyObservableList();
         }
@@ -362,7 +356,7 @@ public class MainViewController {
 
     // Checks if all necessary files are loaded to enable the generate button.
     private void checkGenerateButton() {
-        generateBtn.setDisable(!(isStudentFileLoaded && isDisciplineFileLoaded && isGradeFileLoaded));
+        generateCatalogButton.setDisable(!(isStudentFileLoaded && isDisciplineFileLoaded && isGradeFileLoaded));
     }
 
     // Handles the button click to generate the output catalog.
@@ -387,7 +381,7 @@ public class MainViewController {
 
         } catch (Exception exception) {
             String string = String.format("Failed to generate the output catalog due to: %s", exception.getMessage());
-            creator.createErrorModal(root, string);
+            showErrorModal(string);
             logger.error(string);
         }
     }
@@ -411,7 +405,7 @@ public class MainViewController {
 
         } catch (Exception e) {
             String string = String.format("Could not load application properties due to: %s", e.getMessage());
-            creator.createErrorModal(root, string);
+            showErrorModal(string);
             logger.error(string);
         }
     }
@@ -459,9 +453,31 @@ public class MainViewController {
 
         } catch (Exception e) {
             String string = String.format("Failed to save application properties due to: %s", e.getMessage());
-            creator.createErrorModal(root, string);
+            showErrorModal(string);
             logger.error(string);
         }
     }
 
+    /**
+     * Shows an error modal with the specified error message.
+     *
+     * @param errorMessage The error message to display in the modal.
+     */
+    private void showErrorModal(String errorMessage) {
+        creator.createErrorModal(root, errorMessage);
+    }
+
+    /**
+     * Loads an FXML file and returns the FXMLLoader instance.
+     *
+     * @param fxmlPath The path to the FXML file.
+     * @return The FXMLLoader instance after loading the FXML file.
+     * @throws IOException If an I/O error occurs during loading.
+     */
+    private FXMLLoader loadFXML(String fxmlPath) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+        root = loader.load();
+
+        return loader;
+    }
 }

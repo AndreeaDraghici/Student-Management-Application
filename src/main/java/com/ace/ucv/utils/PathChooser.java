@@ -48,4 +48,19 @@ public class PathChooser {
         fileChooser.getExtensionFilters().add(extFilter);
         return fileChooser;
     }
+
+    /**
+     * Sets the initial directory for the given FileChooser if the last used file exists.
+     * This is helpful to open the file dialog in the directory of the last used file.
+     *
+     * @param fileChooser The FileChooser for which the initial directory is set.
+     * @param lastUsed The last used file to determine the initial directory.
+     */
+
+    public void setInitialDirectoryIfExists(FileChooser fileChooser, File lastUsed) {
+        if (lastUsed.exists()) {
+            fileChooser.setInitialDirectory(new File(lastUsed.getParent()));
+        }
+    }
+
 }
