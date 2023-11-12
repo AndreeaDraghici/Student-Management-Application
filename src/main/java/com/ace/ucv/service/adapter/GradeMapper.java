@@ -1,6 +1,5 @@
 package com.ace.ucv.service.adapter;
 
-import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.Grade;
 import com.ace.ucv.model.xml.nota.NotaStudType;
 import com.ace.ucv.model.xml.nota.NoteType;
@@ -19,16 +18,8 @@ public class GradeMapper {
 
     private static final Logger logger = LogManager.getLogger(GradeMapper.class);
 
-    private final List<Discipline> listOfDisciplines;
-
     public GradeMapper() {
-        this.listOfDisciplines = new ArrayList<>();
     }
-
-    public GradeMapper(List<Discipline> listOfDisciplines) {
-        this.listOfDisciplines = listOfDisciplines;
-    }
-
 
     /**
      * Maps a NoteType object to a list of Grade objects.
@@ -101,28 +92,69 @@ public class GradeMapper {
      */
     private void buildGrade(NotaStudType gradeType, Grade grade) {
         if (gradeType != null) {
-            String notaString = gradeType.getNota();
-            String studentIdString = gradeType.getStudent();
-            String materieString = gradeType.getMaterie();
-
-            checkGradeRules(grade, notaString, studentIdString, materieString);
+            checkGradeRules(grade, gradeType.getNota(), gradeType.getStudent(), gradeType.getMaterie());
         } else {
             throw new RuntimeException("Received null gradeType while building Grade object.");
         }
     }
 
-
+    /**
+     * Checks and sets grade-related rules.
+     *
+     * @param grade           The Grade object to be updated.
+     * @param notaString      The grade value as a string.
+     * @param studentIdString The student ID as a string.
+     * @param materieString   The subject ID as a string.
+     */
     private void checkGradeRules(Grade grade, String notaString, String studentIdString, String materieString) {
-        if (notaString != null && !notaString.isEmpty()) {
+        setGradeValue(grade, notaString);
+        setStudentId(grade, studentIdString);
+        setSubjectId(grade, materieString);
+    }
+
+    /**
+     * Sets the grade value on the Grade object if the input is valid.
+     *
+     * @param grade      The Grade object to be updated.
+     * @param notaString The grade value as a string.
+     */
+    private void setGradeValue(Grade grade, String notaString) {
+        if (isValidString(notaString)) {
             grade.setGradeValue(Integer.parseInt(notaString));
         }
+    }
 
-        if (studentIdString != null && !studentIdString.isEmpty()) {
+    /**
+     * Sets the student ID on the Grade object if the input is valid.
+     *
+     * @param grade           The Grade object to be updated.
+     * @param studentIdString The student ID as a string.
+     */
+    private void setStudentId(Grade grade, String studentIdString) {
+        if (isValidString(studentIdString)) {
             grade.setStudentId(Integer.parseInt(studentIdString));
         }
+    }
 
-        if (materieString != null && !materieString.isEmpty()) {
+    /**
+     * Sets the subject ID on the Grade object if the input is valid.
+     *
+     * @param grade         The Grade object to be updated.
+     * @param materieString The subject ID as a string.
+     */
+    private void setSubjectId(Grade grade, String materieString) {
+        if (isValidString(materieString)) {
             grade.setSubjectId(Integer.parseInt(materieString));
         }
+    }
+
+    /**
+     * Checks if a string is valid (not null and not empty).
+     *
+     * @param inputString The input string to be checked.
+     * @return True if the string is valid, false otherwise.
+     */
+    private boolean isValidString(String inputString) {
+        return inputString != null && !inputString.isEmpty();
     }
 }

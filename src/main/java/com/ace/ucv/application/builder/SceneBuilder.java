@@ -53,7 +53,7 @@ public class SceneBuilder {
     public Scene buildScene() {
 
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(viewPath));
-        AnchorPane stackPane = null;
+        AnchorPane stackPane;
 
         try {
             stackPane = loader.load();

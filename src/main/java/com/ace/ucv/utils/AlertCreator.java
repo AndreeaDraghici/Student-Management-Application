@@ -3,7 +3,6 @@ package com.ace.ucv.utils;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
@@ -36,10 +35,9 @@ public class AlertCreator {
     /**
      * Creates and displays a warning modal dialog.
      *
-     * @param root        The root AnchorPane used to display the warning dialog.
      * @param contentText The content text of the warning dialog.
      */
-    public void createWarningModal(AnchorPane root, String contentText) {
+    public void createWarningModal(String contentText) {
         try {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initModality(Modality.APPLICATION_MODAL);
@@ -53,14 +51,12 @@ public class AlertCreator {
         }
     }
 
-
     /**
      * Creates and displays an error modal dialog.
      *
-     * @param root        The root AnchorPane used to display the error dialog.
      * @param contentText The content text of the error dialog.
      */
-    public void createErrorModal(AnchorPane root, String contentText) {
+    public void createErrorModal(String contentText) {
         try {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initModality(Modality.APPLICATION_MODAL);
@@ -78,10 +74,9 @@ public class AlertCreator {
     /**
      * Creates and displays an info modal dialog.
      *
-     * @param root        The root AnchorPane used to display the Information dialog.
      * @param contentText The content text of the Information dialog.
      */
-    public void createInformationModal(AnchorPane root, String contentText) {
+    public void createInformationModal(String contentText) {
         try {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.initModality(Modality.APPLICATION_MODAL);

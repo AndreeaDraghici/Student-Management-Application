@@ -5,7 +5,7 @@ package com.ace.ucv.utils;
  * Name of project: StudentManagement
  */
 
-/**
+/*
  * Constants class for XML tags and attribute names used in the catalog file.
  */
 public class CatalogFileConstants {

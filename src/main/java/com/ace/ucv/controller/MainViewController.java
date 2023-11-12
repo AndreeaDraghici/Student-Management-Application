@@ -56,8 +56,6 @@ public class MainViewController {
 
     private static final Logger logger = LogManager.getLogger(MainViewController.class);
 
-    public static final String XML = ".xml";
-
     @FXML
     public AnchorPane gradeTabContent;
 
@@ -179,7 +177,7 @@ public class MainViewController {
             return true;
         }
 
-        if (!selectedFile.toString().endsWith(XML)) {
+        if (!selectedFile.toString().endsWith(".xml")) {
             showWarningModal("Select a valid input file! Input file must have the .xml extension!");
             return true;
         }
@@ -465,7 +463,7 @@ public class MainViewController {
      * @param errorMessage The error message to display in the modal.
      */
     private void showErrorModal(String errorMessage) {
-        creator.createErrorModal(root, errorMessage);
+        creator.createErrorModal( errorMessage);
     }
 
 
@@ -475,7 +473,7 @@ public class MainViewController {
      * @param warningMessage The warning message to display in the modal.
      */
     private void showWarningModal(String warningMessage) {
-        creator.createWarningModal(root, warningMessage);
+        creator.createWarningModal(warningMessage);
     }
 
 
@@ -485,7 +483,7 @@ public class MainViewController {
      * @param informationMessage The information message to display in the modal.
      */
     private void showInformationModal(String informationMessage) {
-        creator.createInformationModal(root, informationMessage);
+        creator.createInformationModal(informationMessage);
     }
 
 
