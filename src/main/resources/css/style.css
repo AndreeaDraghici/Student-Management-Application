@@ -17,7 +17,7 @@
 .table-view .column-header,
 .table-view .column-header-background .filler {
     -fx-cell-size: 20; /* Set cell size for headers */
-    -fx-background-color: #FFC0CB; /* Set background color for headers */
+    -fx-background-color: #DB7093; /* Set background color for headers */
 }
 
 /* Style the labels inside column headers */
@@ -29,9 +29,9 @@
 
 /* Style the cells in the table view */
 .table-view .cell {
-    -fx-cell-size: 30; /* Set cell size */
+    -fx-cell-size: 35; /* Set cell size */
     -fx-alignment: center-left; /* Align text to the left */
-    -fx-text-fill: orange; /* Set text color */
+    -fx-text-fill: black; /* Set text color */
     -fx-font-weight: bold; /* Set font weight */
 }
 
@@ -71,8 +71,8 @@
 
 /* Styling for tab pane */
 * {
-    -fx-primary-color: #E6E6FA; /* Set primary color for tabs */
-    -fx-secondary-color: #E0FFFF; /* Set secondary color for selected tab */
+    -fx-primary-color: #C0C0C0; /* Set primary color for tabs */
+    -fx-secondary-color:#9370DB; /* Set secondary color for selected tab */
     -fx-focus-color: -fx-secondary-color; /* Set focus color */
 }
 
