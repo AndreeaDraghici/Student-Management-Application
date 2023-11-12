@@ -75,27 +75,42 @@ public class GradeTableController implements Initializable {
 
     // Initializes the table columns with their respective properties.
     private void initializeTable() {
-
-        studentName.setCellValueFactory(cellData -> {
-            int studentId = cellData.getValue().getStudentId();
-            String studentName = getStudentName(studentId);
-            return new SimpleStringProperty(studentName);
-        });
-
-        studentSurname.setCellValueFactory(cellData -> {
-            int studentId = cellData.getValue().getStudentId();
-            String studentName = getStudentSurName(studentId);
-            return new SimpleStringProperty(studentName);
-        });
-
-        discipline.setCellValueFactory(cellData -> {
-            int disciplineId = cellData.getValue().getSubjectId();
-            String disciplineName = getDisciplineName(disciplineId);
-            return new SimpleStringProperty(disciplineName);
-        });
-
+        studentName.setCellValueFactory(this::getStudentNameProperty);
+        studentSurname.setCellValueFactory(this::getStudentSurnameProperty);
+        discipline.setCellValueFactory(this::getDisciplineProperty);
         grade.setCellValueFactory(new PropertyValueFactory<>("gradeValue"));
+    }
 
+
+    /**
+     * Retrieves the discipline name for a given Grade.
+     * @param cellData The CellDataFeatures containing information about the Grade.
+     * @return A SimpleStringProperty containing the discipline name.
+     */
+    private SimpleStringProperty getDisciplineProperty(TableColumn.CellDataFeatures<Grade, String> cellData) {
+        String disciplineName = getDisciplineName(cellData.getValue().getSubjectId());
+        return new SimpleStringProperty(disciplineName);
+    }
+
+
+    /**
+     * Retrieves the student's surname for a given Grade.
+     * @param cellData The CellDataFeatures containing information about the Grade.
+     * @return A SimpleStringProperty containing the student's surname.
+     */
+    private SimpleStringProperty getStudentSurnameProperty(TableColumn.CellDataFeatures<Grade, String> cellData) {
+        String studentName = getStudentSurName(cellData.getValue().getStudentId());
+        return new SimpleStringProperty(studentName);
+    }
+
+    /**
+     * Retrieves the student's name for a given Grade.
+     * @param cellData The CellDataFeatures containing information about the Grade.
+     * @return A SimpleStringProperty containing the student's name.
+     */
+    private SimpleStringProperty getStudentNameProperty(TableColumn.CellDataFeatures<Grade, String> cellData) {
+        String studentName = getStudentName(cellData.getValue().getStudentId());
+        return new SimpleStringProperty(studentName);
     }
 
     // Populates the table with the provided list of grades.
