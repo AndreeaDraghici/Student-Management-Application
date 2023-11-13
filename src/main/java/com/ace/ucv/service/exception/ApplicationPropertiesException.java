@@ -23,6 +23,7 @@ public class ApplicationPropertiesException extends RuntimeException {
         super(message);
     }
 
+
     /**
      * Constructs a new ApplicationPropertiesException with the specified detail message and cause.
      *

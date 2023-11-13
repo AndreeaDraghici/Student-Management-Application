@@ -22,6 +22,7 @@ public class CatalogGenerationException extends RuntimeException {
         super(message);
     }
 
+
     /**
      * Constructs a new CatalogGenerationException with the specified detail message and cause.
      *
