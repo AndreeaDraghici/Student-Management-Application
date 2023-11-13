@@ -2,15 +2,6 @@ package com.ace.ucv;
 
 import com.ace.ucv.application.ApplicationFactory;
 import com.ace.ucv.application.iface.IApplication;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.io.File;
 
 
 /**
