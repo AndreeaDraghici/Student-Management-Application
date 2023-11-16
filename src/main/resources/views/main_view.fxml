@@ -14,134 +14,152 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="981.0" style="-fx-background-color: #FFFAFA;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ace.ucv.controller.MainViewController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="711.0" prefWidth="981.0" style="-fx-background-color: #FFFAFA;" stylesheets="@../css/style.css"
+            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.ace.ucv.controller.MainViewController">
     <VBox layoutY="-3.0" prefHeight="717.0" prefWidth="981.0">
         <HBox prefHeight="149.0" prefWidth="989.0">
-            <GridPane prefHeight="120.0" prefWidth="964.0">
+            <GridPane prefHeight="88.0" prefWidth="961.0">
                 <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="884.0" minWidth="10.0" prefWidth="106.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="884.0" minWidth="10.0" prefWidth="785.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="467.0" minWidth="10.0" prefWidth="73.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="884.0" minWidth="10.0" prefWidth="106.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="884.0" minWidth="10.0" prefWidth="785.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="467.0" minWidth="10.0" prefWidth="73.0"/>
                 </columnConstraints>
                 <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                 </rowConstraints>
-                <Button fx:id="loadStudentButton" mnemonicParsing="false" onAction="#handleStudentButton" prefHeight="26.0" prefWidth="81.0" style="-fx-background-color: #DCDCDC;" text="Browse" textFill="#066f41" GridPane.columnIndex="2">
+                <Button fx:id="loadStudentButton" mnemonicParsing="false" onAction="#handleStudentButton"
+                        prefHeight="26.0" prefWidth="81.0" style="-fx-background-color: #DCDCDC;" text="Browse"
+                        textFill="#066f41" GridPane.columnIndex="2">
                     <GridPane.margin>
-                        <Insets bottom="5.0" left="5.0" top="5.0" />
+                        <Insets bottom="5.0" left="5.0" top="5.0"/>
                     </GridPane.margin>
                     <font>
-                        <Font name="Segoe UI Bold" size="13.0" />
+                        <Font name="Segoe UI Bold" size="13.0"/>
                     </font>
                 </Button>
-                <Button fx:id="loadGradeButton" layoutX="883.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleGradeButton" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #DCDCDC;" text="Browse" textFill="#066f41" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                <Button fx:id="loadGradeButton" layoutX="883.0" layoutY="15.0" mnemonicParsing="false"
+                        onAction="#handleGradeButton" prefHeight="25.0" prefWidth="78.0"
+                        style="-fx-background-color: #DCDCDC;" text="Browse" textFill="#066f41" GridPane.columnIndex="2"
+                        GridPane.rowIndex="2">
                     <GridPane.margin>
-                        <Insets bottom="5.0" left="5.0" top="5.0" />
+                        <Insets bottom="5.0" left="5.0" top="5.0"/>
                     </GridPane.margin>
                     <font>
-                        <Font name="Segoe UI Bold" size="13.0" />
+                        <Font name="Segoe UI Bold" size="13.0"/>
                     </font>
                 </Button>
-                <Button fx:id="loadDisciplineButton" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleDisciplineButton" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #DCDCDC;" text="Browse" textFill="#066f41" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <Button fx:id="loadDisciplineButton" layoutX="10.0" layoutY="15.0" mnemonicParsing="false"
+                        onAction="#handleDisciplineButton" prefHeight="25.0" prefWidth="90.0"
+                        style="-fx-background-color: #DCDCDC;" text="Browse" textFill="#066f41" GridPane.columnIndex="2"
+                        GridPane.rowIndex="1">
                     <GridPane.margin>
-                        <Insets bottom="5.0" left="5.0" top="5.0" />
+                        <Insets bottom="5.0" left="5.0" top="5.0"/>
                     </GridPane.margin>
                     <font>
-                        <Font name="Segoe UI Bold" size="13.0" />
+                        <Font name="Segoe UI Bold" size="13.0"/>
                     </font>
                 </Button>
-                <TextField fx:id="studentTextField" alignment="CENTER" disable="true" prefHeight="20.0" prefWidth="774.0" style="-fx-background-color: #DCDCDC;" text="path to the student.xml input file" GridPane.columnIndex="1">
+                <TextField fx:id="studentTextField" alignment="CENTER" disable="true" prefHeight="20.0"
+                           prefWidth="774.0" style="-fx-background-color: #DCDCDC;"
+                           text="path to the student.xml input file" GridPane.columnIndex="1">
                     <GridPane.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets/>
                     </GridPane.margin>
                     <font>
-                        <Font name="System Bold" size="13.0" />
+                        <Font name="System Bold" size="13.0"/>
                     </font>
-                    <padding>
-                        <Insets bottom="5.0" />
-                    </padding>
                 </TextField>
-                <TextField fx:id="disciplineTextField" alignment="CENTER" disable="true" layoutX="79.0" layoutY="15.0" prefHeight="25.0" prefWidth="559.0" style="-fx-background-color: #DCDCDC;" text="path to the materia.xml input file" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <TextField fx:id="disciplineTextField" alignment="CENTER" disable="true" layoutX="79.0" layoutY="15.0"
+                           prefHeight="7.0" prefWidth="774.0" style="-fx-background-color: #DCDCDC;"
+                           text="path to the materia.xml input file" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <GridPane.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets/>
                     </GridPane.margin>
                     <font>
-                        <Font name="System Bold" size="13.0" />
+                        <Font name="System Bold" size="13.0"/>
                     </font>
-                    <padding>
-                        <Insets bottom="5.0" />
-                    </padding>
                 </TextField>
-                <TextField fx:id="gradeTextField" alignment="CENTER" disable="true" layoutX="79.0" layoutY="48.0" prefHeight="25.0" prefWidth="559.0" style="-fx-background-color: #DCDCDC;" text="path to the nota.xml input file" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <TextField fx:id="gradeTextField" alignment="CENTER" disable="true" layoutX="79.0" layoutY="48.0"
+                           prefHeight="25.0" prefWidth="559.0" style="-fx-background-color: #DCDCDC;"
+                           text="path to the nota.xml input file" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <GridPane.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets/>
                     </GridPane.margin>
                     <font>
-                        <Font name="System Bold" size="13.0" />
+                        <Font name="System Bold" size="13.0"/>
                     </font>
-                    <padding>
-                        <Insets bottom="5.0" />
-                    </padding>
                 </TextField>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="103.0" text="STUDENT" textFill="#0a0061">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="103.0" text="STUDENT"
+                       textFill="#0a0061">
                     <GridPane.margin>
-                        <Insets left="5.0" right="5.0" />
+                        <Insets left="5.0" right="5.0"/>
                     </GridPane.margin>
                     <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
+                        <Font name="Segoe UI Bold" size="14.0"/>
                     </font>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="17.0" prefHeight="18.0" prefWidth="102.0" text="DISCIPLINE" textFill="#0a0061" GridPane.rowIndex="1">
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="17.0" prefHeight="18.0"
+                       prefWidth="102.0" text="DISCIPLINE" textFill="#0a0061" GridPane.rowIndex="1">
                     <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
+                        <Font name="Segoe UI Bold" size="14.0"/>
                     </font>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="52.0" prefHeight="20.0" prefWidth="107.0" text="GRADE" textFill="#0a0061" GridPane.rowIndex="2">
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="52.0" prefHeight="20.0"
+                       prefWidth="107.0" text="GRADE" textFill="#0a0061" GridPane.rowIndex="2">
                     <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="14.0"/>
                     </font>
                 </Label>
             </GridPane>
             <padding>
-                <Insets left="10.0" right="10.0" top="10.0" />
+                <Insets left="10.0" right="10.0" top="10.0"/>
             </padding>
             <VBox.margin>
-                <Insets />
+                <Insets/>
             </VBox.margin>
         </HBox>
         <HBox prefHeight="500.0" prefWidth="981.0">
-            <TabPane prefHeight="421.0" prefWidth="981.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane prefHeight="533.0" prefWidth="981.0" tabClosingPolicy="UNAVAILABLE">
                 <Tab fx:id="studentTab" text="Student">
-                    <AnchorPane fx:id="studentTabContent" minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="974.0" />
+                    <AnchorPane fx:id="studentTabContent" minHeight="0.0" minWidth="0.0" prefHeight="457.0"
+                                prefWidth="981.0"/>
                 </Tab>
                 <Tab fx:id="disciplineTab" text="Discipline">
-                    <AnchorPane fx:id="disciplineTabContent" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    <AnchorPane fx:id="disciplineTabContent" minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                                prefWidth="200.0"/>
                 </Tab>
                 <Tab fx:id="gradeTab" text="Grade">
-                    <AnchorPane fx:id="gradeTabContent" minHeight="0.0" minWidth="0.0" prefHeight="282.0" prefWidth="943.0" />
+                    <AnchorPane fx:id="gradeTabContent" minHeight="0.0" minWidth="0.0" prefHeight="282.0"
+                                prefWidth="943.0"/>
                 </Tab>
             </TabPane>
             <padding>
-                <Insets bottom="5.0" top="5.0" />
+                <Insets bottom="5.0" top="5.0"/>
             </padding>
             <VBox.margin>
-                <Insets />
+                <Insets/>
             </VBox.margin>
         </HBox>
-        <HBox prefHeight="165.0" prefWidth="983.0">
-            <Button fx:id="generateCatalogButton" mnemonicParsing="false" onAction="#handleGenerateButton" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: #DCDCDC;" text="Generate" textFill="#0a013c">
-                <HBox.margin>
-                    <Insets bottom="5.0" left="890.0" top="130.0" />
-                </HBox.margin>
-                <font>
-                    <Font name="System Bold" size="14.0" />
-                </font>
-            </Button>
+        <HBox prefHeight="28.0" prefWidth="977.0">
             <VBox.margin>
-                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
             </VBox.margin>
+            <children>
+                <Button fx:id="generateCatalogButton" mnemonicParsing="false" onAction="#handleGenerateButton"
+                        prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: #DCDCDC;" text="Generate"
+                        textFill="#0a013c">
+                    <font>
+                        <Font name="System Bold" size="14.0"/>
+                    </font>
+                    <HBox.margin>
+                        <Insets left="890.0" top="24.0"/>
+                    </HBox.margin>
+                </Button>
+            </children>
         </HBox>
     </VBox>
 </AnchorPane>
