@@ -2,6 +2,7 @@ package com.ace.ucv.application;
 
 import com.ace.ucv.application.builder.SceneBuilder;
 import com.ace.ucv.application.iface.IApplication;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.application.Application;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -57,6 +58,7 @@ public class GUIApplication extends Application implements IApplication {
      * @param primaryStage The primary stage of the application.
      * @throws Exception If an exception occurs during the initialization and display of the primary stage.
      */
+    @SuppressFBWarnings("ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD")
     @Override
     public void start(Stage primaryStage) throws Exception {
         GUIApplication.mainStage = primaryStage;

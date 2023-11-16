@@ -4,6 +4,7 @@ import com.ace.ucv.model.Catalog;
 import com.ace.ucv.model.Discipline;
 import com.ace.ucv.model.Grade;
 import com.ace.ucv.model.Student;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
@@ -95,6 +96,7 @@ class CatalogBuilderTest {
         assertEquals(2, disciplineNodes.getLength());
     }
 
+    @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_BAD_PRACTICE")
     @Test
     void testSaveXmlDocumentWhenDocumentIsSavedSuccessfullyThenNoExceptionIsThrown() throws Exception {
         Document document = catalogBuilder.createXmlDocument(catalog);

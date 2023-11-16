@@ -1,6 +1,7 @@
 package com.ace.ucv.model;
 
 import com.ace.ucv.model.iface.ICatalog;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +18,14 @@ public class Catalog implements ICatalog {
         this.grades = new ArrayList<>();
     }
 
+    @SuppressFBWarnings({"EI_EXPOSE_REP2", "EI_EXPOSE_REP2", "EI_EXPOSE_REP2"})
     public Catalog(List<Student> students, List<Discipline> disciplines, List<Grade> grades) {
         this.students = students;
         this.disciplines = disciplines;
         this.grades = grades;
     }
 
+    @SuppressFBWarnings("EI_EXPOSE_REP")
     public List<Student> getStudents() {
         if (students == null) {
             students = new ArrayList<>();
@@ -30,11 +33,13 @@ public class Catalog implements ICatalog {
         return students;
     }
 
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     @SuppressWarnings("unused") // Marking the method as used
     public void setStudents(List<Student> students) {
         this.students = students;
     }
 
+    @SuppressFBWarnings("EI_EXPOSE_REP")
     public List<Discipline> getDisciplines() {
         if (disciplines == null) {
             disciplines = new ArrayList<>();
@@ -43,12 +48,14 @@ public class Catalog implements ICatalog {
         return disciplines;
     }
 
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     @SuppressWarnings("unused") // Marking the method as used
     public void setDisciplines(List<Discipline> disciplines) {
         this.disciplines = disciplines;
     }
 
 
+    @SuppressFBWarnings("EI_EXPOSE_REP")
     public List<Grade> getGrades() {
         if (grades == null) {
             grades = new ArrayList<>();
@@ -56,6 +63,7 @@ public class Catalog implements ICatalog {
         return grades;
     }
 
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public void setGrades(List<Grade> grades) {
         this.grades = grades;
     }

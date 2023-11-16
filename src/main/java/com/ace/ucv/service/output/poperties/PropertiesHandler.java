@@ -2,6 +2,7 @@ package com.ace.ucv.service.output.poperties;
 
 import com.ace.ucv.service.exception.ApplicationPropertiesException;
 import com.ace.ucv.service.output.poperties.iface.IProperties;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -53,6 +54,7 @@ public class PropertiesHandler implements IProperties {
      * @param file  The file to which properties are to be saved.
      * @throws ApplicationPropertiesException If an error occurs during saving.
      */
+    @SuppressFBWarnings("DM_DEFAULT_ENCODING")
     @Override
     public void saveProperties(PropertiesModel model, File file) throws ApplicationPropertiesException {
         checkInputs(model, file);

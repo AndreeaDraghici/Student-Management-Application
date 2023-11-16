@@ -1,6 +1,7 @@
 package com.ace.ucv.service.output.poperties;
 
 import com.ace.ucv.service.exception.ApplicationPropertiesException;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PropertiesHandlerTest {
 
 
+    @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_BAD_PRACTICE")
     @Test
     void testSavePropertiesWhenModelAndFileAreValidThenPropertiesAreSaved() {
         // Arrange

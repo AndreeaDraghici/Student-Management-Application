@@ -32,6 +32,7 @@ import com.ace.ucv.service.parser.iface.IGradeParser;
 import com.ace.ucv.service.parser.iface.IStudentParser;
 import com.ace.ucv.utils.AlertCreator;
 import com.ace.ucv.utils.PathChooser;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -451,6 +452,7 @@ public class MainViewController {
     /**
      * Saves the current state of UI components as application properties to the specified file.
      */
+    @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_BAD_PRACTICE")
     private void saveApplicationProperties() {
         try {
 
