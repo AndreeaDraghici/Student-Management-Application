@@ -133,3 +133,22 @@
     -fx-border-color: derive(-fx-pie-color, 1%); /* Set the border color to a derived shade of the pie color */
     -fx-border-width: 0px; /* Set border width to 0 (remove border) */
 }
+
+/* Styling for studentTextField, disciplineTextField, gradeTextField */
+.text-field {
+    -fx-background-color: #F5F5F5; /* Light Gray */
+    -fx-font-family: "System Bold";
+    -fx-font-size: 13.0;
+}
+
+/* Styling for Labels */
+.label {
+    -fx-text-fill: #0A0061; /* Dark Blue */
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 14.0;
+}
+
+/* Styling for TabPane */
+.tab-pane {
+    -fx-background-color:#F0F8FF; /* Alice Blue */
+}
