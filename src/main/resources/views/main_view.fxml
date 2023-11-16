@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="711.0" prefWidth="981.0" style="-fx-background-color: #FFFAFA;" stylesheets="@../css/style.css"
+            prefHeight="711.0" prefWidth="981.0" style="-fx-background-color: #FFFAFA;" stylesheets="@../style.css"
             xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.ace.ucv.controller.MainViewController">
     <VBox layoutY="-3.0" prefHeight="717.0" prefWidth="981.0">

@@ -11,7 +11,7 @@
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ace.ucv.controller.table.DisciplineTableController">
     <VBox prefHeight="436.0" prefWidth="980.0">
         <HBox prefHeight="438.0" prefWidth="980.0">
-            <TableView fx:id="tbDisciplineData" prefHeight="436.0" prefWidth="979.0" stylesheets="@../css/style.css">
+            <TableView fx:id="tbDisciplineData" prefHeight="436.0" prefWidth="979.0" stylesheets="@../style.css">
                 <columns>
                     <TableColumn fx:id="disciplineId" minWidth="0.0" prefWidth="33.0" text="ID"/>
                     <TableColumn fx:id="firstName" prefWidth="673.0" text="NAME"/>
