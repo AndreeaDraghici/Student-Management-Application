@@ -1,7 +1,7 @@
-package com.ace.ucv.application;
+package com.ace.ucv.application.gui;
 
-import com.ace.ucv.application.builder.SceneBuilder;
-import com.ace.ucv.application.iface.IApplication;
+import com.ace.ucv.application.gui.builder.SceneBuilder;
+import com.ace.ucv.application.gui.iface.IApplication;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.application.Application;
 import javafx.scene.layout.AnchorPane;

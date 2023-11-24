@@ -1,6 +1,7 @@
 package com.ace.ucv.application;
 
-import com.ace.ucv.application.iface.IApplication;
+import com.ace.ucv.application.gui.GUIApplication;
+import com.ace.ucv.application.gui.iface.IApplication;
 
 /**
  * Created by Andreea Draghici on 11/7/2023

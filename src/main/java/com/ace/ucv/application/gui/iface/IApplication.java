@@ -1,4 +1,4 @@
-package com.ace.ucv.application.iface;
+package com.ace.ucv.application.gui.iface;
 
 /**
  * Created by Andreea Draghici on 11/7/2023

@@ -1,4 +1,4 @@
-package com.ace.ucv.application.builder;
+package com.ace.ucv.application.gui.builder;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
