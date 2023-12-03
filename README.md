@@ -153,6 +153,7 @@ DISCIPLINE_XML_PATH=/path/to/grade/file.xml
 - Import and view XML data using tab pane with tables view.
 - Properties config file supported,used to store and reload the configurations of the paths for the XML files.
 - Generate reports for specified disciplines.
+- Migrated initial project to gradle distribution now, to install easy the dependencies.
 
 ### Version 1.0.0
 
