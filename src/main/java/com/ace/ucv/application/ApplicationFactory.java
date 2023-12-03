@@ -1,5 +1,6 @@
 package com.ace.ucv.application;
 
+import com.ace.ucv.application.cli.CLIApplication;
 import com.ace.ucv.application.gui.GUIApplication;
 import com.ace.ucv.application.gui.iface.IApplication;
 
@@ -24,7 +25,7 @@ public class ApplicationFactory {
         if (args.length == 0) {
             return new GUIApplication();
         } else {
-            throw new RuntimeException("Tool is just running using the graphical user interface functionality!");
+            return new CLIApplication();
         }
     }
 
