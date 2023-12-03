@@ -2,7 +2,6 @@ package com.ace.ucv.application;
 
 import com.ace.ucv.application.cli.CLIApplication;
 import com.ace.ucv.application.gui.GUIApplication;
-import com.ace.ucv.application.gui.iface.IApplication;
 
 /**
  * Created by Andreea Draghici on 11/7/2023
@@ -19,7 +18,6 @@ public class ApplicationFactory {
      *
      * @param args The command-line arguments provided to the application.
      * @return An instance of the IApplication interface.
-     * @throws RuntimeException if the provided arguments are not supported.
      */
     public IApplication applicationRunner(String[] args) {
         if (args.length == 0) {

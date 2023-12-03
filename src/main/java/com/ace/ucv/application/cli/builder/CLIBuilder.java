@@ -22,7 +22,6 @@ import com.ace.ucv.service.output.CatalogGeneration;
 import com.ace.ucv.service.parser.DisciplineParser;
 import com.ace.ucv.service.parser.GradeParser;
 import com.ace.ucv.service.parser.StudentParser;
-import javafx.collections.FXCollections;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,20 +33,34 @@ import java.util.List;
  * Created by Andreea Draghici on 12/2/2023
  * Name of project: StudentManagement
  */
+
+/*
+ * CLIBuilder class is responsible for building the application components
+ * and executing the parsing of CLI arguments.
+ */
 public class CLIBuilder {
 
     private static final Logger logger = LogManager.getLogger(CLIBuilder.class);
+
+    // Mapper objects for adapting XML objects to intermediary objects
     private final IStudentMapper studentMapper;
     private final IDisciplineMapper disciplineMapper;
     private final IGradeMapper gradeMapper;
 
-
+    /**
+     * Constructor for CLIBuilder. Initializes mapper objects.
+     */
     public CLIBuilder() {
         this.studentMapper = new StudentMapper();
         this.disciplineMapper = new DisciplineMapper();
         this.gradeMapper = new GradeMapper();
     }
 
+    /**
+     * Executes the parsing of CLI arguments and builds the application components.
+     *
+     * @param argument - Argument object containing CLI arguments
+     */
     public void executeParsing(Argument argument) {
 
         try {
@@ -55,9 +68,7 @@ public class CLIBuilder {
             argumentValidator.validateArguments(argument);
 
             List<Student> studentList = loadStudentInformation(argument);
-
             List<Discipline> disciplineList = loadDisciplineInformation(argument);
-
             List<Grade> gradeList = loadGradeInformation(argument);
 
             Catalog catalog = new Catalog();
@@ -73,6 +84,14 @@ public class CLIBuilder {
         }
     }
 
+
+    /**
+     * Loads grade information from the provided XML file path.
+     *
+     * @param argument - Argument object containing file paths
+     * @return List of Grade objects
+     * @throws ConfigurationLoaderException if loading configuration fails
+     */
     private List<Grade> loadGradeInformation(Argument argument) throws ConfigurationLoaderException {
         GradeParser gradeParser = new GradeParser();
         NoteType noteType = gradeParser.loadConfiguration(new File(argument.getGradeFilePath()));
@@ -91,6 +110,13 @@ public class CLIBuilder {
 
     }
 
+    /**
+     * Loads discipline information from the provided XML file path.
+     *
+     * @param argument - Argument object containing file paths
+     * @return List of Discipline objects
+     * @throws ConfigurationLoaderException if loading configuration fails
+     */
     private List<Discipline> loadDisciplineInformation(Argument argument) throws ConfigurationLoaderException {
 
         DisciplineParser disciplineParser = new DisciplineParser();
@@ -109,6 +135,13 @@ public class CLIBuilder {
         return disciplineList;
     }
 
+    /**
+     * Loads student information from the provided XML file path.
+     *
+     * @param argument - Argument object containing file paths
+     * @return List of Student objects
+     * @throws ConfigurationLoaderException if loading configuration fails
+     */
     private List<Student> loadStudentInformation(Argument argument) throws ConfigurationLoaderException {
         StudentParser studentParser = new StudentParser();
         StudentiType studentData = studentParser.loadConfiguration(new File(argument.getStudentFilePath()));

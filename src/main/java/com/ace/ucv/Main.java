@@ -1,7 +1,7 @@
 package com.ace.ucv;
 
 import com.ace.ucv.application.ApplicationFactory;
-import com.ace.ucv.application.gui.iface.IApplication;
+import com.ace.ucv.application.IApplication;
 
 
 /**

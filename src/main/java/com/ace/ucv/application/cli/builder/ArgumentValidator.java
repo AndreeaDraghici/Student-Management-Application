@@ -9,8 +9,20 @@ import java.nio.file.Paths;
  * Created by Andreea Draghici on 12/2/2023
  * Name of project: StudentManagement
  */
+
+/*
+ * ArgumentValidator class is responsible for validating the arguments provided to the application.
+ */
 public class ArgumentValidator {
 
+
+    /**
+     * Validates the provided arguments to ensure that the grade file path, student file path,
+     * discipline file path, and output file path exist.
+     *
+     * @param argument - Argument object containing file paths
+     * @throws IllegalArgumentException if any of the required file paths are empty or do not exist
+     */
     public void validateArguments(Argument argument) {
         if (argument.getGradeFilePath().isEmpty()) {
             throw new IllegalArgumentException("The grade file path must exist! Add the argument with grade file path.");
