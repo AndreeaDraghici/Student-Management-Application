@@ -23,6 +23,9 @@ dependencies {
     implementation 'org.apache.logging.log4j:log4j-api:2.19.0'
 
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
+
+    implementation group: 'commons-cli',name: 'commons-cli',version: '1.4'
+
 }
 
 test {
