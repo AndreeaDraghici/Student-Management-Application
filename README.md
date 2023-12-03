@@ -1,50 +1,160 @@
-## Student Management Application , ACE UCv 2022 , Practice Stage
+# Student Management Application Documentation
 
-------------
+#### Student Management Application , ACE UCv 2022 , Practice Stage
 
-### Description about application:
+## Table of Contents
 
-#### This is a GUI application that will read data from 3 xml (.*xml) files and generate a report for specified discipline with save in a xml (.* xml) file.
+1. [Introduction](#introduction)
+2. [Features](#features)
+3. [Inputs](#inputs)
+4. [Running the Application](#running-the-application)
+    - [GUI Mode](#gui-mode)
+    - [CLI Mode](#cli-mode)
+5. [GUI Interface](#gui-interface)
+    - [Importing XML Files](#importing-xml-files)
+    - [Viewing Imported Data](#viewing-imported-data)
+    - [Generating Reports](#generating-reports)
+6. [CLI Usage](#cli-usage)
+7. [Outputs](#outputs)
+8. [Abbreviations](#abbreviations)
+9. [Configuration using Properties File](#configuration-using-properties-file)
+10. [History](#history)
 
-------
+----------------------------
 
-### Inputs for application:
+## 1. Introduction <a name="introduction"></a>
 
-#### The application receives 3 xml (.*xml) files.
+The Student Management Application is a versatile tool designed for managing student information, disciplines, and
+grades and generate a report for specified discipline with save in a xml (. xml) file.. It features both a Graphical
+User Interface (GUI) and a Command Line Interface (CLI), providing flexibility for
+users with different preferences.
 
----------
+----------------------------
 
-### How to run:
+## 2. Features <a name="features"></a>
 
-#### 1. After application started , user should be able to import three xml files where the content of that files will be displayed into a table view into GUI.
-
-![img.png](src/resources/img.png)
-
-
-#### 2. After the 3 files have been imported into the GUI, the user can see their content, based on this information, the user can generate a report for specified discipline when the students are alphabetically sorted. 
-
-
------
-### Outputs for application:
-#### The report will be generated into a xml (.*xml) file.
-
-----
-
-### Abbreviations:
-
-| Syntax      | Description |
-| ----------- | ----------- |
-| GUI         | **G**raphical **U**ser **I**nterface       |
-| XML         | **Ex**tensible **M**arkup **L**anguage        |
-
------------
-
-### History:
-
-#### Version 1.0.0 - Initial Version
+- **GUI and CLI Support:** Users can interact with the application either through a user-friendly GUI or a command-line
+  interface.
 
 
---------------
+- **Import Data:** The application accepts three XML files containing student, discipline, and grade information.
 
 
+- **Generate Reports:** Users can generate reports for a specified discipline with students sorted alphabetically.
 
+
+- **Save Reports:** The generated reports are saved in XML format for future reference.
+
+----------------------------
+
+## 3. Inputs <a name="inputs"></a>
+
+The application requires three XML files as inputs. These files contain information about students, disciplines, and
+grades.
+
+----------------------------
+
+## 4. Running the Application <a name="running-the-application"></a>
+
+### GUI Mode <a name="gui-mode"></a>
+
+1. **Launch Application:** Run the application, and the GUI interface will be displayed.
+
+2. **Import XML Files:** Click on the "Import XML Files" button to load the required XML files.
+
+3. **Generate Reports:** View the imported data and generate reports for specified disciplines.
+
+### CLI Mode <a name="cli-mode"></a>
+
+1. **Run CLI Application:** Execute the CLI application with appropriate command-line arguments.
+
+2. **Provide XML Paths:** Include file paths for the student, discipline, and grade XML files.
+
+3. **Generate Reports:** Reports will be generated for specified disciplines in CLI mode.
+
+----------------------------
+
+## 5. GUI Interface <a name="gui-interface"></a>
+
+### Importing XML Files <a name="importing-xml-files"></a>
+
+![img.png](img.png)
+
+Click the "Browse" button.
+Select the XML files for students, disciplines, and grades.
+
+### Viewing Imported Data <a name="viewing-imported-data"></a>
+
+After importing, the data from XML files will be displayed in a table view.
+
+### Generating Reports <a name="generating-reports"></a>
+
+Select a  "Generate Report" button to create a report for that discipline. The report will be alphabetically sorted and
+saved in XML format.
+
+
+----------------------------
+
+## 6. CLI Usage <a name="cli-usage"></a>
+
+- Run the CLI application with appropriate command-line arguments.
+
+##### Example Command Line Arguments for Running Student Management Application
+
+```bash
+    java -jar StudentManagement.jar -s "/path/to/student/file.xml" -d "/path/to/discipline/file.xml" -g "/path/to/grade/file.xml" -o "/path/to/output/file.xml"
+```
+
+- Provide file paths for student, discipline, and grade XML files.
+
+
+- Reports will be generated for specified disciplines.
+
+----------------------------
+
+## 7. Outputs <a name="outputs"></a>
+
+Reports generated by the application will be saved in XML format.
+
+----------------------------
+
+## 8. Abbreviations <a name="abbreviations"></a>
+
+| Syntax | Description                            |
+|--------|----------------------------------------|
+| GUI    | **G**raphical **U**ser **I**nterface   |
+| XML    | **Ex**tensible **M**arkup **L**anguage |
+| CLI    | **C**ommand **L**ine **I**nterface     |
+
+----------------------------
+
+## 9. Configuration using Properties File <a name="configuration-using-properties-file"></a>
+
+To facilitate the management of input file paths, the application supports the use of a properties file. This properties
+file can be used to store and reload the configurations of the paths for the XML files.
+
+#### Sample example:
+
+```bash
+#Sun Dec 03 13:03:18 EET 2023
+STUDENT_XML_PATH=/path/to/student/file.xml
+GRADE_XML_PATH=/path/to/discipline/file.xml
+DISCIPLINE_XML_PATH=/path/to/grade/file.xml
+```
+
+---------------
+
+## 10. History <a name="history"></a>
+
+### Version 1.0.1
+
+- CLI supported.
+- Modify GUI, used JavaFX now.
+- Import and view XML data using tab pane with tables view.
+- Properties config file supported,used to store and reload the configurations of the paths for the XML files.
+- Generate reports for specified disciplines.
+- Migrated initial project to gradle distribution now, to install easy the dependencies.
+
+### Version 1.0.0
+
+- Initial version of application (just Swing GUI functionality).

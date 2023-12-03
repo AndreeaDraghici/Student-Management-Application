@@ -1,0 +1,33 @@
+<?xml version = "1.0"?>
+<studenti>
+    <student Id="1">
+        <Nume>dinkar</Nume>
+        <Prenume>kad</Prenume>
+        <Telefon>0374826495</Telefon>
+        <Sex>Male</Sex>
+    </student>
+    <student Id="2">
+        <Nume>Vaneet</Nume>
+        <Prenume>Gupta</Prenume>
+        <Telefon>0375628585</Telefon>
+        <Sex>Female</Sex>
+    </student>
+    <student Id="3">
+        <Nume>jasvir</Nume>
+        <Prenume>singn</Prenume>
+        <Telefon>0735491645</Telefon>
+        <Sex>Male</Sex>
+    </student>
+    <student Id="4">
+        <Nume>Draghici</Nume>
+        <Prenume>Andreea</Prenume>
+        <Telefon>07355555551</Telefon>
+        <Sex>Female</Sex>
+    </student>
+    <student Id="5">
+        <Nume>Paleta</Nume>
+        <Prenume>Petrom</Prenume>
+        <Telefon>073222223</Telefon>
+        <Sex>Female</Sex>
+    </student>
+</studenti>

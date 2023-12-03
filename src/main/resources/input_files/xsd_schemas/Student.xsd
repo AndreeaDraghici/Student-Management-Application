@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="studenti" type="studentiType"/>
+    <xs:complexType name="studentType">
+        <xs:sequence>
+            <xs:element name="Nume">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="dinkar"/>
+                        <xs:enumeration value="Vaneet"/>
+                        <xs:enumeration value="jasvir"/>
+                        <xs:enumeration value="Draghici"/>
+                        <xs:enumeration value="Paleta"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Prenume">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="kad"/>
+                        <xs:enumeration value="Gupta"/>
+                        <xs:enumeration value="singn"/>
+                        <xs:enumeration value="Andreea"/>
+                        <xs:enumeration value="Petrom"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Telefon">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="0374826495"/>
+                        <xs:enumeration value="0375628585"/>
+                        <xs:enumeration value="0735491645"/>
+                        <xs:enumeration value="07355555551"/>
+                        <xs:enumeration value="073222223"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Sex">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Male"/>
+                        <xs:enumeration value="Female"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="Id" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="studentiType">
+        <xs:sequence>
+            <xs:element type="studentType" name="student" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

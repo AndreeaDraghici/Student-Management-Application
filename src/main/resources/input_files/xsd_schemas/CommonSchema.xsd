@@ -1,0 +1,12 @@
+<!-- main.xsd -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:student="student_namespace"
+           xmlns:grade="nota_namespace"
+           xmlns:discipline="materie_namespace">
+
+    <!-- Importăm schemele individuale -->
+    <xs:import namespace="student_namespace" schemaLocation="Student.xsd"/>
+    <xs:import namespace="nota_namespace" schemaLocation="Nota.xsd"/>
+    <xs:import namespace="materie_namespace" schemaLocation="Materie.xsd"/>
+
+</xs:schema>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="student-management-application-documentation">Student Management Application Documentation</h1>
+<h4 id="student-management-application--ace-ucv-2022--practice-stage">Student Management Application , ACE UCv 2022 , Practice Stage</h4>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#inputs">Inputs</a></li>
+<li><a href="#running-the-application">Running the Application</a>
+<ul>
+<li><a href="#gui-mode">GUI Mode</a></li>
+<li><a href="#cli-mode">CLI Mode</a></li>
+</ul>
+</li>
+<li><a href="#gui-interface">GUI Interface</a>
+<ul>
+<li><a href="#importing-xml-files">Importing XML Files</a></li>
+<li><a href="#viewing-imported-data">Viewing Imported Data</a></li>
+<li><a href="#generating-reports">Generating Reports</a></li>
+</ul>
+</li>
+<li><a href="#cli-usage">CLI Usage</a></li>
+<li><a href="#outputs">Outputs</a></li>
+<li><a href="#abbreviations">Abbreviations</a></li>
+<li><a href="#configuration-using-properties-file">Configuration using Properties File</a></li>
+<li><a href="#history">History</a></li>
+</ol>
+<hr>
+<h2 id="1-introduction-a-name%22introduction%22a">1. Introduction <a name="introduction"></a></h2>
+<p>The Student Management Application is a versatile tool designed for managing student information, disciplines, and
+grades and generate a report for specified discipline with save in a xml (. xml) file.. It features both a Graphical
+User Interface (GUI) and a Command Line Interface (CLI), providing flexibility for
+users with different preferences.</p>
+<hr>
+<h2 id="2-features-a-name%22features%22a">2. Features <a name="features"></a></h2>
+<ul>
+<li>
+<p><strong>GUI and CLI Support:</strong> Users can interact with the application either through a user-friendly GUI or a command-line
+interface.</p>
+</li>
+<li>
+<p><strong>Import Data:</strong> The application accepts three XML files containing student, discipline, and grade information.</p>
+</li>
+<li>
+<p><strong>Generate Reports:</strong> Users can generate reports for a specified discipline with students sorted alphabetically.</p>
+</li>
+<li>
+<p><strong>Save Reports:</strong> The generated reports are saved in XML format for future reference.</p>
+</li>
+</ul>
+<hr>
+<h2 id="3-inputs-a-name%22inputs%22a">3. Inputs <a name="inputs"></a></h2>
+<p>The application requires three XML files as inputs. These files contain information about students, disciplines, and
+grades.</p>
+<hr>
+<h2 id="4-running-the-application-a-name%22running-the-application%22a">4. Running the Application <a name="running-the-application"></a></h2>
+<h3 id="gui-mode-a-name%22gui-mode%22a">GUI Mode <a name="gui-mode"></a></h3>
+<ol>
+<li>
+<p><strong>Launch Application:</strong> Run the application, and the GUI interface will be displayed.</p>
+</li>
+<li>
+<p><strong>Import XML Files:</strong> Click on the &quot;Import XML Files&quot; button to load the required XML files.</p>
+</li>
+<li>
+<p><strong>Generate Reports:</strong> View the imported data and generate reports for specified disciplines.</p>
+</li>
+</ol>
+<h3 id="cli-mode-a-name%22cli-mode%22a">CLI Mode <a name="cli-mode"></a></h3>
+<ol>
+<li>
+<p><strong>Run CLI Application:</strong> Execute the CLI application with appropriate command-line arguments.</p>
+</li>
+<li>
+<p><strong>Provide XML Paths:</strong> Include file paths for the student, discipline, and grade XML files.</p>
+</li>
+<li>
+<p><strong>Generate Reports:</strong> Reports will be generated for specified disciplines in CLI mode.</p>
+</li>
+</ol>
+<hr>
+<h2 id="5-gui-interface-a-name%22gui-interface%22a">5. GUI Interface <a name="gui-interface"></a></h2>
+<h3 id="importing-xml-files-a-name%22importing-xml-files%22a">Importing XML Files <a name="importing-xml-files"></a></h3>
+<p><img src="img.png" alt="img.png"></p>
+<p>Click the &quot;Browse&quot; button.
+Select the XML files for students, disciplines, and grades.</p>
+<h3 id="viewing-imported-data-a-name%22viewing-imported-data%22a">Viewing Imported Data <a name="viewing-imported-data"></a></h3>
+<p>After importing, the data from XML files will be displayed in a table view.</p>
+<h3 id="generating-reports-a-name%22generating-reports%22a">Generating Reports <a name="generating-reports"></a></h3>
+<p>Select a  &quot;Generate Report&quot; button to create a report for that discipline. The report will be alphabetically sorted and
+saved in XML format.</p>
+<hr>
+<h2 id="6-cli-usage-a-name%22cli-usage%22a">6. CLI Usage <a name="cli-usage"></a></h2>
+<ul>
+<li>Run the CLI application with appropriate command-line arguments.</li>
+</ul>
+<h5 id="example-command-line-arguments-for-running-student-management-application">Example Command Line Arguments for Running Student Management Application</h5>
+<pre class="hljs"><code><div>    java -jar StudentManagement.jar -s <span class="hljs-string">"/path/to/student/file.xml"</span> -d <span class="hljs-string">"/path/to/discipline/file.xml"</span> -g <span class="hljs-string">"/path/to/grade/file.xml"</span> -o <span class="hljs-string">"/path/to/output/file.xml"</span>
+</div></code></pre>
+<ul>
+<li>
+<p>Provide file paths for student, discipline, and grade XML files.</p>
+</li>
+<li>
+<p>Reports will be generated for specified disciplines.</p>
+</li>
+</ul>
+<hr>
+<h2 id="7-outputs-a-name%22outputs%22a">7. Outputs <a name="outputs"></a></h2>
+<p>Reports generated by the application will be saved in XML format.</p>
+<hr>
+<h2 id="8-abbreviations-a-name%22abbreviations%22a">8. Abbreviations <a name="abbreviations"></a></h2>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GUI</td>
+<td><strong>G</strong>raphical <strong>U</strong>ser <strong>I</strong>nterface</td>
+</tr>
+<tr>
+<td>XML</td>
+<td><strong>Ex</strong>tensible <strong>M</strong>arkup <strong>L</strong>anguage</td>
+</tr>
+<tr>
+<td>CLI</td>
+<td><strong>C</strong>ommand <strong>L</strong>ine <strong>I</strong>nterface</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="9-configuration-using-properties-file-a-name%22configuration-using-properties-file%22a">9. Configuration using Properties File <a name="configuration-using-properties-file"></a></h2>
+<p>To facilitate the management of input file paths, the application supports the use of a properties file. This properties
+file can be used to store and reload the configurations of the paths for the XML files.</p>
+<h4 id="sample-example">Sample example:</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">#Sun Dec 03 13:03:18 EET 2023</span>
+STUDENT_XML_PATH=/path/to/student/file.xml
+GRADE_XML_PATH=/path/to/discipline/file.xml
+DISCIPLINE_XML_PATH=/path/to/grade/file.xml
+</div></code></pre>
+<hr>
+<h2 id="10-history-a-name%22history%22a">10. History <a name="history"></a></h2>
+<h3 id="version-101">Version 1.0.1</h3>
+<ul>
+<li>CLI supported.</li>
+<li>Modify GUI, used JavaFX now.</li>
+<li>Import and view XML data using tab pane with tables view.</li>
+<li>Properties config file supported,used to store and reload the configurations of the paths for the XML files.</li>
+<li>Generate reports for specified disciplines.</li>
+<li>Migrated initial project to gradle distribution now, to install easy the dependencies.</li>
+</ul>
+<h3 id="version-100">Version 1.0.0</h3>
+<ul>
+<li>Initial version of application (just Swing GUI functionality).</li>
+</ul>
+
+</body>
+</html>

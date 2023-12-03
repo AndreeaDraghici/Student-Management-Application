@@ -1,0 +1,154 @@
+/* Set the default background color for buttons */
+.button {
+    -fx-background-color: #F3F3F3; 
+}
+
+/* Change background color on button hover */
+.button:hover {
+    -fx-background-color: #A1C1F4;
+}
+
+/* Change background color on button press */
+.button:pressed {
+    -fx-background-color: #73A3EF;
+}
+
+/* Style the column headers and background of the table view */
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-cell-size: 20; /* Set cell size for headers */
+    -fx-background-color: #DB7093; /* Set background color for headers */
+}
+
+/* Style the labels inside column headers */
+.table-view .column-header .label {
+    -fx-text-fill: black; /* Set text color */
+    -fx-font-weight: bold; /* Set font weight */
+    -fx-alignment: CENTER_LEFT; /* Align text to the left */
+}
+
+/* Style the cells in the table view */
+.table-view .cell {
+    -fx-cell-size: 35; /* Set cell size */
+    -fx-alignment: center-left; /* Align text to the left */
+    -fx-text-fill: black; /* Set text color */
+    -fx-font-weight: bold; /* Set font weight */
+}
+
+/* Style the selected rows in the table view */
+.table-row-cell:selected {
+    -fx-background-color: rgb(127, 172, 243); /* Set background color for selected rows */
+}
+
+/* Style the text color in selected rows */
+.table-row-cell:selected .text {
+    -fx-text-fill: black; /* Set text color in selected rows */
+}
+
+/* Styling for scrollbar buttons, track, and thumb */
+.table-view .increment-button,
+.table-view .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 2em;
+}
+
+/* Styling for the horizontal and vertical scrollbar tracks in a table view */
+.table-view .scroll-bar:horizontal .track,
+.table-view .scroll-bar:vertical .track {
+    -fx-background-color: transparent; /* Set track background color as transparent */
+    -fx-border-color: derive(#2D75E8, 80%); /* Set border color using a derived shade of blue */
+    -fx-background-radius: 2em; /* Set border radius for track */
+    -fx-border-radius: 2em; /* Set background radius for track */
+}
+
+/* Styling for the horizontal and vertical scrollbar thumbs in a table view */
+.table-view .scroll-bar:horizontal .thumb,
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: derive(#2D75E8, 90%); /* Set thumb background color using a derived shade of blue */
+    -fx-background-insets: 2, 0, 0; /* Set background insets for thumb */
+    -fx-background-radius: 2em; /* Set background radius for thumb */
+}
+
+/* Styling for tab pane */
+* {
+    -fx-primary-color: #C0C0C0; /* Set primary color for tabs */
+    -fx-secondary-color:#9370DB; /* Set secondary color for selected tab */
+    -fx-focus-color: -fx-secondary-color; /* Set focus color */
+}
+
+.tab-header-area .tab-header-background {
+    -fx-background-color: -fx-primary-color; /* Set background color for tab header */
+}
+
+/* Styling for the selected tab in a tab pane */
+.tab-pane .tab:selected {
+    -fx-background-color: -fx-secondary-color; /* Set background color for the selected tab */
+    -fx-background-insets: 0 0 0 0; /* Set background insets to 0 */
+    -fx-background-radius: 0 0 0 0; /* Set background radius to 0 (remove rounded corners) */
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: black; /* Set text color for tab labels */
+    -fx-font-weight: bold; /* Set font weight for tab labels */
+    -fx-padding: 0 5 0 5; /* Reduced padding */
+}
+
+.tab-pane:top *.tab-header-area {
+    -fx-padding: 0 0 0 0; /* Reduced left padding */
+}
+
+.tab-pane {
+    -fx-background-color: transparent;
+    -fx-tab-min-width: 46px; /* Reduced tab width */
+    -fx-tab-min-height: 46px; /* Reduced tab height */
+    -fx-tab-max-height: 46px; /* Reduced max tab height */
+}
+
+/* Set the background color of tabs in a tab pane as transparent */
+.tab-pane .tab {
+    -fx-background-color: transparent;
+}
+
+/* Styling for the focus indicator of the selected tab when the tab pane is focused */
+.tab-pane:focused .tab-header-area .headers-region .tab:selected .focus-indicator {
+    -fx-border-width: 0; /* Set border width to 0 (remove border) */
+    -fx-border-insets: 0 0 0 0; /* Set border insets to 0 */
+    -fx-border-radius: 0; /* Set border radius to 0 (remove rounded corners) */
+}
+
+/* Styling for chart */
+.chart {
+    -fx-padding: 10px; /* Set padding for chart */
+    -fx-background-color: transparent; /* Set background color for chart */
+    -fx-legend-visible: false; /* Hide legend */
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent; /* Set background color for chart plot */
+}
+
+/* Styling for the pie chart */
+.chart-pie {
+    -fx-border-color: derive(-fx-pie-color, 1%); /* Set the border color to a derived shade of the pie color */
+    -fx-border-width: 0px; /* Set border width to 0 (remove border) */
+}
+
+/* Styling for studentTextField, disciplineTextField, gradeTextField */
+.text-field {
+    -fx-background-color: #F5F5F5; /* Light Gray */
+    -fx-font-family: "System Bold";
+    -fx-font-size: 13.0;
+}
+
+/* Styling for Labels */
+.label {
+    -fx-text-fill: #0A0061; /* Dark Blue */
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 14.0;
+}
+
+/* Styling for TabPane */
+.tab-pane {
+    -fx-background-color:#F0F8FF; /* Alice Blue */
+}
